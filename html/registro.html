@@ -1,23 +1,80 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+<style>
+li a:hover {
+    background-color: #111111;
+}
+* {
+margin: 0;
+}
+html, body {
+height: 100%;
+}
+.contenido {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -4em;
+}
+</style>
 <head>
-    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <title>Chinchón</title>
+    <meta content="text/html; charset=UTF8" http-equiv="content-type">
+    <title>Inicio</title>
 </head>
-<body class="turismoNacional">
-    <div class="cabecera"><h1 style="color:white;">Chinchón</h1></div>
-<div class="contenido">
-    <h2>Introducción</h2>
-    <p>Pueblo muy chulo que tiene:</p>
-    <ol>
-        <li>Lista1</li>
-        <li>Lista2</li>
-        <li>Lista3</li>
-        <li>Lista3</li>
-    </ol>
-    <h2>Resumen</h2>
-    <div class="definicion"><p>Pueblo localizado al sur de madri que tari tara...</p></div>
-    <p>Mas cosas</p>
+<body class="inicio" background="media/registro.png">
+    <div class="contenido">
+           <ul style="list-style-type: none;margin: 0;padding: 0;overflow: hidden;background-color: #333333;">
+  <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;"href="inicio.html">Inicio</a></li>
+  <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;"href="nacional.html">Turismo nacional</a></li>
+  <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;"href="internacional.html">Turismo internacional</a></li>
+  <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;"href="login.html">Login</a></li>
+</ul>
+            <!--Contenido de verdad-->
+            <div class="formulario" style="margin-left: 60%;
+    margin-top: 10%;
+        color: white;">
+            <div style="margin-top: 10px;"><label for="usuario">Nombre de usuario</label>
+            <input type="text" size="15" maxlength="30" value="" name="usuario"></div>
+            <div style="margin-top: 10px;">
+            <label for="nombre">Nombre</label>
+            <input style="margin-left: 70px;" type="text" size="15" maxlength="30" value="" name="nombre">
+        </div>
+        <div style="margin-top: 10px;">
+            <label for="apellidos">Apellidos</label>
+            <input style="margin-left: 61px;"type="text" size="15" maxlength="30" value="" name="apellidos">
+        </div>
+        <div style="margin-top: 10px;">
+            <label for="correo">Correo</label>
+            <input style="margin-left: 79px;" type="text" size="15" maxlength="30" value="" name="correo">
+        </div>
+        <div>
+            <form action="inicio.html">
+    <input style="margin-top: 30;"type=submit value="Registrarse" etc etc...>
 </div>
+</form>
+</div>
+
+       </div>
+
+    <div class="footer">
+            <ul style="list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    background-color: #333333;
+    padding-bottom:30px;">
+  <li style="float: left;"><a style="display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    margin-left: 10px;"href="registro.html">Registrarse</a></li>
+  <li style="float: left;"><a style="display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    margin-left: 10px;"href="sugerencias.html">Quejas/Sugerencias</a></li>
+</ul>
+       </div>
+</ul>
 </body>
