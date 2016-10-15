@@ -2,48 +2,78 @@
 <html>
 <head>
     <meta content="text/html; charset=UTF8" http-equiv="content-type">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
     <title>Opinión</title>
 </head>
-<body class="turismoNacional">
-    <div class="cabecera"><h1 style="color:white;"> Tu Opinión es importante</h1></div>
+<body class="inicio" style="height: 100%;" background="media/web-background.jpg"
+      >
+    <div class="contenido" style="min-height: 100%;height: auto !important;height: 100%;margin: 0 auto -4em;">
 
-<div class="contenido">
-    
-    <h2>Danos tu opinión sobre nuestro servicio</h2>
-    <p>
-        hola
-    </p>
-    
-    <!--Formulario-->
-    
-    <form action="blablabla" method="post">
-  <fieldset class="campo">
-    <legend>Datos personales</legend>
-    Nombre <br/>
-    <input type="text" name="nombre" value="" />
-    <br/>
-    Apellidos <br/>
-    <input type="text" name="apellidos" value="" />
-    <br/>
-    DNI <br/>
-    <input type="text" name="dni" value="" size="10" maxlength="9" />
-  </fieldset>
- 
-  <fieldset>
-    <legend>Datos de conexión</legend>
-    Nombre de usuario<br/>
-    <input type="text" name="nombre" value="" maxlength="10" />
-    <br/>
-    Contraseña<br/>
-    <input type="password" name="password" value="" maxlength="10" />
-    <br/>
-    Repite la contraseña<br/>
-    <input type="password" name="password2" value="" maxlength="10" />
-  </fieldset>
-</form>
-      
-<!--Fin Formulario-->
+        <!--Menu de arriba-->
+     <ul style="list-style-type: none;padding: 0;overflow: hidden;background-color: #333333;margin-left: -10px;margin-right: -10px;margin-top: -10px;">
+      <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;"href="inicio.html">Inicio</a></li>
+      <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;"href="nacional.html">Turismo nacional</a></li>
+      <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;"href="internacional.html">Turismo internacional</a></li>
+      <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;"href="login.html">Login</a></li>
+  </ul>
 
+  <!--Aqui comienza el contenido de verdad-->
+    <h1 style= "text-align: center;top-padding: 20px;background-color: #5AAAAA;">Danos tu opinión </h1>
+        
+    <div class="formulario" style="text-align: left;
+      margin-top: 50px;
+      margin-left:20%;                             
+      color: black;">
+        <div><h3>Valora los siguientes aspectos Del 1 al 5</h3></div>
+    <form action="inicio.html">
+      <div style="margin-top: 10px;">
+          <label for="nacional" style="margin-right: 30px;">
+              Oferta de viajes Nacionales:</label>
+          
+            <input type="radio" name="nacional" value="1"> 1
+            <input type="radio" name="nacional" value="2"> 2
+            <input type="radio" name="nacional" value="3"> 3
+            <input type="radio" name="nacional" value="4"> 4
+            <input type="radio" name="nacional" value="5" checked> 5
+        </div>
+        <div style="margin-top: 10px;">
+            <label for="internacional">Oferta de viajes InterNacionales:</label>
+            <input type="radio" name="internacional" value="1"> 1
+            <input type="radio" name="internacional" value="2"> 2
+            <input type="radio" name="internacional" value="3"> 3
+            <input type="radio" name="internacional" value="4"> 4
+            <input type="radio" name="internacional" value="5" checked> 5
+        </div>
+        <div style="margin-top: 10px;">
+            <label for="amigabilidad" style="margin-right: 18px;">Amigabilidad de nuestra web:</label>
+            <input type="radio" name="amigabilidad" value="1"> 1
+            <input type="radio" name="amigabilidad" value="2"> 2
+            <input type="radio" name="amigabilidad" value="3"> 3
+            <input type="radio" name="amigabilidad" value="4"> 4
+            <input type="radio" name="amigabilidad" value="5" checked> 5
+        </div>
+        <div style="margin-top: 10px;">
+            <label for="atencion" style="margin-right: 80px;">Atención al usuario:</label>
+            <input type="radio" name="atencion" value="1"> 1
+            <input type="radio" name="atencion" value="2"> 2
+            <input type="radio" name="atencion" value="3"> 3
+            <input type="radio" name="atencion" value="4"> 4
+            <input type="radio" name="atencion" value="5" checked> 5
+        </div>
+        <div>
+            <input style="margin-top: 30;"type=submit value="Enviar">
+        </div>
+         </form>
+
+    </div>
+        
+</div>
+    
+
+<!--Pie de página-->
+<div class="footer" style="height: 4em;">
+    <ul style="list-style-type: none;margin: 0;overflow: hidden;background-color: #333333;">
+      <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;"href="registro.html">Registrarse</a></li>
+      <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;"href="sugerencias.html">Quejas/Sugerencias</a></li>
+  </ul>
 </div>
 </body>
