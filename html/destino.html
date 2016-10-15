@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
-    <title>Opinión</title>
+    <title>Nuevo Destino</title>
 </head>
-<body class="inicio" style="height: 100%;" background="media/web-background.jpg"
+<body class="inicio" style="height: 100%;" background="media/beachh.jpg"   
       >
     <div class="contenido" style="min-height: 100%;height: auto !important;height: 100%;margin: 0 auto -4em;">
 
@@ -17,50 +17,42 @@
   </ul>
 
   <!--Aqui comienza el contenido de verdad-->
-    <h1 style= "text-align: center;top-padding: 20px;background-color: #5AAAAA;">Danos tu opinión </h1>
+    <h1 style= "text-align: center;top-padding: 20px;">Propón un destino nuevo</h1>
         
     <div class="formulario" style="text-align: left;
       margin-top: 50px;
       margin-left:20%;                             
       color: black;">
-        <div><h3>Valora los siguientes aspectos Del 1 al 5</h3></div>
+        
+        <div><h3>Rellene los siguientes campos</h3></div>
+        
     <form action="inicio.html">
       <div style="margin-top: 10px;">
-          <label for="nacional" style="margin-right: 30px;">
-              Oferta de viajes Nacionales:</label>
+          <label style="margin-right: 30px;">
+              ¿Es un destino Nacional?, o Internacional:</label>
           
-            <input type="radio" name="nacional" value="1"> 1
-            <input type="radio" name="nacional" value="2"> 2
-            <input type="radio" name="nacional" value="3"> 3
-            <input type="radio" name="nacional" value="4"> 4
-            <input type="radio" name="nacional" value="5" checked> 5
+            <input type="radio" name="tipo" value="Nacional" checked> Nacional
+            <input type="radio" name="tipo" value="Internacional"> Internacional
+            
         </div>
         <div style="margin-top: 10px;">
-            <label for="internacional">Oferta de viajes InterNacionales:</label>
-            <input type="radio" name="internacional" value="1"> 1
-            <input type="radio" name="internacional" value="2"> 2
-            <input type="radio" name="internacional" value="3"> 3
-            <input type="radio" name="internacional" value="4"> 4
-            <input type="radio" name="internacional" value="5" checked> 5
+            <label for="pais">En caso de Internacional, indique el país:</label>
+            <input style="margin-left: 40px;" type="text" size="15" maxlength="30" value="" id="pais">
+            
         </div>
         <div style="margin-top: 10px;">
-            <label for="amigabilidad" style="margin-right: 18px;">Amigabilidad de nuestra web:</label>
-            <input type="radio" name="amigabilidad" value="1"> 1
-            <input type="radio" name="amigabilidad" value="2"> 2
-            <input type="radio" name="amigabilidad" value="3"> 3
-            <input type="radio" name="amigabilidad" value="4"> 4
-            <input type="radio" name="amigabilidad" value="5" checked> 5
+            <label for="localidad" style="margin-right: 18px;">Localidad:</label>
+            <input style="margin-left: 215px;" type="text" size="15" maxlength="30" value="" id="localidad">
         </div>
         <div style="margin-top: 10px;">
-            <label for="atencion" style="margin-right: 80px;">Atención al usuario:</label>
-            <input type="radio" name="atencion" value="1"> 1
-            <input type="radio" name="atencion" value="2"> 2
-            <input type="radio" name="atencion" value="3"> 3
-            <input type="radio" name="atencion" value="4"> 4
-            <input type="radio" name="atencion" value="5" checked> 5
+            <label for="motivos" >Motivos de su propuesta, Atractivos de la zona:</label>
+        </div>
+        <div style="margin-top: 10px;">
+            <textarea id="motivos" rows="10" cols="50" style="padding-top: 5px;"></textarea>
         </div>
         <div>
-            <input style="margin-top: 30;"type=submit value="Enviar">
+            <input style="margin-top: 30; margin-right: 40" type=submit value="Enviar">
+            <input type="reset" style="margin-top: 30;" value = "Reset">
         </div>
          </form>
 
