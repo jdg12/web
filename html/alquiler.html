@@ -1,0 +1,105 @@
+
+<?xml version="1.1" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="contenido" style="min-height: 100%;height: auto !important;height: 100%;margin: 0 auto -4em;">
+
+        <!--Menu de arriba-->
+        <ul style="list-style-type: none;padding: 0;overflow: hidden;background-color: #333333;margin-left: -10px;margin-right: -10px;margin-top: -10px;">
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="inicio.html">Inicio</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="nacional.html">Turismo nacional</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="internacional.html">Turismo internacional</a></li>
+            <li style="float: right;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="login.html">Login</a></li>
+        </ul>
+
+        <!--Aqui comienza el contenido de verdad-->
+		<div class="formulario" style="margin-left: 40%;
+			margin-top: 5%;
+			margin-right: 40%;
+			padding-left: 80px;">
+					<div style="margin-top: 10px;">
+						<label for="nombre">Lugar a Reservar</label>
+						<input style="margin-left: 79px;" type="text" size="15" maxlength="30" value="" id="lugar"></input>
+					</div>
+					<div style="margin-top: 10px;">
+						<label for="nombre">Días a Reservar</label>
+						<input style="margin-left: 79px;" type="text" size="15" maxlength="30" value="" id="dias"></input>
+					</div>
+					<div style="margin-top: 10px;">
+						<label for="correo">Numero de Tarjeta</label>
+						<input style="margin-left: 79px;" type="text" size="15" maxlength="30" value="" id="NT"></input>
+					</div>
+					<div style="margin-top: 10px;">
+						<label for="correo">CCV</label>
+						<input style="margin-left: 79px;" type="text" size="15" maxlength="30" value="" id="NT"></input>
+					</div>
+					<div style="margin-top:10px;">
+						<input type="checkbox" name="check" value="check">Permitir a la empresa de Alquileres utilizar su tarjeta<br>
+					</div>
+					<div>
+						<input class="button" value="Reservar" name="reservar" type="button" onclick="window.location.href = 'inicio.html';"></input>
+					</div>
+				</div>
+			</div>
+		<div class="tabla" style="margin-top: -23%;">
+        <table border="2px">
+        	<thead>
+				<tr>
+					<td>Lugar</td>
+					<td>Foto</td>
+					<td>Precio del viaje</td>
+				</tr>
+        	</thead>
+        	<tbody>
+				<tr>
+					<td>Pyongyang</td>
+					<td><img width="200px" src="media/lider.jpg" alt="Pyongyang"/></td>
+					<td>2000,27€</td>
+				</tr>
+				<tr>
+					<td>Tokio</td>
+					<td><img src="media/asakusa.jpg" width="200px" alt="Tokio"/></td>
+					<td>750,99€</td>
+				</tr>
+				<tr>
+					<td>Guadalajara</td>
+					<td><img src="media/panteon.jpg" width="200px" alt="Guadalajara"/></td>
+					<td>115€</td>
+				</tr>
+				<tr>
+					<td>Chinchón</td>
+					<td><img src="media/iglesia.jpg" width="200px" alt="Chinchón"/></td>
+					<td>3€</td>
+				</tr>
+				<tr>
+					<td>Alcalá de Henares</td>
+					<td><img width="200px" src="media/cervantes.jpg" alt="Alcalá"/></td>
+					<td>58,27€</td>
+				</tr>
+				<tr>
+					<td>Barcelona</td>
+					<td><img src="media/sagrada-familia.jpg" width="200px" alt="Barcelona"/></td>
+					<td>239,50€</td>
+				</tr>
+				<tr>
+					<td>Illescas</td>
+					<td><img src="media/illescas.jpg" width="200px" alt="Illescas"/></td>
+					<td>200€</td>
+				</tr>
+				<tr>
+					<td>Andujar</td>
+					<td><img src="media/palacio-andujar.jpg" width="200px" alt="Andujar"/></td>
+					<td>401,80€</td>
+				</tr>
+        	</tbody>
+        </table>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+
+<?xml version="1.1" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="contenido" style="min-height: 100%;height: auto !important;height: 100%;margin: 0 auto -4em;">
+
+        <!--Menu de arriba-->
+        <ul style="list-style-type: none;padding: 0;overflow: hidden;background-color: #333333;margin-left: -10px;margin-right: -10px;margin-top: -10px;">
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="inicio.html">Inicio</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="nacional.html">Turismo nacional</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="internacional.html">Turismo internacional</a></li>
+            <li style="float: right;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="login.html">Login</a></li>
+        </ul>
+
+        <!--Aqui comienza el contenido de verdad-->
+        <div class="formulario" style="margin-left: 30%; 
+    margin-top: 10%;
+    margin-right: 20%;
+    margin-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 70px;
+    -webkit-border-radius: 5px 10px;
+    -moz-border-radius: 5px 10px;
+    background-color: #F2F2F2;">
+            <div style="margin-top: 10px;">
+                <label for="nombre">Nombre De Usuario</label>
+                <input style="margin-left: 70px;" type="text" size="15" maxlength="30" value="" id="nombre"></input>
+            </div>
+            <div style="margin-top: 10px;">
+                <label for="correo">Contraseña</label>
+                <input style="margin-left: 127px;" type="text" size="15" maxlength="30" value="" id="correo"></input>
+            </div>
+			<div style="margin-top: 10px;  padding-top: 30px;" align="center">
+				<a href="registro.html">¿No tienes cuenta?¿Se te ha olvidado tu contraseña? Pincha Aquí</a>
+            </div>
+            <div style="margin-top: 10px;  padding-top: 20px;" align="center">
+                <input class="button" value="Entrar" name="log" type="button" onclick="window.location.href = 'inicio.html';"></input>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
