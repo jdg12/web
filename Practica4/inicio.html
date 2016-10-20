@@ -7,9 +7,19 @@
     <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            $("#platos option[value=opcion2]").hide();
             $("input[name=menu]").click(function() {
-                alert("La edad seleccionada es: " + $('input:radio[name=menu]:checked').val());
-                $("formulario platos").set("holaaaaa");
+                if ($('input:radio[name=menu]:checked').val() == "primero") {
+                    alert("primero");
+                }
+                if ($('input:radio[name=menu]:checked').val() == "segundo") {
+                    alert("payaso");
+                }
+                if ($('input:radio[name=menu]:checked').val() == "postre") {
+                    alert("payaso");
+                }
+                $("#platos option[value=opcion1]").hide();
+                $("#platos option[value=opcion2]").show();
             });
         });
 
@@ -41,14 +51,21 @@
                 <option value="Mesa4">Mesa 4</option>
                 <option value="Mesa5">Mesa 5</option>
    </select><br><br>
-            <select name="platos" size=7>    
+            <select id="platos" name="platos" size=7>    
        <option value="opcion1" selected="selected">plato1</option>
-       <option value="opcion2">plato2</option>
-       <option value="opcion3">plato3</option>
-                <option value="opcion4">plato4</option>
-                <option value="opcion5">plato5</option>
-                <option value="opcion6">plato6</option>
-                <option value="opcion7">plato7</option>
+       <option value="opcion1">plato2</option>
+       <option value="opcion1">plato3</option>
+                <option value="opcion1">plato4</option>
+                <option value="opcion1">plato5</option>
+                <option value="opcion1">plato6</option>
+                <option value="opcion1">plato7</option>
+                <option value="opcion2" selected="selected">plato21</option>
+       <option value="opcion2">plato2222</option>
+       <option value="opcion2">plato23</option>
+                <option value="opcion2">plat222o4</option>
+                <option value="opcion2">plato5</option>
+                <option value="opcion2">plato6</option>
+                <option value="opcion2">plato7</option>
    </select>
             <select name="seleccion" size=7>    
        <option value="opcion1" selected="selected">plato1</option>
