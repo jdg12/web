@@ -4,6 +4,16 @@
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <title>Inicio</title>
+    <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("input[name=menu]").click(function() {
+                alert("La edad seleccionada es: " + $('input:radio[name=menu]:checked').val());
+                $("formulario platos").set("holaaaaa");
+            });
+        });
+
+    </script>
 </head>
 
 <body class="inicio" style="height: 100%;">
@@ -19,7 +29,7 @@
 
         <!--Aqui comienza el contenido de verdad-->
         <h1>SUPERMENU</h1>
-        <form action="">
+        <form name="formulario" action="">
             <input type="radio" name="menu" value="primero"> Primero<br>
             <input type="radio" name="menu" value="segundo"> Segundo<br>
             <input type="radio" name="menu" value="postre"> Postre
@@ -52,7 +62,7 @@
             <input type="checkbox" name="extra1" value="cafe">Café
             <input type="checkbox" name="extra2" value="copa">Copa <br>
             <p>Total</p> <input type="text" name="total"><br><br>
-            <input type="submit" value="Pagado">
+            <input id="pagado" type="submit" value="Pagado">
         </form>
     </div>
 
