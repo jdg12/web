@@ -8,20 +8,53 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#platos option[value=opcion2]").hide();
+			$("#platos option[value=opcion3]").hide();
             $("input[name=menu]").click(function() {
                 if ($('input:radio[name=menu]:checked').val() == "primero") {
-                    alert("primero");
+					$("#platos option[value=opcion1]").show();
+					$("#platos option[value=opcion2]").hide();
+					$("#platos option[value=opcion3]").hide();
                 }
                 if ($('input:radio[name=menu]:checked').val() == "segundo") {
-                    alert("payaso");
+                    $("#platos option[value=opcion1]").hide();
+					$("#platos option[value=opcion2]").show();
+					$("#platos option[value=opcion3]").hide();
                 }
                 if ($('input:radio[name=menu]:checked').val() == "postre") {
-                    alert("payaso");
+					$("#platos option[value=opcion1]").hide();
+					$("#platos option[value=opcion2]").hide();
+					$("#platos option[value=opcion3]").show();
                 }
-                $("#platos option[value=opcion1]").hide();
-                $("#platos option[value=opcion2]").show();
             });
         });
+        
+		$(document).ready(function(){
+		  $("#pagar").click(function(){
+		  if(document.formulario.seleccion.length % 3 == 0){
+				$("#total").val(Calcular());
+		  }
+		  else{
+				alert("Selecciona 3 platos para completar el menú");
+			}
+		  });
+		});
+				
+        function Calcular(){
+            var length = document.formulario.seleccion.length;
+            var suma = 0;
+            suma = length * 5;
+            if(document.formulario.extra1.checked){
+                suma = suma + 2;
+            }
+            if(document.formulario.extra2.checked){
+                suma = suma + 4;
+            }
+            return suma;
+        }
+		
+		function Clear(){
+			document.formulario.seleccion.options.length = 0;
+		}
 
     </script>
 </head>
@@ -40,7 +73,7 @@
         <!--Aqui comienza el contenido de verdad-->
         <h1>SUPERMENU</h1>
         <form name="formulario" action="">
-            <input type="radio" name="menu" value="primero"> Primero<br>
+            <input type="radio" name="menu" value="primero" checked="checked"> Primero<br>
             <input type="radio" name="menu" value="segundo"> Segundo<br>
             <input type="radio" name="menu" value="postre"> Postre
             <br><br>
@@ -51,23 +84,41 @@
                 <option value="Mesa4">Mesa 4</option>
                 <option value="Mesa5">Mesa 5</option>
    </select><br><br>
-            <select id="platos" name="platos" size=7>    
-       <option value="opcion1" selected="selected">plato1</option>
-       <option value="opcion1">plato2</option>
-       <option value="opcion1">plato3</option>
+   
+			<!--Este es el desplegable de la izquierda-->
+            <select id="platos" name="platos" size=7 style="min-width: 150px;" "max-height: 121px;">    
+			
+			<!--Primeros-->
+			<option value="opcion1">plato1</option>
+			<option value="opcion1">plato2</option>
+			<option value="opcion1">plato3</option>
                 <option value="opcion1">plato4</option>
                 <option value="opcion1">plato5</option>
                 <option value="opcion1">plato6</option>
                 <option value="opcion1">plato7</option>
-                <option value="opcion2" selected="selected">plato21</option>
-       <option value="opcion2">plato2222</option>
-       <option value="opcion2">plato23</option>
-                <option value="opcion2">plat222o4</option>
-                <option value="opcion2">plato5</option>
-                <option value="opcion2">plato6</option>
-                <option value="opcion2">plato7</option>
+				
+				<!--Segundos-->
+                <option value="opcion2">plato21</option>
+				<option value="opcion2">plato22</option>
+				<option value="opcion2">plato23</option>
+                <option value="opcion2">plato24</option>
+                <option value="opcion2">plato25</option>
+                <option value="opcion2">plato26</option>
+                <option value="opcion2">plato27</option>
+				
+				<!--Postres-->
+                <option value="opcion3">plato31</option>
+				<option value="opcion3">plato32</option>
+				<option value="opcion3">plato33</option>
+                <option value="opcion3">plato34</option>
+                <option value="opcion3">plato35</option>
+                <option value="opcion3">plato36</option>
+                <option value="opcion3">plato37</option>
+				
    </select>
-            <select name="seleccion" size=7>    
+			<!--PLATOS SELECCIONADOS-->
+			<!--Este es el desplegable de la derecha-->
+            <select name="seleccion" size=7 style="min-width: 150px;" "max-height: 121px;">    
        <option value="opcion1" selected="selected">plato1</option>
        <option value="opcion2">plato2</option>
        <option value="opcion3">plato3</option>
@@ -78,8 +129,9 @@
    </select><br>
             <input type="checkbox" name="extra1" value="cafe">Café
             <input type="checkbox" name="extra2" value="copa">Copa <br>
-            <p>Total</p> <input type="text" name="total"><br><br>
-            <input id="pagado" type="submit" value="Pagado">
+            <p>Total</p> <input type="text" id="total" value=""><br><br>
+			<input id="pagar" type="button" value="Calcular Cuenta">
+            <input id="pagado" type="button" value="Pagado" onclick="Clear()">
         </form>
     </div>
 
