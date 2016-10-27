@@ -7,54 +7,131 @@
     <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#platos option[value=opcion2]").hide();
-			$("#platos option[value=opcion3]").hide();
+            var mesa1, mesa2, mesa3, mesa4, mesa5, actual;
+            actual = 1;
+            mesa1 = "";
+            mesa2 = "";
+            mesa3 = "";
+            mesa4 = "";
+            mesa5 = "";
+
+            $("#platos2").hide();
+            $("#platos3").hide();
             $("input[name=menu]").click(function() {
                 if ($('input:radio[name=menu]:checked').val() == "primero") {
-					$("#platos option[value=opcion1]").show();
-					$("#platos option[value=opcion2]").hide();
-					$("#platos option[value=opcion3]").hide();
+                    $("#platos1").show();
+                    $("#platos2").hide();
+                    $("#platos3").hide();
                 }
                 if ($('input:radio[name=menu]:checked').val() == "segundo") {
-                    $("#platos option[value=opcion1]").hide();
-					$("#platos option[value=opcion2]").show();
-					$("#platos option[value=opcion3]").hide();
+                    $("#platos1").hide();
+                    $("#platos2").show();
+                    $("#platos3").hide();
                 }
                 if ($('input:radio[name=menu]:checked').val() == "postre") {
-					$("#platos option[value=opcion1]").hide();
-					$("#platos option[value=opcion2]").hide();
-					$("#platos option[value=opcion3]").show();
+                    $("#platos1").hide();
+                    $("#platos2").hide();
+                    $("#platos3").show();
                 }
             });
+            $('#mesas').change(function() {
+                var res;
+                var selectedValue = parseInt(jQuery(this).val());
+                actual = selectedValue;
+                switch (actual) {
+                    case 1:
+                        res = mesa1.split("-");
+                        break;
+                    case 2:
+                        res = mesa2.split("-");
+                        break;
+                    case 3:
+                        res = mesa3.split("-");
+                        break;
+                    case 4:
+                        res = mesa4.split("-");
+                        break;
+                    case 5:
+                        res = mesa5.split("-");
+                        break;
+                    default:
+                        alert("catch default");
+                        break;
+                }
+                $('#seleccion').empty();
+                $.each(res, function(ind, elem) {
+                    $('#seleccion').append(new Option(elem, elem));
+                });
+            });
+            $('#platos1').change(function() {
+                anadirPlato(this);
+            });
+            $('#platos2').change(function() {
+                anadirPlato(this);
+            });
+            $('#platos3').change(function() {
+                anadirPlato(this);
+            });
+
+            function anadirPlato(formulario) {
+                var selectedValue = jQuery(formulario).val();
+                var res;
+                switch (actual) {
+                    case 1:
+                        mesa1 = mesa1 + selectedValue + "-";
+                        res = mesa1.split("-");
+                        break;
+                    case 2:
+                        mesa2 = mesa2 + selectedValue + "-";
+                        res = mesa2.split("-");
+                        break;
+                    case 3:
+                        mesa3 = mesa3 + selectedValue + "-";
+                        res = mesa3.split("-");
+                        break;
+                    case 4:
+                        mesa4 = mesa4 + selectedValue + "-";
+                        res = mesa4.split("-");
+                        break;
+                    case 5:
+                        mesa5 = mesa5 + selectedValue + "-";
+                        res = mesa5.split("-");
+                        break;
+                    default:
+                        alert("catch default");
+                        break;
+                }
+                $('#seleccion').empty();
+                $.each(res, function(ind, elem) {
+                    $('#seleccion').append(new Option(elem, elem));
+                });
+            }
+            $("#pagar").click(function() {
+                if (document.formulario.seleccion.length % 3 == 0) {
+                    $("#total").val(Calcular());
+                } else {
+                    alert("Selecciona 3 platos para completar el menú");
+                }
+            });
+
         });
-        
-		$(document).ready(function(){
-		  $("#pagar").click(function(){
-		  if(document.formulario.seleccion.length % 3 == 0){
-				$("#total").val(Calcular());
-		  }
-		  else{
-				alert("Selecciona 3 platos para completar el menú");
-			}
-		  });
-		});
-				
-        function Calcular(){
+
+        function Calcular() {
             var length = document.formulario.seleccion.length;
             var suma = 0;
             suma = length * 5;
-            if(document.formulario.extra1.checked){
+            if (document.formulario.extra1.checked) {
                 suma = suma + 2;
             }
-            if(document.formulario.extra2.checked){
+            if (document.formulario.extra2.checked) {
                 suma = suma + 4;
             }
             return suma;
         }
-		
-		function Clear(){
-			document.formulario.seleccion.options.length = 0;
-		}
+
+        function Clear() {
+            document.formulario.seleccion.options.length = 0;
+        }
 
     </script>
 </head>
@@ -77,60 +154,59 @@
             <input type="radio" name="menu" value="segundo"> Segundo<br>
             <input type="radio" name="menu" value="postre"> Postre
             <br><br>
-            <select name="mesas">    
-       <option value="Mesa1" selected="selected">Mesa 1</option>
-       <option value="Mesa2">Mesa 2</option>
-       <option value="Mesa3">Mesa 3</option>
-                <option value="Mesa4">Mesa 4</option>
-                <option value="Mesa5">Mesa 5</option>
+            <select id="mesas" name="mesas">    
+       <option value="1" selected="selected">Mesa 1</option>
+       <option value="2">Mesa 2</option>
+       <option value="3">Mesa 3</option>
+                <option value="4">Mesa 4</option>
+                <option value="5">Mesa 5</option>
    </select><br><br>
-   
-			<!--Este es el desplegable de la izquierda-->
-            <select id="platos" name="platos" size=7 style="min-width: 150px;" "max-height: 121px;">    
+
+            <!--Este es el desplegable de la izquierda-->
+            <select id="platos1" name="platos" size=7 style="min-width: 150px;" "max-height: 121px;">    
 			
 			<!--Primeros-->
-			<option value="opcion1">plato1</option>
-			<option value="opcion1">plato2</option>
-			<option value="opcion1">plato3</option>
-                <option value="opcion1">plato4</option>
-                <option value="opcion1">plato5</option>
-                <option value="opcion1">plato6</option>
-                <option value="opcion1">plato7</option>
-				
-				<!--Segundos-->
-                <option value="opcion2">plato21</option>
-				<option value="opcion2">plato22</option>
-				<option value="opcion2">plato23</option>
-                <option value="opcion2">plato24</option>
-                <option value="opcion2">plato25</option>
-                <option value="opcion2">plato26</option>
-                <option value="opcion2">plato27</option>
-				
-				<!--Postres-->
-                <option value="opcion3">plato31</option>
-				<option value="opcion3">plato32</option>
-				<option value="opcion3">plato33</option>
-                <option value="opcion3">plato34</option>
-                <option value="opcion3">plato35</option>
-                <option value="opcion3">plato36</option>
-                <option value="opcion3">plato37</option>
+			<option value="Ensalada">Ensalada</option>
+             <option value="Gazpacho">Gazpacho</option>
+             <option value="Crema de calabacín">Crema de calabacín</option>
+             <option value="Sopa de marisco">Sopa de marisco</option>
+             <option value="Ensalada de cacahuete">Ensalada de cacahuete</option>
+             <option value="Tabla de ibéricos">Tabla de ibéricos</option>
+             <option value="Patatas a la vieja">Patatas a la vieja</option>
 				
    </select>
-			<!--PLATOS SELECCIONADOS-->
-			<!--Este es el desplegable de la derecha-->
-            <select name="seleccion" size=7 style="min-width: 150px;" "max-height: 121px;">    
-       <option value="opcion1" selected="selected">plato1</option>
-       <option value="opcion2">plato2</option>
-       <option value="opcion3">plato3</option>
-                <option value="opcion4">plato4</option>
-                <option value="opcion5">plato5</option>
-                <option value="opcion6">plato6</option>
-                <option value="opcion7">plato7</option>
+            <select id="platos2" name="platos" size=7 style="min-width: 150px;" "max-height: 121px;">    
+				
+				<option value="Pizza">Pizza</option>
+             <option value="Hamburguesa">Hamburguesa</option>
+             <option value="Solomillo">Solomillo con salsa de nata</option>
+             <option value="Pato a la naranja">Pato a la naranja</option>
+             <option value="Ramen">Ramen</option>
+             <option value="Rabo de toro">Rabo de toro</option>
+             <option value="Huevos con patatas fritas">Huevos con patatas fritas</option>
+				
+				
+   </select>
+            <select id="platos3" name="platos" size=7 style="min-width: 150px;" "max-height: 121px;">    
+				
+			<option value="Sopa de yogur">Sopa de yogur</option>
+             <option value="Piramide de chocolate">Piramide chocolate</option>
+             <option value="Torrija">Torrija</option>
+             <option value="Flan">Flan</option>
+             <option value="Natillas">Natillas</option>
+             <option value="Arroz con leche">Arroz con leche</option>
+             <option value="Helado">Helado</option>
+				
+   </select>
+            <!--PLATOS SELECCIONADOS-->
+            <!--Este es el desplegable de la derecha-->
+            <select id="seleccion" name="seleccion" size=7 style="min-width: 150px;" "max-height: 121px;">    
+    
    </select><br>
             <input type="checkbox" name="extra1" value="cafe">Café
             <input type="checkbox" name="extra2" value="copa">Copa <br>
             <p>Total</p> <input type="text" id="total" value=""><br><br>
-			<input id="pagar" type="button" value="Calcular Cuenta">
+            <input id="pagar" type="button" value="Calcular Cuenta">
             <input id="pagado" type="button" value="Pagado" onclick="Clear()">
         </form>
     </div>
