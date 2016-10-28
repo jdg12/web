@@ -14,6 +14,12 @@
             mesa3 = "";
             mesa4 = "";
             mesa5 = "";
+            var precios1, precios2, precios3, precios4, precios5;
+            precios1 = 0;
+            precios2 = 0;
+            precios3 = 0;
+            precios4 = 0;
+            precios5 = 0;
 
             $("#platos2").hide();
             $("#platos3").hide();
@@ -41,18 +47,23 @@
                 switch (actual) {
                     case 1:
                         res = mesa1.split("-");
+                        $('#total').val(precios1);
                         break;
                     case 2:
                         res = mesa2.split("-");
+                        $('#total').val(precios2);
                         break;
                     case 3:
                         res = mesa3.split("-");
+                        $('#total').val(precios3);
                         break;
                     case 4:
                         res = mesa4.split("-");
+                        $('#total').val(precios4);
                         break;
                     case 5:
                         res = mesa5.split("-");
+                        $('#total').val(precios5);
                         break;
                     default:
                         alert("catch default");
@@ -75,27 +86,40 @@
 
             function anadirPlato(formulario) {
                 var selectedValue = jQuery(formulario).val();
-                var res;
+                var res, precio;
+                res = selectedValue.split(":");
+                $.each(res, function(ind, elem) {
+                    if (ind == 1) {
+                        precio = parseInt(elem, 10);
+                    }
+                });
                 switch (actual) {
                     case 1:
                         mesa1 = mesa1 + selectedValue + "-";
                         res = mesa1.split("-");
+                        precios1 = precios1 + precio;
+                        $('#total').val(precios1);
                         break;
                     case 2:
                         mesa2 = mesa2 + selectedValue + "-";
                         res = mesa2.split("-");
+                        precios2 = precios2 + precio;
+                        $('#total').val(precios2);
                         break;
                     case 3:
                         mesa3 = mesa3 + selectedValue + "-";
                         res = mesa3.split("-");
+                        $('#total').val(precios3);
                         break;
                     case 4:
                         mesa4 = mesa4 + selectedValue + "-";
                         res = mesa4.split("-");
+                        $('#total').val(precios4);
                         break;
                     case 5:
                         mesa5 = mesa5 + selectedValue + "-";
                         res = mesa5.split("-");
+                        $('#total').val(precios5);
                         break;
                     default:
                         alert("catch default");
@@ -106,6 +130,104 @@
                     $('#seleccion').append(new Option(elem, elem));
                 });
             }
+
+            $('#seleccion').change(function() {
+                var selectedValue = jQuery(this).val();
+                var res, precio;
+                res = selectedValue.split(":");
+                $.each(res, function(ind, elem) {
+                    if (ind == 1) {
+                        precio = parseInt(elem, 10);
+                    }
+                });
+                switch (actual) {
+                    case 1:
+                        res = mesa1.split("-");
+                        precios1 = precios1 - precio;
+                        $('#total').val(precios1);
+                        break;
+                    case 2:
+                        res = mesa2.split("-");
+                        precios2 = precios1 - precio;
+                        $('#total').val(precios2);
+                        break;
+                    case 3:
+                        res = mesa3.split("-");
+                        precios3 = precios1 - precio;
+                        $('#total').val(precios3);
+                        break;
+                    case 4:
+                        res = mesa4.split("-");
+                        precios4 = precios1 - precio;
+                        $('#total').val(precios4);
+                        break;
+                    case 5:
+                        res = mesa5.split("-");
+                        precios5 = precios1 - precio;
+                        $('#total').val(precios5);
+                        break;
+                    default:
+                        alert("catch default");
+                        break;
+                }
+                //A continuación borramos el pedido de la lista y actualizamos el combobox
+                switch (actual) {
+                    case 1:
+                        mesa1 = "";
+                        break;
+                    case 2:
+                        mesa2 = "";
+                        break;
+                    case 3:
+                        mesa3 = "";
+                        break;
+                    case 4:
+                        mesa4 = "";
+                        break;
+                    case 5:
+                        mesa5 = "";
+                        break;
+                    default:
+                        alert("catch default");
+                        break;
+                }
+                $.each(res, function(ind, elem) {
+                    if (elem != selectedValue && elem != "") {
+                        switch (actual) {
+                            case 1:
+                                mesa1 = mesa1 + elem + "-";
+                                res = mesa1.split("-");
+                                break;
+                            case 2:
+                                mesa2 = mesa2 + elem + "-";
+                                res = mesa2.split("-");
+                                break;
+                            case 3:
+                                mesa3 = mesa3 + elem + "-";
+                                res = mesa3.split("-");
+                                break;
+                            case 4:
+                                mesa4 = mesa4 + elem + "-";
+                                res = mesa4.split("-");
+                                break;
+                            case 5:
+                                mesa5 = mesa5 + elem + "-";
+                                res = mesa5.split("-");
+                                break;
+                            default:
+                                mesa6 = mesa6 + elem + "-";
+                                res = mesa6.split("-");
+                                break;
+                        }
+                    }
+                });
+                //Ahora lo mostramos
+                $('#seleccion').empty();
+                $.each(res, function(ind, elem) {
+                    $('#seleccion').append(new Option(elem, elem));
+                });
+
+            });
             $("#pagar").click(function() {
                 if (document.formulario.seleccion.length % 3 == 0) {
                     $("#total").val(Calcular());
@@ -113,13 +235,40 @@
                     alert("Selecciona 3 platos para completar el menú");
                 }
             });
-
+            $("#pagado").click(function() {
+                switch (actual) {
+                    case 1:
+                        mesa1 = "";
+                        precios1 = 0;
+                        break;
+                    case 2:
+                        mesa2 = "";
+                        precios2 = 0;
+                        break;
+                    case 3:
+                        mesa3 = "";
+                        precios3 = 0;
+                        break;
+                    case 4:
+                        mesa4 = "";
+                        precios4 = 0;
+                        break;
+                    case 5:
+                        mesa5 = "";
+                        precios5 = 0;
+                        break;
+                    default:
+                        alert("catch default");
+                        break;
+                }
+                $('#total').val('0');
+            });
         });
 
         function Calcular() {
             var length = document.formulario.seleccion.length;
             var suma = 0;
-            suma = length * 5;
+            suma = $("#total")
             if (document.formulario.extra1.checked) {
                 suma = suma + 2;
             }
@@ -166,36 +315,36 @@
             <select id="platos1" name="platos" size=7 style="min-width: 150px;" "max-height: 121px;">    
 			
 			<!--Primeros-->
-			<option value="Ensalada">Ensalada</option>
-             <option value="Gazpacho">Gazpacho</option>
-             <option value="Crema de calabacín">Crema de calabacín</option>
-             <option value="Sopa de marisco">Sopa de marisco</option>
-             <option value="Ensalada de cacahuete">Ensalada de cacahuete</option>
-             <option value="Tabla de ibéricos">Tabla de ibéricos</option>
-             <option value="Patatas a la vieja">Patatas a la vieja</option>
+			<option value="Ensalada:5">Ensalada:5</option>
+             <option value="Gazpacho:5">Gazpacho:5</option>
+             <option value="Crema de calabacín:6">Crema de calabacín:6</option>
+             <option value="Sopa de marisco:10">Sopa de marisco:10</option>
+             <option value="Ensalada de cacahuete:6">Ensalada de cacahuete:6</option>
+             <option value="Tabla de ibéricos:12">Tabla de ibéricos:12</option>
+             <option value="Patatas a la vieja:7">Patatas a la vieja:7</option>
 				
    </select>
             <select id="platos2" name="platos" size=7 style="min-width: 150px;" "max-height: 121px;">    
 				
-				<option value="Pizza">Pizza</option>
-             <option value="Hamburguesa">Hamburguesa</option>
-             <option value="Solomillo">Solomillo con salsa de nata</option>
-             <option value="Pato a la naranja">Pato a la naranja</option>
-             <option value="Ramen">Ramen</option>
-             <option value="Rabo de toro">Rabo de toro</option>
-             <option value="Huevos con patatas fritas">Huevos con patatas fritas</option>
+				<option value="Pizza:9">Pizza:9</option>
+             <option value="Hamburguesa:5">Hamburguesa:5</option>
+             <option value="Solomillo:9">Solomillo:9</option>
+             <option value="Pato a la naranja:12">Pato a la naranja:12</option>
+             <option value="Ramen:5">Ramen:5</option>
+             <option value="Rabo de toro:9">Rabo de toro:9</option>
+             <option value="Huevos con patatas fritas:9">Huevos con patatas fritas:9</option>
 				
 				
    </select>
             <select id="platos3" name="platos" size=7 style="min-width: 150px;" "max-height: 121px;">    
 				
-			<option value="Sopa de yogur">Sopa de yogur</option>
-             <option value="Piramide de chocolate">Piramide chocolate</option>
-             <option value="Torrija">Torrija</option>
-             <option value="Flan">Flan</option>
-             <option value="Natillas">Natillas</option>
-             <option value="Arroz con leche">Arroz con leche</option>
-             <option value="Helado">Helado</option>
+			<option value="Sopa de yogur:15">Sopa de yogur:15</option>
+             <option value="Piramide de chocolate:10">Piramide chocolate:10</option>
+             <option value="Torrija:2">Torrija:2</option>
+             <option value="Flan:2">Flan:2</option>
+             <option value="Natillas:2">Natillas:2</option>
+             <option value="Arroz con leche:3">Arroz con leche:3</option>
+             <option value="Helado:4">Helado:4</option>
 				
    </select>
             <!--PLATOS SELECCIONADOS-->
