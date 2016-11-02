@@ -228,13 +228,7 @@
                 });
 
             });
-            $("#pagar").click(function() {
-                if (document.formulario.seleccion.length % 3 == 0) {
-                    $("#total").val(Calcular());
-                } else {
-                    alert("Selecciona 3 platos para completar el menú");
-                }
-            });
+
             $("#pagado").click(function() {
                 switch (actual) {
                     case 1:
@@ -263,20 +257,17 @@
                 }
                 $('#total').val('0');
             });
+
+            $("#cafe").click(function() {
+                anadirPlato(this);
+            });
+            $("#copa").click(function() {
+                anadirPlato(this);
+            });
+
+
         });
 
-        function Calcular() {
-            var length = document.formulario.seleccion.length;
-            var suma = 0;
-            suma = $("#total")
-            if (document.formulario.extra1.checked) {
-                suma = suma + 2;
-            }
-            if (document.formulario.extra2.checked) {
-                suma = suma + 4;
-            }
-            return suma;
-        }
 
         function Clear() {
             document.formulario.seleccion.options.length = 0;
@@ -352,10 +343,9 @@
             <select id="seleccion" name="seleccion" size=7 style="min-width: 150px;" "max-height: 121px;">    
     
    </select><br>
-            <input type="checkbox" name="extra1" value="cafe">Café
-            <input type="checkbox" name="extra2" value="copa">Copa <br>
+            <input type="button" id="cafe" value="cafe:2">
+            <input type="button" id="copa" value="copa:4"> <br>
             <p>Total</p> <input type="text" id="total" value=""><br><br>
-            <input id="pagar" type="button" value="Calcular Cuenta">
             <input id="pagado" type="button" value="Pagado" onclick="Clear()">
         </form>
     </div>
