@@ -1,32 +1,24 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<?xml version="1.1" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
 <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
-    <title>Inicio</title>
-    <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var video = document.getElementsByTagName("video")[0];
-            video.play();
-        });
-
-    </script>
+    <title>Login</title>
 </head>
 
-<body class="inicio" style="height: 100%; background-image:url(multimedia/images/restaurante2.jpg)">
+<body>
     <div class="contenido" style="min-height: 100%;height: auto !important;height: 100%;margin: 0 auto -4em;">
 
         <!--Menu de arriba-->
         <ul style="list-style-type: none;padding: 0;overflow: hidden;background-color: #333333;margin-left: -10px;margin-right: -10px;margin-top: -10px;">
-            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="trabajoOffLine.html">Trabajar</a></li>
-            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="mapa.html.html">Contacto</a></li>
-            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="registro.html">Registro</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="inicio2.html">Inicio</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="nacional.html">Turismo nacional</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="internacional.html">Turismo internacional</a></li>
             <li style="float: right;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="login.html">Login</a></li>
         </ul>
 
         <!--Aqui comienza el contenido de verdad-->
-        <div class="formulario" style="    margin-left: 70%;
+        <div class="formulario" style="margin-left: 30%; 
     margin-top: 10%;
     margin-right: 20%;
     margin-bottom: 30px;
@@ -35,8 +27,7 @@
     padding-left: 70px;
     -webkit-border-radius: 5px 10px;
     -moz-border-radius: 5px 10px;
-    background-color: #F2F2F2;
-    width: 25%;">
+    background-color: #F2F2F2;">
             <div style="margin-top: 10px;">
                 <label for="nombre">Nombre De Usuario</label>
                 <input style="margin-left: 70px;" type="text" size="15" maxlength="30" value="" id="nombre"></input>
@@ -52,6 +43,7 @@
                 <input class="button" value="Entrar" name="log" type="button" onclick="window.location.href = 'inicio.html';"></input>
             </div>
         </div>
-        <!--Pie de página-->
     </div>
 </body>
+
+</html>

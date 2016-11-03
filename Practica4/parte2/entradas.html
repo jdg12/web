@@ -4,23 +4,37 @@
 <head>
     <meta charset="utf-8" />
     <title>Ejemplo nuevos controles</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#formulario").submit(function() {
+                var datos;
+                datos = $("#nombre").val() + " " + $("#apellidos").val() + " " + $("#email").val() + " " + $("#direccion").val() + " " + $("#fecha").val();
+                alert(datos);
+            });
+        });
+
+    </script>
 </head>
 
-<body>
-    <h1>Compra entradas</h1>
-    <h2>Compra tu entrada ahora mismo</h2>
-    <form action="." oninput="range_control_value.value = range_control.valueAsNumber">
-        <p>
-            Nombre: <input type="text" name="name_control" autofocus required />
-            <br />Apellidos: <input type="text" name="name_control" autofocus/>
-            <br />Tarjeta crédito: <input type="text" name="name_control" autofocus required />
-            <br /> Email: <input type="email" name="email_control" required />
-            <br /> Fecha de nacimiento: <input type="date" name="date_control" />
-            <br />Dirección: <input type="text" name="name_control" autofocus/>
-            <br />
-            <input type="submit" value="Comprar" />
-        </p>
-    </form>
+<body style="background-image:url(multimedia/images/cine.jpg)">
+    <h1 style="color:white; text-align: center;">Compra entradas</h1>
+    <h2 style="color:white;">Compra tu entrada ahora mismo</h2>
+    <div class="contenido">
+        <form id="formulario">
+            <p>
+                <label>Nombre (Requerido): </label><br><input id="nombre" type="text" name="name_control" autofocus required />
+                <br /><label>Apellidos: </label><br><input id="apellidos" type="text" name="name_control" autofocus/>
+                <br /><label>Tarjeta crédito(Requerido): </label><br><input id="tarjeta" type="text" name="name_control" autofocus required />
+                <br /><label> Email (Requerido): </label><br><input id="email" type="email" name="email_control" required />
+                <br /><label>Fecha de nacimiento: </label><br><input id="fecha" type="date" name="date_control" />
+                <br /><label>Dirección: </label><br><input id="direccion" type="text" name="name_control" autofocus/>
+                <br /><br>
+                <input type="submit" value="Subir" style="margin-left: 45%;margin-top: 30px;margin-bottom: 30px;color: white;background: #638cb5;border: 0px;width: 200px;height: 50px;">
+            </p>
+        </form>
+    </div>
 </body>
 
 </html>
