@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Inicio</title>
+    <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var video = document.getElementsByTagName("video")[0];
+            video.play();
+        });
+
+
+        function Clear() {
+            document.formulario.seleccion.options.length = 0;
+        }
+
+    </script>
+</head>
+
+<body class="inicio" style="height: 100%;">
+    <div class="contenido" style="min-height: 100%;height: auto !important;height: 100%;margin: 0 auto -4em;">
+
+        <!--Menu de arriba-->
+        <ul style="list-style-type: none;padding: 0;overflow: hidden;background-color: #333333;margin-left: -10px;margin-right: -10px;margin-top: -10px;">
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="nacional.html">Turismo nacional</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="internacional.html">Turismo internacional</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="alquiler.html">Alquileres</a></li>
+            <li style="float: right;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="login.html">Login</a></li>
+        </ul>
+
+        <!--Aqui comienza el contenido de verdad-->
+        <video id="video" width="320" height="240" controls>
+            <source src="multimedia/video/nobody.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+        </video>
+
+        <audio id="audio" controls>
+            <source src="multimedia/audio/cancion.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+        </audio>
+        <div>
+            <button onclick="document.getElementById('audio').play()">Reproducir el Audio</button>
+            <button onclick="document.getElementById('audio').pause()">Pausar el Audio</button>
+            <button onclick="document.getElementById('audio').volume+=0.1">Aumentar el Volumen</button>
+            <button onclick="document.getElementById('audio').volume-=0.1">Disminuir el Volumen</button>
+        </div>
+
+        <!--Pie de página-->
+        <div class="footer" style="height: 4em;">
+            <ul style="list-style-type: none;margin: 0;overflow: hidden;background-color: #333333;">
+                <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="registro.html">Registrarse</a></li>
+                <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="sugerencias.html">Quejas/Sugerencias</a></li>
+                <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="opinion.html">Opinión</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
