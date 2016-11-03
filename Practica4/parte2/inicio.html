@@ -11,11 +11,6 @@
             video.play();
         });
 
-
-        function Clear() {
-            document.formulario.seleccion.options.length = 0;
-        }
-
     </script>
 </head>
 
@@ -31,11 +26,13 @@
         </ul>
 
         <!--Aqui comienza el contenido de verdad-->
+        <h1>Mr Nobody</h1>
+        <h2>Video</h2>
         <video id="video" width="320" height="240" controls>
             <source src="multimedia/video/nobody.mp4" type="video/mp4">
                 Your browser does not support the video tag.
         </video>
-
+        <h3>Musica de la película</h3>
         <audio id="audio" controls>
             <source src="multimedia/audio/cancion.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
@@ -46,6 +43,7 @@
             <button onclick="document.getElementById('audio').volume+=0.1">Aumentar el Volumen</button>
             <button onclick="document.getElementById('audio').volume-=0.1">Disminuir el Volumen</button>
         </div>
+        <h3>Imágenes</h3>
 
         <!--Pie de página-->
         <div class="footer" style="height: 4em;">
