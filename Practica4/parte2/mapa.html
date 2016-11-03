@@ -1,17 +1,107 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
-    <title>Inicio</title>
+    <link rel="stylesheet" href="styles/map_style.css">
+    <title>Encuéntranos</title>
     <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            var video = document.getElementsByTagName("video")[0];
-            video.play();
-        });
+        var lat_restaurante = 40.428366;
+        var long_restaurante = -3.702116;
 
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+
+            this.cargarMapa(lat, long);
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        function myMap() {
+
+            var miPosicion = new google.maps.LatLng(lat_restaurante, long_restaurante);
+            var mapCanvas = document.getElementById("map");
+            var mapOptions = {       
+                center: miPosicion,
+                      zoom: 12,
+                       mapTypeId: google.maps.MapTypeId.ROADMAP  
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+            var marker = new google.maps.Marker({
+                position: miPosicion,
+                animation: google.maps.Animation.BOUNCE
+            });
+            marker.setMap(map);
+            var infowindow = new google.maps.InfoWindow({
+                content: "Aquí Estamos!"
+            });
+            infowindow.open(map, marker);
+        }
+
+        function cargarMapa(lat, long) {
+            var directionsService = new google.maps.DirectionsService;
+            var directionsDisplay = new google.maps.DirectionsRenderer;
+            var miPosicion = new google.maps.LatLng(lat, long);
+            var mapCanvas = document.getElementById("map");
+            var mapOptions = {       
+                center: miPosicion,
+                      zoom: 12,
+                       mapTypeId: google.maps.MapTypeId.ROADMAP  
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+            directionsDisplay.setMap(map);
+            var marker = new google.maps.Marker({
+                position: miPosicion,
+                animation: google.maps.Animation.BOUNCE
+            });
+            marker.setMap(map);
+            var infowindow = new google.maps.InfoWindow({
+                content: "Tu posición!"
+            });
+            infowindow.open(map, marker);
+            this.calculateAndDisplayRoute(directionsService, directionsDisplay, miPosicion);
+        }
+
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, origen) {
+            directionsService.route({
+                origin: origen,
+                destination: new google.maps.LatLng(lat_restaurante, long_restaurante),
+                travelMode: google.maps.TravelMode.DRIVING
+            }, function(response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
     </script>
+
 </head>
 
 <body class="inicio" style="height: 100%;">
@@ -20,13 +110,27 @@
         <!--Menu de arriba-->
         <ul style="list-style-type: none;padding: 0;overflow: hidden;background-color: #333333;margin-left: -10px;margin-right: -10px;margin-top: -10px;">
             <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="trabajoOffLine.html">Trabajar</a></li>
-            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="mapa.html.html">Contacto</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="mapa.html">Contacto</a></li>
             <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="registro.html">Registro</a></li>
             <li style="float: right;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="login.html">Login</a></li>
         </ul>
 
         <!--Aqui comienza el contenido de verdad-->
+        <h1>Ven a Visitarnos</h1>
+
+        <h2>
+            <button onclick="getLocation()">Como Llegar</button><br>
+        </h2>
+
+        <div class="box">
+            <div id="map" style="width:500px;height:500px;background:yellow"></div>
+            <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+        </div>
+
+
 
         <!--Pie de página-->
+
     </div>
 </body>
+</html>
