@@ -1,0 +1,4 @@
+Tareas:
+Yisus: inicio, entradas, inicio2 (multimedia etc....)
+JD:mapa (mapa), tabla
+Manu: regitro, trabajoOffLine(sql y dragdrop)
