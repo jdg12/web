@@ -1,0 +1,171 @@
+<html>
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Menu</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function agregarInformacion1() {
+            var miTabla = document.getElementById("restoCeldas");
+            menuVegetariano(miTabla);
+        }
+
+        function anadir() {
+            var miTabla = document.getElementById("restoCeldas");
+            //Creamos la fila y las celdas correspondientes
+            var fila = document.createElement("tr");
+            var celda1 = document.createElement("td");
+            var celda2 = document.createElement("td");
+            var celda3 = document.createElement("td");
+            celda1.innerHTML = "" + $("#primero").val();
+            celda2.innerHTML = "" + $("#segundo").val();
+            celda3.innerHTML = "" + $("#postre").val();
+
+            fila.appendChild(celda1);
+            fila.appendChild(celda2);
+            fila.appendChild(celda3);
+
+            miTabla.appendChild(fila);
+        }
+
+        function agregarInformacion2() {
+            var miTabla = document.getElementById("restoCeldas");
+            Carnivoro(miTabla);
+        }
+
+        function menuVegetariano(tabla) {
+            borrarTabla(tabla);
+            //Creamos varias filas
+            var fila1 = document.createElement("tr");
+            var fila2 = document.createElement("tr");
+            var fila3 = document.createElement("tr");
+
+            //Ahora las celdas, que serán 9
+            var celda1 = document.createElement("td");
+            var celda2 = document.createElement("td");
+            var celda3 = document.createElement("td");
+            var celda4 = document.createElement("td");
+            var celda5 = document.createElement("td");
+            var celda6 = document.createElement("td");
+            var celda7 = document.createElement("td");
+            var celda8 = document.createElement("td");
+            var celda9 = document.createElement("td");
+
+            //Ahora les ponemos nombre
+            celda1.innerHTML = "Ensalada mediterranea";
+            celda2.innerHTML = "Lasaña de berenjenas";
+            celda3.innerHTML = "Arroz con leche";
+            celda4.innerHTML = "Gazpacho";
+            celda5.innerHTML = "Musaka";
+            celda6.innerHTML = "Torrija";
+            celda7.innerHTML = "Ensalada campera";
+            celda8.innerHTML = "Parrillada de verduras";
+            celda9.innerHTML = "";
+
+            //A cada fila la insertamos las celdas
+            fila1.appendChild(celda1);
+            fila1.appendChild(celda2);
+            fila1.appendChild(celda3);
+            fila2.appendChild(celda4);
+            fila2.appendChild(celda5);
+            fila2.appendChild(celda6);
+            fila3.appendChild(celda7);
+            fila3.appendChild(celda8);
+            fila3.appendChild(celda9);
+
+            //Ahora metemos las filas en la tabla
+            tabla.appendChild(fila1);
+            tabla.appendChild(fila2);
+            tabla.appendChild(fila3);
+        }
+
+        function Carnivoro(tabla) {
+            borrarTabla(tabla);
+            //Creamos varias filas
+            var fila1 = document.createElement("tr");
+            var fila2 = document.createElement("tr");
+            var fila3 = document.createElement("tr");
+
+            //Ahora las celdas, que serán 9
+            var celda1 = document.createElement("td");
+            var celda2 = document.createElement("td");
+            var celda3 = document.createElement("td");
+            var celda4 = document.createElement("td");
+            var celda5 = document.createElement("td");
+            var celda6 = document.createElement("td");
+            var celda7 = document.createElement("td");
+            var celda8 = document.createElement("td");
+            var celda9 = document.createElement("td");
+
+            //Ahora les ponemos nombre
+            celda1.innerHTML = "Tabla de ibéricos";
+            celda2.innerHTML = "Bistec";
+            celda3.innerHTML = "Arroz con leche";
+            celda4.innerHTML = "Chorizo a la parrilla";
+            celda5.innerHTML = "Giso de conejo";
+            celda6.innerHTML = "Torrija";
+            celda7.innerHTML = "";
+            celda8.innerHTML = "Chuletillas de cordero lechal";
+            celda9.innerHTML = "Helado";
+
+            //A cada fila la insertamos las celdas
+            fila1.appendChild(celda1);
+            fila1.appendChild(celda2);
+            fila1.appendChild(celda3);
+            fila2.appendChild(celda4);
+            fila2.appendChild(celda5);
+            fila2.appendChild(celda6);
+            fila3.appendChild(celda7);
+            fila3.appendChild(celda8);
+            fila3.appendChild(celda9);
+
+            //Ahora metemos las filas en la tabla
+            tabla.appendChild(fila1);
+            tabla.appendChild(fila2);
+            tabla.appendChild(fila3);
+        }
+
+        function borrarTabla(tabla) {
+            $("#unaTabla tr:gt(0)").remove();
+        }
+
+    </script>
+</head>
+
+<body>
+    <ul style="list-style-type: none;padding: 0;overflow: hidden;background-color: #333333;margin-left: -10px;margin-right: -10px;margin-top: -10px;">
+        <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="menu.html">Menú</a></li>
+        <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="trabajoOffLine.html">Trabajar</a></li>
+        <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="mapa.html">Contacto</a></li>
+        <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="registro.html">Registro</a></li>
+        <li style="float: right;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="login.html">Login</a></li>
+    </ul>
+    <h1>Menús disponibles</h1>
+    <form name="form" action="hola.html">
+        <table class="tabla" id="unaTabla" border="1">
+            <thead id="titulo">
+                <tr id="a1">
+                    <td id="b1">Primeros</td>
+                    <td id="c1">Segundos</td>
+                    <td>Postre</td>
+                </tr>
+            </thead>
+            <tbody id="restoCeldas"></tbody>
+        </table>
+        <br>
+        <button class="boton2" type="button" onclick="agregarInformacion1()">Menu vegetariano</button>
+        <button class="boton2" type="button" onclick="agregarInformacion2()">Menu carnivoro</button><br/>
+    </form>
+    <form name="añadir menu">
+        <label>Primero</label><br>
+        <input id="primero" type="text" name="primero"><br>
+        <label>Segundo</label><br>
+        <input id="segundo" type="text" name="segundo"><br>
+        <label>Postre</label><br>
+        <input id="postre" type="text" name="postre"><br>
+        <button class="boton" type="button" onclick="anadir()">Añadir</button>
+    </form>
+</body>
+
+</html>
