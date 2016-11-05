@@ -76,7 +76,6 @@
 }
 
 .boton {
-    margin-left: 45%;
     margin-top: 30px;
     margin-bottom: 30px;
     color: white;
@@ -104,4 +103,8 @@
     border: 0px;
     width: 200px;
     height: 50px;
+}
+
+.form {
+    margin-left: 45%;
 }
