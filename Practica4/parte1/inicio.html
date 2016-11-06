@@ -134,6 +134,7 @@
             $('#seleccion').change(function() {
                 var selectedValue = jQuery(this).val();
                 var res, precio;
+                var eliminados = 0;
                 res = selectedValue.split(":");
                 $.each(res, function(ind, elem) {
                     if (ind == 1) {
@@ -148,22 +149,22 @@
                         break;
                     case 2:
                         res = mesa2.split("-");
-                        precios2 = precios1 - precio;
+                        precios2 = precios2 - precio;
                         $('#total').val(precios2);
                         break;
                     case 3:
                         res = mesa3.split("-");
-                        precios3 = precios1 - precio;
+                        precios3 = precios3 - precio;
                         $('#total').val(precios3);
                         break;
                     case 4:
                         res = mesa4.split("-");
-                        precios4 = precios1 - precio;
+                        precios4 = precios4 - precio;
                         $('#total').val(precios4);
                         break;
                     case 5:
                         res = mesa5.split("-");
-                        precios5 = precios1 - precio;
+                        precios5 = precios5 - precio;
                         $('#total').val(precios5);
                         break;
                     default:
@@ -192,7 +193,11 @@
                         break;
                 }
                 $.each(res, function(ind, elem) {
-                    if (elem != selectedValue && elem != "") {
+                    //Llevamos la cuenta de alimentos eliminados
+                    if (elem == selectedValue && eliminados != 1) {
+                        eliminados = 1;
+                    }
+                    if ((elem != selectedValue || eliminados == 1) && elem != "") {
                         switch (actual) {
                             case 1:
                                 mesa1 = mesa1 + elem + "-";
@@ -216,6 +221,35 @@
                                 break;
                             default:
                                 mesa6 = mesa6 + elem + "-";
+                                res = mesa6.split("-");
+                                break;
+                        }
+                    }
+                    //En el caso de que sea el último producto el eliminado
+                    if (elem == selectedValue && ind == 0) {
+                        switch (actual) {
+                            case 1:
+                                mesa1 = "";
+                                res = mesa1.split("-");
+                                break;
+                            case 2:
+                                mesa2 = "";
+                                res = mesa2.split("-");
+                                break;
+                            case 3:
+                                mesa3 = "";
+                                res = mesa3.split("-");
+                                break;
+                            case 4:
+                                mesa4 = "";
+                                res = mesa4.split("-");
+                                break;
+                            case 5:
+                                mesa5 = "";
+                                res = mesa5.split("-");
+                                break;
+                            default:
+                                mesa6 = "";
                                 res = mesa6.split("-");
                                 break;
                         }
@@ -278,15 +312,6 @@
 
 <body class="inicio" style="height: 100%;">
     <div class="contenido" style="min-height: 100%;height: auto !important;height: 100%;margin: 0 auto -4em;">
-
-        <!--Menu de arriba-->
-        <ul style="list-style-type: none;padding: 0;overflow: hidden;background-color: #333333;margin-left: -10px;margin-right: -10px;margin-top: -10px;">
-            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="nacional.html">Turismo nacional</a></li>
-            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="internacional.html">Turismo internacional</a></li>
-            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="alquiler.html">Alquileres</a></li>
-            <li style="float: right;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="login.html">Login</a></li>
-        </ul>
-
         <!--Aqui comienza el contenido de verdad-->
         <h1>SUPERMENU</h1>
         <form name="formulario" action="">
