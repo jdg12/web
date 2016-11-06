@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Hamburguesa</title>
+	<link rel="stylesheet" href="styles/hamburguer_style.css">
+	<style>
+	#div1 {
+		width: 250px;
+		height: 250px;
+		padding: 10px;
+		border: 3px solid #000000;
+	}
+	#div2 {
+		width: 250px;
+		height: 250px;
+		padding: 10px;
+		border: 3px solid #000000;
+	}
+	#div3 {
+		width: 250px;
+		height: 250px;
+		padding: 10px;
+		border: 3px solid #000000;
+	}
+	#div4 {
+		width: 250px;
+		height: 250px;
+		padding: 10px;
+		border: 3px solid #000000;
+	}
+	#div5 {
+		width: 250px;
+		height: 250px;
+		padding: 10px;
+		border: 3px solid #000000;
+	}
+	#div6 {
+		width: 250px;
+		height: 250px;
+		padding: 10px;
+		border: 3px solid #000000;
+	}
+	</style>
+    <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+		function allowDrop(ev) {
+			ev.preventDefault();
+		}
+
+		function drag(ev) {
+			ev.dataTransfer.setData("text", ev.target.id);
+		}
+
+		function drop(ev) {
+			ev.preventDefault();
+			var data = ev.dataTransfer.getData("text");
+			ev.target.appendChild(document.getElementById(data));
+		}
+		function mandar() {
+			alert("Gracias por mandarnos tu diseño");
+			location.reload();
+		}
+    </script>
+</head>
+
+<body class="inicio" style="height: 100%;">
+    <div class="contenido" style="min-height: 100%;height: auto !important;height: 100%;margin: 0 auto -4em;">
+
+        <!--Menu de arriba-->
+        <ul style="list-style-type: none;padding: 0;overflow: hidden;background-color: #333333;margin-left: -10px;margin-right: -10px;margin-top: -10px;">
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="menu.html">Menú</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="hamburguesa.html">Hamburguesas</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="mapa.html">Contacto</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="registro.html">Registro</a></li>
+            <li style="float: right;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="login.html">Login</a></li>
+        </ul>
+
+        <!--Aqui comienza el contenido de verdad-->
+		<h1>Aquí puedes diseñar tu propia hamburguesa y mandarnosla para ver si nos gusta!</h1>
+		<p>Si nos gusta puedes obtener descuentos y mucho mas!</p>
+		<table style="width:100%">
+		<tr>
+		</tr>
+		
+		<img id="hamb1" src="multimedia/images/ham1.jpg"
+			width="250" height="250">
+			
+		<tr>
+			<td><div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+			<td><img id="drag1" src="multimedia/images/ham3.jpg" draggable="true"
+			ondragstart="drag(event)" width="250" height="250"></td>
+			<td><img id="drag2" src="multimedia/images/ham4.jpg" draggable="true"
+			ondragstart="drag(event)" width="250" height="250"></td>
+		</tr>
+		<tr>
+			<td><div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+			<td><img id="drag3" src="multimedia/images/ham5.jpg" draggable="true"
+			ondragstart="drag(event)" width="250" height="250"></td>
+			<td><img id="drag4" src="multimedia/images/ham6.jpg" draggable="true"
+			ondragstart="drag(event)" width="250" height="250"></td>
+		</tr>
+		<tr>
+			<td><div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+			<td><img id="drag5" src="multimedia/images/ham7.jpg" draggable="true"
+			ondragstart="drag(event)" width="250" height="250"></td>
+			<td><img id="drag6" src="multimedia/images/ham8.jpg" draggable="true"
+			ondragstart="drag(event)" width="250" height="250"></td>
+		</tr>
+		<tr>
+			<td><div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+			<td><img id="drag7" src="multimedia/images/ham9.jpg" draggable="true"
+			ondragstart="drag(event)" width="250" height="250"></td>
+			<td><img id="drag8" src="multimedia/images/ham10.jpg" draggable="true"
+			ondragstart="drag(event)" width="250" height="250"></td>
+		</tr>
+		<tr>
+			<td><div id="div5" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		</tr>
+		<tr>
+			<td><div id="div6" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		</tr>
+		</table>
+
+			<img id="hamb2" src="multimedia/images/ham2.jpg"
+			width="250" height="250">
+			
+		<div style="margin-top: 10px;  padding-top: 20px; text-align:left;">
+            <button name="clean" type="button" onclick="mandar()";">Mandar Diseño</button>
+        </div>
+		
+		
+
+        <!--Pie de página-->
+        <div class="footer" style="height: 4em;">
+            <ul style="list-style-type: none;margin: 0; margin-top: 50px; overflow: hidden;background-color: #333333;">
+                <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="registro.html">Registrarse</a></li>
+                <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="sugerencias.html">Quejas/Sugerencias</a></li>
+                <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="opinion.html">Opinión</a></li>
+            </ul>
+        </div>
+    </div>

@@ -3,7 +3,8 @@
 
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
-    <title>Inicio</title>
+    <title>Registro</title>
+	<link rel="stylesheet" href="styles/map_style.css">
     <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
 		
@@ -52,9 +53,10 @@
 
         <!--Menu de arriba-->
         <ul style="list-style-type: none;padding: 0;overflow: hidden;background-color: #333333;margin-left: -10px;margin-right: -10px;margin-top: -10px;">
-            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="nacional.html">Turismo nacional</a></li>
-            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="internacional.html">Turismo internacional</a></li>
-            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="alquiler.html">Alquileres</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="menu.html">Menú</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="hamburguesa.html">Hamburguesas</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="mapa.html">Contacto</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="registro.html">Registro</a></li>
             <li style="float: right;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="login.html">Login</a></li>
         </ul>
 
@@ -63,20 +65,12 @@
             <input type="text" size="15" maxlength="30" value="" id="usuario"></div>
 				
 		<div style="margin-top: 10px;  padding-top: 20px; text-align:left;">
-            <input class="button" value="Registrarse" name="log" type="button" onclick="registrar()"></input>
+            <button name="log" type="button" onclick="registrar()">Registrarse</button>
         </div>
 		<div style="margin-top: 10px;  padding-top: 20px; text-align:left;">
-            <input class="button" value="Limpiar Usuarios" name="clean" type="button" onclick="limpiar()";"></input>
+            <button name="clean" type="button" onclick="limpiar()">Limpiar Usuarios</button>
         </div>
-		<p>Lista de usuarios registrados:</p>
-		<div id="result"></div>
+		<h2>Lista de usuarios registrados:</h2>
+		<h2><div id="result"></div></h2>
 
-        <!--Pie de página-->
-        <div class="footer" style="height: 4em;">
-            <ul style="list-style-type: none;margin: 0;overflow: hidden;background-color: #333333;">
-                <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="registro.html">Registrarse</a></li>
-                <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="sugerencias.html">Quejas/Sugerencias</a></li>
-                <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="opinion.html">Opinión</a></li>
-            </ul>
-        </div>
     </div>

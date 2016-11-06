@@ -1,0 +1,39 @@
+p { color: #262626; font-family: 'Raleway',sans-serif; font-size: 18px; font-weight: 500; line-height: 32px; margin: 0 0 24px; }
+
+h1 { color: #333333; font-family: 'Raleway',sans-serif; font-size: 62px; font-weight: 800; line-height: 72px; margin: 0 0 24px; text-align: center; text-transform: uppercase; }
+
+.inicio {
+    background: url('https://s-media-cache-ak0.pinimg.com/originals/bf/2f/9b/bf2f9b32ef19a990c957e524a5cfa472.jpg') repeat;
+    background-size: auto;
+    background-attachment: scroll;
+}
+
+.box {
+    margin-left: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: url('madera.jpg') repeat;
+    width: 500px;
+    text-align: center;
+    border-radius: 25px;
+    padding: 15px;
+}
+
+button {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: #555555;
+    color: white;
+}
