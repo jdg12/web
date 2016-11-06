@@ -11,10 +11,29 @@ h1 {
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=0);
     /* IE6-9 */
+    animation: pulse 3s infinite;
+    animation-delay: 0;
+    animation-direction: alternate;
+}
+
+@keyframes pulse {
+    0% {
+        background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=0);
+    }
+    100% {
+        transform: scale(1.1);
+        background-color: rgba(0, 172, 219, 0.47);
+    }
 }
 
 h2 {
-    margin-left: 10px;
+    margin-left: 10%;
 }
 
 .inicio {
@@ -24,9 +43,9 @@ h2 {
 }
 
 .box {
+    margin-left: 10%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background: url('escamas.jpg') repeat;
-    margin-left: 10px;
     width: 500px;
     text-align: center;
     border-radius: 25px;
