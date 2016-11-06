@@ -1,0 +1,39 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body style="background-image:url(multimedia/images/login.jpg)">
+    <div class="contenido" style="min-height: 100%;height: auto !important;height: 100%;margin: 0 auto -4em;">
+
+        <!--Menu de arriba-->
+        <ul style="list-style-type: none;padding: 0;overflow: hidden;background-color: #333333;margin-left: -10px;margin-right: -10px;margin-top: -10px;">
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="menu.html">Menú</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="hamburguesa.html">Hamburguesas</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="mapa.html">Contacto</a></li>
+            <li style="float: left;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="registro.html">Registro</a></li>
+            <li style="float: right;"><a style="display: block;color: white;text-align: center;padding: 16px;text-decoration: none;margin-left: 10px;" href="login.html">Login</a></li>
+        </ul>
+        <!--Aqui comienza el contenido de verdad-->
+        <div class="formulario">
+            <label for="nombre">Nombre De Usuario</label>
+            <input style="margin-left: 70px;" type="text" size="15" maxlength="30" value="" id="nombre">
+            <div style="margin-top: 10px;">
+                <label for="correo">Contraseña</label>
+                <input style="margin-left: 127px;" type="text" size="15" maxlength="30" value="" id="correo">
+            </div>
+            <div style="margin-top: 10px;  padding-top: 30px; text-align:center;">
+                <a href="registro.html">¿No tienes cuenta?¿Se te ha olvidado tu contraseña? Pincha Aqui</a>
+            </div>
+            <div style="margin-top: 10px;  padding-top: 20px; text-align:center;">
+                <input class="boton" value="Entrar" name="log" type="button" onclick="window.location.href = 'inicio2.html';">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
