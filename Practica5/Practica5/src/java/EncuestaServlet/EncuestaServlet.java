@@ -19,20 +19,25 @@ public class EncuestaServlet extends HttpServlet {
     Statement mandato = null;
     Connection conexion = null;
 
+    /**
+     *
+     * @param config
+     * @throws ServletException
+     */
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        String URL = "jdbc:odbc:AccessODBC";
-        String usuario = "";
-        String contraseña = "";
+        String URL = "jdbc:derby://localhost:1527/datos";
+        String usuario = "datos";
+        String contraseña = "datos";
         try {
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Class.forName( "org.apache.derby.jdbc.ClientDriver" );
         } catch (Exception e) {
             System.out.println("Error al cargar el driver JDBC/ODBC.");
             return;
         }
         try {
-            conexion = DriverManager.getConnection(URL, usuario, contraseña);
+            conexion = DriverManager.getConnection(URL,usuario,contraseña);
             mandato = conexion.createStatement();
         } catch (Exception e) {
             System.out.println("Problemas al conectar con " + URL);
@@ -52,7 +57,7 @@ public class EncuestaServlet extends HttpServlet {
         String strRespuesta = peticion.getParameter("RESPUESTA");
         /* insertamos los datos en la base de datos */
         try {
-            mandato.executeUpdate("INSERT INTO ENCUESTA VALUES( '" + strNombre + "', '" + strEmail + "', '" + strRespuesta + "');");
+            mandato.executeUpdate("INSERT INTO ENCUESTA VALUES( '" + strNombre + "', '" + strEmail + "', '" + strRespuesta + "')");
         } catch (SQLException e) {
             System.out.println(e);
             return;
