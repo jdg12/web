@@ -48,6 +48,26 @@ private Connection con;
         }
         return null;
     }
+    
+    /**
+     * TODO
+     * @return 
+     */
+    public ResultSet getCoches()
+    {
+        //TODO
+        return null;
+    }
+    
+    /**
+     * TODO
+     * @return 
+     */
+    public ResultSet getCircuitos()
+    {
+        //TODO
+        return null;
+    }
 
     public void cerrarConexion() {
         try {
