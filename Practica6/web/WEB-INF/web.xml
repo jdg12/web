@@ -4,9 +4,33 @@
         <servlet-name>servlet1</servlet-name>
         <servlet-class>clases.servlet1</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>circuitoServlet</servlet-name>
+        <servlet-class>clases.circuitoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cocheServlet</servlet-name>
+        <servlet-class>clases.cocheServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>potenciaServlet</servlet-name>
+        <servlet-class>clases.potenciaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servlet1</servlet-name>
         <url-pattern>/servlet1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>circuitoServlet</servlet-name>
+        <url-pattern>/circuitoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cocheServlet</servlet-name>
+        <url-pattern>/cocheServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>potenciaServlet</servlet-name>
+        <url-pattern>/potenciaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
