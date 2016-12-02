@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Añadir circuito</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/Practica6/style/style.css">
         <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
@@ -42,25 +38,25 @@ and open the template in the editor.
                         return false;
                     }
                 }
-                
+
                 function isValidLongitud()
                 {
                     var longitud = $("#longitud").val();
-                    if (longitud >= 3000 && longitud <=9000)
+                    if (longitud >= 3000 && longitud <= 9000)
                     {
                         return true;
-                    }else{
+                    } else {
                         return false;
                     }
                 }
-                
+
                 function isValidCurvas()
                 {
                     var curvas = $("#curvas").val();
-                    if (curvas >= 6 && curvas <=20)
+                    if (curvas >= 6 && curvas <= 20)
                     {
                         return true;
-                    }else
+                    } else
                     {
                         return false;
                     }
@@ -69,17 +65,27 @@ and open the template in the editor.
         </script>
     </head>
     <body>
-        <form action="/Practica6/circuitoServlet" class="form" id="formulario" method="POST">
-            <p>
-                <label>Nombre circuito: </label><br><input id="nombre" type="text" name="nombre" autofocus required />
-                <br /><label>Ciudad</label><br><input id="ciudad" type="text" name="ciudad" autofocus required/>
-                <br /><label>Pais</label><br><input id="pais" type="text" name="pais" autofocus required/>
-                <br /><label>Vueltas</label><br><input id="vueltas" type="number" name="vueltas" required/>
-                <br /><label>Longitud</label><br><input id="longitud" type="number" name="longitud" required/>
-                <br /><label>Curvas</label><br><input id="curvas" type="number" name="curvas" required/>
-                <br /><br>
-                <input class="boton" type="submit" value="Subir">
-            </p>
-        </form>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="/Practica6/nuevoCircuito.html">Nuevo circuito</a></li>
+            <li><a href="/Practica6/nuevoCoche.html">Nuevo coche</a></li>
+            <li><a href="/Practica6/verTodos.html">Ver todos</a></li>
+            <li><a  href="/Practica&/calculoGanancia.jsp">Calculo Kers</a></li>
+        </ul>
+        <h1>Añada un nuevo circuito</h1>
+        <div class="cuadrado">
+            <form action="/Practica6/circuitoServlet" class="nuevoCircuito" id="formulario" method="POST">
+                <p>
+                    <label>Nombre circuito: </label><br><input id="nombre" type="text" name="nombre" autofocus required />
+                    <br /><label>Ciudad</label><br><input id="ciudad" type="text" name="ciudad" autofocus required/>
+                    <br /><label>Pais</label><br><input id="pais" type="text" name="pais" autofocus required/>
+                    <br /><label>Vueltas</label><br><input id="vueltas" type="number" name="vueltas" required/>
+                    <br /><label>Longitud</label><br><input id="longitud" type="number" name="longitud" required/>
+                    <br /><label>Curvas</label><br><input id="curvas" type="number" name="curvas" required/>
+                    <br /><br>
+                    <input class="boton" type="submit" value="Subir">
+                </p>
+            </form>
+        </div>
     </body>
 </html>
