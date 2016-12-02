@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Añadir circuito</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#formulario").submit(function () {
+                    var datos = "hola";
+                    if (!isValidNumeroVueltas())
+                    {
+                        alert("Las vueltas tienen que estar entre 40 y 80");
+                        return false;
+                    }
+                    if (!isValidLongitud())
+                    {
+                        alert("La longitud tiene que estar entre 3000 y 9000");
+                        return false;
+                    }
+                    if (!isValidCurvas())
+                    {
+                        alert("Las curvas tienen que estar entre 6 y 20");
+                        return false;
+                    }
+                    return true;
+                });
+
+                function isValidNumeroVueltas() {
+                    var vueltas = $("#vueltas").val();
+                    if (vueltas > 40 && vueltas < 80)
+                    {
+                        return true;
+                    } else
+                    {
+                        return false;
+                    }
+                }
+                
+                function isValidLongitud()
+                {
+                    var longitud = $("#longitud").val();
+                    if (longitud >= 3000 && longitud <=9000)
+                    {
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+                
+                function isValidCurvas()
+                {
+                    var curvas = $("#curvas").val();
+                    if (curvas >= 6 && curvas <=20)
+                    {
+                        return true;
+                    }else
+                    {
+                        return false;
+                    }
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <form action="/Practica6/circuitoServlet" class="form" id="formulario" method="POST">
+            <p>
+                <label>Nombre circuito: </label><br><input id="nombre" type="text" name="nombre" autofocus required />
+                <br /><label>Ciudad</label><br><input id="ciudad" type="text" name="ciudad" autofocus required/>
+                <br /><label>Pais</label><br><input id="pais" type="text" name="pais" autofocus required/>
+                <br /><label>Vueltas</label><br><input id="vueltas" type="number" name="vueltas" required/>
+                <br /><label>Longitud</label><br><input id="longitud" type="number" name="longitud" required/>
+                <br /><label>Curvas</label><br><input id="curvas" type="number" name="curvas" required/>
+                <br /><br>
+                <input class="boton" type="submit" value="Subir">
+            </p>
+        </form>
+    </body>
+</html>
