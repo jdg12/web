@@ -9,22 +9,26 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author jesus
  */
 class ModeloDatos {
-private Connection con;
+
+    private Connection con;
     private Statement set;
     private ResultSet rs;
+
     public void abrirConexion() {
-         String sURL = "jdbc:odbc:mvc";
+        String sURL = "jdbc:odbc:mvc";
         try {
 //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            Class.forName( "org.apache.derby.jdbc.ClientDriver" );
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
 //    con = DriverManager.getConnection(sURL,"","");
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/prueba", "prueba", "prueba");
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/f1", "f1", "f1");
             System.out.println("Se ha conectado");
         } catch (Exception e) {
             System.out.println("No se ha conectado");
@@ -32,15 +36,15 @@ private Connection con;
     }
 
     public String getDatoPrueba() {
-         try {
+        try {
             set = con.createStatement();
-             System.out.println("Estoy aqui");
+            System.out.println("Estoy aqui");
             rs = set.executeQuery("SELECT * FROM Prueba");
             String cad = null;
-             while (rs.next()) {
+            while (rs.next()) {
                 cad = rs.getString("dato");
             }
-             System.out.println(cad);
+            System.out.println(cad);
             rs.close();
             return cad;
         } catch (Exception e) {
@@ -48,25 +52,73 @@ private Connection con;
         }
         return null;
     }
-    
+
     /**
      * TODO
-     * @return 
+     *
+     * @return
      */
-    public ResultSet getCoches()
-    {
+    public ResultSet getCoches() {
         //TODO
         return null;
     }
-    
+
     /**
-     * TODO
-     * @return 
+     * Devuelve una lista con los circuitos actuales
+     *
+     * @return
      */
-    public ResultSet getCircuitos()
+    public ArrayList<Circuito> getCircuitos() {
+        ArrayList<Circuito> circuitos = new ArrayList<>();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM circuito");
+            while (rs.next()) {
+                Circuito circuito = new Circuito();
+                circuito.setNombre(rs.getString("NOMBRE_CIRCUITO"));
+                circuito.setCiudad(rs.getString("ciudad"));
+                circuito.setPais(rs.getString("pais"));
+                circuito.setCurvas(Integer.parseInt(rs.getString("curvas")));
+                circuito.setLongitud(Double.parseDouble(rs.getString("longitud")));
+                circuito.setVueltas(Integer.parseInt(rs.getString("vueltas")));
+                circuitos.add(circuito);
+            }
+            rs.close();
+            return circuitos;
+        } catch (Exception e) {
+            System.out.println("Error en la consulta de los circuitos: " + e.getMessage());
+        }
+        return circuitos;
+    }
+    
+    public void insertarCircuito(String nombre, String ciudad, String pais, int vueltas, Double longitud, int curvas)
     {
-        //TODO
-        return null;
+        try {
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO CIRCUITO "
+                    + " (NOMBRE_CIRCUITO,ciudad, pais, vueltas, longitud, curvas) VALUES ('" + nombre + "','"+ciudad+"','"+pais+"',"+vueltas+","+longitud+","+curvas+")");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No se ha insertado el circuito"+e.getMessage());
+        }
+    }
+
+    public boolean estaCircuito(String nombre) {
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT NOMBRE_CIRCUITO FROM circuito");
+            while (rs.next()) {
+                if (rs.getString("NOMBRE_CIRCUITO").equals(nombre)) {
+                    return true;
+                }
+            }
+            rs.close();
+            return false;
+        } catch (Exception e) {
+            System.out.println("Error en la consulta de los circuitos: " + e.getMessage());
+        }
+        return false;
     }
 
     public void cerrarConexion() {
@@ -75,5 +127,5 @@ private Connection con;
         } catch (Exception e) {
         }
     }
-    
+
 }
