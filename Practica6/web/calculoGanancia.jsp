@@ -9,9 +9,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Calculo de Ganancia</title>
     </head>
+    
     <body>
-        <h1>Hello World!</h1>
+        <% String nomCoche = (String) session.getAttribute("coche"); 
+           String nomCircuito = (String) session.getAttribute("circuito");
+           Double res = (Double) session.getAttribute("resultado");
+        %>
+        <h1>Ganancia del coche <%= nomCoche%> , en el circuito <%= nomCircuito%></h1>
+        <br>
+        <%= res%> 
+        
+    <br> <a href="/Practica6/index.html"> Ir al comienzo</a>
     </body>
 </html>

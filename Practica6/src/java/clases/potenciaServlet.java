@@ -7,6 +7,9 @@ package clases;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +20,16 @@ import javax.servlet.http.HttpServletResponse;
  * @author jesus
  */
 public class potenciaServlet extends HttpServlet {
+
+    private ModeloDatos bd;
+    private ArrayList<Circuito> circuitos;
+    private ArrayList<Coche> coches;
+    
+    @Override
+    public void init(ServletConfig cfg) throws ServletException {
+        bd = new ModeloDatos();
+        bd.abrirConexion();
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,17 +43,57 @@ public class potenciaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet potenciaServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet potenciaServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        circuitos = bd.getCircuitos();
+        coches = bd.getCoches();
+        
+        if (circuitos.isEmpty() || coches.isEmpty()) {
+            response.sendRedirect(response.encodeRedirectURL("/Practica6/noHayDatos.html"));
+        } else {
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet potenciaServlet</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Elige un circuito y un coche</h1>");
+                out.println("<form name=\"formulario\" action=\"/Practica6/CalculoServlet\">");
+                
+                //circuitos
+                out.println("<select id=\"circuitos\" name=\"circuitos\" size=7 > ");
+                Iterator it = circuitos.iterator();
+                Circuito circuito = new Circuito();
+                
+                while (it.hasNext()) {
+                    circuito = (Circuito) it.next();
+                    out.println("<option value=\"" + circuito.getNombre() + "\">" + circuito.getNombre() + "</option>");
+
+                }
+                out.println("</select>");
+                
+                //coches
+                out.println("<select id=\"coches\" name=\"coches\" size=7 > ");
+                
+                it = coches.iterator();
+                Coche coche = new Coche();
+                
+                while (it.hasNext()) {
+                    coche = (Coche) it.next();
+                    out.println("<option value=\"" + coche.getNombre() + "\">" + coche.getNombre() + "</option>");
+
+                }
+                out.println("</select>");
+                out.println("<br>");
+                out.println("<input class=\"boton\" type=\"submit\" value=\"Calcular\">");
+                out.println("</form>");
+                out.println("</body>");
+                out.println("</html>");
+                
+            }catch(Exception e){
+                System.out.println("excepcion: " +e.getMessage());
+            }
         }
     }
 

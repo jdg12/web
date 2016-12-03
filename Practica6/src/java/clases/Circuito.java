@@ -17,6 +17,19 @@ public class Circuito {
     private double longitud;
     private int curvas;
 
+    public Circuito(String nombre, String ciudad, String pais, int vueltas, double longitud, int curvas) {
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.pais = pais;
+        this.vueltas = vueltas;
+        this.longitud = longitud;
+        this.curvas = curvas;
+    }
+
+    public Circuito() {
+    }
+
+    
     public String getNombre() {
         return nombre;
     }
@@ -64,4 +77,10 @@ public class Circuito {
     public void setCurvas(int curvas) {
         this.curvas = curvas;
     }
+
+    @Override
+    public String toString() {
+        return "Circuito{" + "nombre=" + nombre + ", ciudad=" + ciudad + ", pais=" + pais + ", vueltas=" + vueltas + ", longitud=" + longitud + ", curvas=" + curvas + '}';
+    }
+    
 }

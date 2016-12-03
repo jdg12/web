@@ -16,6 +16,10 @@
         <servlet-name>potenciaServlet</servlet-name>
         <servlet-class>clases.potenciaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CalculoServlet</servlet-name>
+        <servlet-class>clases.CalculoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servlet1</servlet-name>
         <url-pattern>/servlet1</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>potenciaServlet</servlet-name>
         <url-pattern>/potenciaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalculoServlet</servlet-name>
+        <url-pattern>/CalculoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

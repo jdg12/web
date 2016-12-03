@@ -28,7 +28,7 @@ class ModeloDatos {
 //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Class.forName("org.apache.derby.jdbc.ClientDriver");
 //    con = DriverManager.getConnection(sURL,"","");
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/f1", "f1", "f1");
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/kers", "usuario", "pass");
             System.out.println("Se ha conectado");
         } catch (Exception e) {
             System.out.println("No se ha conectado");
@@ -54,13 +54,28 @@ class ModeloDatos {
     }
 
     /**
-     * TODO
+     * Devuelve una lista con los coches actuales
      *
      * @return
      */
-    public ResultSet getCoches() {
-        //TODO
-        return null;
+    public ArrayList<Coche> getCoches() {
+        ArrayList<Coche> coches = new ArrayList<>();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM coche");
+            while (rs.next()) {
+                Coche coche = new Coche();
+                coche.setNombre(rs.getString("NOMBRE_COCHE"));
+                coche.setGanancia(Double.parseDouble(rs.getString("ganancia")));
+                
+                coches.add(coche);
+            }
+            rs.close();
+            return coches;
+        } catch (Exception e) {
+            System.out.println("Error en la consulta de los circuitos: " + e.getMessage());
+        }
+        return coches;
     }
 
     /**
@@ -89,6 +104,40 @@ class ModeloDatos {
             System.out.println("Error en la consulta de los circuitos: " + e.getMessage());
         }
         return circuitos;
+    }
+    
+    public Circuito getCircuito(String nombre){
+        Circuito circuito = new Circuito();
+        try{
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM circuito WHERE NOMBRE_CIRCUITO ='"+nombre+"'");
+                rs.next();
+                circuito.setNombre(nombre);
+                circuito.setCiudad(rs.getString("ciudad"));
+                circuito.setPais(rs.getString("pais"));
+                circuito.setCurvas(Integer.parseInt(rs.getString("curvas")));
+                circuito.setLongitud(Double.parseDouble(rs.getString("longitud")));
+                circuito.setVueltas(Integer.parseInt(rs.getString("vueltas")));
+        }catch (Exception e) {
+            System.out.println("Error en la consulta del circuito: " +nombre+" ,"+ e.getMessage());
+        }
+        return circuito;
+    }
+    
+    public Coche getCoche(String nombre){
+        Coche coche = new Coche();
+        try{
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM coche WHERE NOMBRE_COCHE ='"+nombre+"'");
+            rs.next();
+                coche.setNombre(nombre);
+                coche.setGanancia(Double.parseDouble(rs.getString("ganancia")));
+
+            rs.close();
+        }catch (Exception e) {
+            System.out.println("Error en la consulta del coche: " +nombre+" ,"+ e.getMessage());
+        }
+        return coche;
     }
     
     public void insertarCircuito(String nombre, String ciudad, String pais, int vueltas, Double longitud, int curvas)
