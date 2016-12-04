@@ -53,31 +53,7 @@ class ModeloDatos {
         return null;
     }
 
-    /**
-     * Devuelve una lista con los coches actuales
-     *
-     * @return
-     */
-    public ArrayList<Coche> getCoches() {
-        ArrayList<Coche> coches = new ArrayList<>();
-        try {
-            set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM coche");
-            while (rs.next()) {
-                Coche coche = new Coche();
-                coche.setNombre(rs.getString("NOMBRE_COCHE"));
-                coche.setGanancia(Double.parseDouble(rs.getString("ganancia")));
-                
-                coches.add(coche);
-            }
-            rs.close();
-            return coches;
-        } catch (Exception e) {
-            System.out.println("Error en la consulta de los circuitos: " + e.getMessage());
-        }
-        return coches;
-    }
-
+    ///////////////////////////////////CIRCUITOS//////////////////////////////
     /**
      * Devuelve una lista con los circuitos actuales
      *
@@ -124,21 +100,7 @@ class ModeloDatos {
         return circuito;
     }
     
-    public Coche getCoche(String nombre){
-        Coche coche = new Coche();
-        try{
-            set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM coche WHERE NOMBRE_COCHE ='"+nombre+"'");
-            rs.next();
-                coche.setNombre(nombre);
-                coche.setGanancia(Double.parseDouble(rs.getString("ganancia")));
 
-            rs.close();
-        }catch (Exception e) {
-            System.out.println("Error en la consulta del coche: " +nombre+" ,"+ e.getMessage());
-        }
-        return coche;
-    }
     
     public void insertarCircuito(String nombre, String ciudad, String pais, int vueltas, Double longitud, int curvas)
     {
@@ -169,6 +131,75 @@ class ModeloDatos {
         }
         return false;
     }
+    ///////////////////////////COCHE/////////////////////////
+    
+    public ArrayList<Coche> getCoches() {
+        ArrayList<Coche> coches = new ArrayList<>();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM coche");
+            while (rs.next()) {
+                Coche coche = new Coche();
+                coche.setNombre(rs.getString("NOMBRE_COCHE"));
+                coche.setPotencia(Double.parseDouble(rs.getString("potencia")));
+                
+                coches.add(coche);
+            }
+            rs.close();
+            return coches;
+        } catch (Exception e) {
+            System.out.println("Error en la consulta de los circuitos: " + e.getMessage());
+        }
+        return coches;
+    }
+    
+    public Coche getCoche(String nombre){
+        Coche coche = new Coche();
+        try{
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM coche WHERE NOMBRE_COCHE ='"+nombre+"'");
+            rs.next();
+                coche.setNombre(nombre);
+                coche.setPotencia(Double.parseDouble(rs.getString("potencia")));
+
+            rs.close();
+        }catch (Exception e) {
+            System.out.println("Error en la consulta del coche: " +nombre+" ,"+ e.getMessage());
+        }
+        return coche;
+    }
+    
+    public boolean estaCoche(String nombre) {
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT NOMBRE_COCHE FROM coche");
+            while (rs.next()) {
+                if (rs.getString("NOMBRE_COCHE").equals(nombre)) {
+                    return true;
+                }
+            }
+            rs.close();
+            return false;
+        } catch (Exception e) {
+            System.out.println("Error en la consulta de los circuitos: " + e.getMessage());
+        }
+        return false;
+    }
+    
+    public void insertarCoche(String nombre, Double potencia)
+    {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO coche "
+                    + " (NOMBRE_CIRCUITO,potencia) VALUES ('" + nombre + "','"+potencia+")");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No se ha insertado el coche"+e.getMessage());
+        }
+    }
+    
+
 
     public void cerrarConexion() {
         try {

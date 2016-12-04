@@ -7,6 +7,9 @@ package clases;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +17,17 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author jesus
+ * @author manu
  */
 public class cocheServlet extends HttpServlet {
 
+    private ModeloDatos bd;
+    
+    @Override
+    public void init(ServletConfig cfg) throws ServletException {
+        bd = new ModeloDatos();
+        bd.abrirConexion();
+    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,17 +40,47 @@ public class cocheServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet cocheServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet cocheServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String coche;
+        Double potencia;
+        coche = request.getParameter("nombre");
+        potencia = Double.parseDouble(request.getParameter("potencia"));
+
+        //A continuación comprobamos de nuevo que los datos sean correctos
+        if (!isValidPotencia(vueltas)) {
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Fallo</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Los datos introducidos son erroneos</h1>");
+                out.println("<p>Pulse en el siguiente enlace para volver a introducirlos</p>");
+                out.println("<a href=\"/Practica6/nuevoCoche.html\">Añadir coche</a>");
+                out.println("</body>");
+                out.println("</html>");
+                response.sendRedirect(response.encodeRedirectURL("/Practica6/errorDatos.html"));
+            }
+        }else
+        {
+            //En el caso de que los datos sean correctos y no esté en la bbdd lo añadimos
+            if (bd.estaCoche(coche))
+            {
+                response.sendRedirect(response.encodeRedirectURL("/Practica6/yaEstaCircuito.html"));
+            }else
+            {
+                bd.insertarCoche(coche, potencia);
+                response.sendRedirect(response.encodeRedirectURL("/Practica6/insertadoCorrectamente.html"));
+            }
+        }
+    }
+
+    public boolean isValidPotencia(Double potencia) {
+        if (potencia >= 4 && potencia <= 10) {
+            return true;
+        } else {
+            return false;
         }
     }
 

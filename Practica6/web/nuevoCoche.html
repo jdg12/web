@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Añadir coche</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/Practica6/style/style.css">
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#formulario").submit(function () {
+                    if (!isValidPotencia())
+                    {
+                        alert("La potencia debe estar entre 4 y 10");
+                        return false;
+                    }
+                    return true;
+                });
+
+                function isValidPotencia()
+                {
+                    var potencia = $("#potencia").val();
+                    if (potencia >= 4 && potencia <= 10)
+                    {
+                        return true;
+                    } else
+                    {
+                        return false;
+                    }
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="/Practica6/nuevoCircuito.html">Nuevo circuito</a></li>
+            <li><a href="/Practica6/nuevoCoche.html">Nuevo coche</a></li>
+            <li><a href="/Practica6/verTodos.html">Ver todos</a></li>
+            <li><a  href="/Practica&/calculoGanancia.jsp">Calculo Kers</a></li>
+        </ul>
+        <h1>Añada un nuevo coche</h1>
+        <div class="cuadrado">
+            <form action="/Practica6/src/java/clases/cocheServlet" class="nuevoCoche" id="formulario" method="POST">
+                <p>
+                    <label>Nombre: </label><br><input id="nombre" type="text" name="nombre" autofocus required />
+                    <br /><label>Ganancia de potencia por curva (kW):</label><br><input id="potencia" type="number" name="potencia" autofocus required/>
+                    <br /><br>
+                    <input class="boton" type="submit" value="Subir">
+                </p>
+            </form>
+        </div>
+    </body>
+</html>
