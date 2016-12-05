@@ -41,12 +41,12 @@ public class cocheServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String coche;
-        Double potencia;
+        Double ganancia;
         coche = request.getParameter("nombre");
-        potencia = Double.parseDouble(request.getParameter("potencia"));
+        ganancia = Double.parseDouble(request.getParameter("ganancia"));
 
         //A continuación comprobamos de nuevo que los datos sean correctos
-        if (!isValidPotencia(vueltas)) {
+        if (!isValidGanancia(ganancia)) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 out.println("<!DOCTYPE html>");
@@ -70,14 +70,14 @@ public class cocheServlet extends HttpServlet {
                 response.sendRedirect(response.encodeRedirectURL("/Practica6/yaEstaCircuito.html"));
             }else
             {
-                bd.insertarCoche(coche, potencia);
+                bd.insertarCoche(coche, ganancia);
                 response.sendRedirect(response.encodeRedirectURL("/Practica6/insertadoCorrectamente.html"));
             }
         }
     }
 
-    public boolean isValidPotencia(Double potencia) {
-        if (potencia >= 4 && potencia <= 10) {
+    public boolean isValidGanancia(Double ganancia) {
+        if (ganancia >= 4 && ganancia <= 10) {
             return true;
         } else {
             return false;

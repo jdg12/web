@@ -9,18 +9,18 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#formulario").submit(function () {
-                    if (!isValidPotencia())
+                    if (!isValidGanancia())
                     {
-                        alert("La potencia debe estar entre 4 y 10");
+                        alert("La ganancia debe estar entre 4 y 10");
                         return false;
                     }
                     return true;
                 });
 
-                function isValidPotencia()
+                function isValidGanancia()
                 {
-                    var potencia = $("#potencia").val();
-                    if (potencia >= 4 && potencia <= 10)
+                    var ganancia = $("#ganancia").val();
+                    if (ganancia >= 4 && ganancia <= 10)
                     {
                         return true;
                     } else
@@ -33,18 +33,18 @@
     </head>
     <body>
         <ul class="menu">
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="/Practica6/index.html">Inicio</a></li>
             <li><a href="/Practica6/nuevoCircuito.html">Nuevo circuito</a></li>
             <li><a href="/Practica6/nuevoCoche.html">Nuevo coche</a></li>
             <li><a href="/Practica6/verTodos.html">Ver todos</a></li>
-            <li><a  href="/Practica&/calculoGanancia.jsp">Calculo Kers</a></li>
+            <li><a  href="/Practica6/potenciaServlet">Calculo Kers</a></li>
         </ul>
         <h1>Añada un nuevo coche</h1>
         <div class="cuadrado">
-            <form action="/Practica6/src/java/clases/cocheServlet" class="nuevoCoche" id="formulario" method="POST">
+            <form action="/Practica6/cocheServlet" class="nuevoCoche" id="formulario" method="POST">
                 <p>
                     <label>Nombre: </label><br><input id="nombre" type="text" name="nombre" autofocus required />
-                    <br /><label>Ganancia de potencia por curva (kW):</label><br><input id="potencia" type="number" name="potencia" autofocus required/>
+                    <br /><label>Ganancia de potencia por curva (kW):</label><br><input id="ganancia" type="number" name="ganancia" autofocus required/>
                     <br /><br>
                     <input class="boton" type="submit" value="Subir">
                 </p>

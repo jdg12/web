@@ -24,7 +24,7 @@ public class potenciaServlet extends HttpServlet {
     private ModeloDatos bd;
     private ArrayList<Circuito> circuitos;
     private ArrayList<Coche> coches;
-    
+
     @Override
     public void init(ServletConfig cfg) throws ServletException {
         bd = new ModeloDatos();
@@ -46,7 +46,7 @@ public class potenciaServlet extends HttpServlet {
 
         circuitos = bd.getCircuitos();
         coches = bd.getCoches();
-        
+
         if (circuitos.isEmpty() || coches.isEmpty()) {
             response.sendRedirect(response.encodeRedirectURL("/Practica6/noHayDatos.html"));
         } else {
@@ -58,27 +58,35 @@ public class potenciaServlet extends HttpServlet {
                 out.println("<title>Servlet potenciaServlet</title>");
                 out.println("</head>");
                 out.println("<body>");
+                out.println("<ul class=\"menu\">\n"
+                        + "            <li><a href=\"/Practica6/index.html\">Inicio</a></li>\n"
+                        + "            <li><a href=\"/Practica6/nuevoCircuito.html\">Nuevo circuito</a></li>\n"
+                        + "            <li><a href=\"/Practica6/nuevoCoche.html\">Nuevo coche</a></li>\n"
+                        + "            <li><a href=\"/Practica6/verTodos.html\">Ver todos</a></li>\n"
+                        + "            <li><a  href=\"/Practica6/potenciaServlet\">Calculo Kers</a></li>\n"
+                        + "        </ul>");
+
                 out.println("<h1>Elige un circuito y un coche</h1>");
                 out.println("<form name=\"formulario\" action=\"/Practica6/CalculoServlet\">");
-                
+
                 //circuitos
                 out.println("<select id=\"circuitos\" name=\"circuitos\" size=7 > ");
                 Iterator it = circuitos.iterator();
                 Circuito circuito = new Circuito();
-                
+
                 while (it.hasNext()) {
                     circuito = (Circuito) it.next();
                     out.println("<option value=\"" + circuito.getNombre() + "\">" + circuito.getNombre() + "</option>");
 
                 }
                 out.println("</select>");
-                
+
                 //coches
                 out.println("<select id=\"coches\" name=\"coches\" size=7 > ");
-                
+
                 it = coches.iterator();
                 Coche coche = new Coche();
-                
+
                 while (it.hasNext()) {
                     coche = (Coche) it.next();
                     out.println("<option value=\"" + coche.getNombre() + "\">" + coche.getNombre() + "</option>");
@@ -90,9 +98,9 @@ public class potenciaServlet extends HttpServlet {
                 out.println("</form>");
                 out.println("</body>");
                 out.println("</html>");
-                
-            }catch(Exception e){
-                System.out.println("excepcion: " +e.getMessage());
+
+            } catch (Exception e) {
+                System.out.println("excepcion: " + e.getMessage());
             }
         }
     }

@@ -10,7 +10,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -141,7 +140,7 @@ class ModeloDatos {
             while (rs.next()) {
                 Coche coche = new Coche();
                 coche.setNombre(rs.getString("NOMBRE_COCHE"));
-                coche.setPotencia(Double.parseDouble(rs.getString("potencia")));
+                coche.setGanancia(Double.parseDouble(rs.getString("ganancia")));
                 
                 coches.add(coche);
             }
@@ -160,7 +159,7 @@ class ModeloDatos {
             rs = set.executeQuery("SELECT * FROM coche WHERE NOMBRE_COCHE ='"+nombre+"'");
             rs.next();
                 coche.setNombre(nombre);
-                coche.setPotencia(Double.parseDouble(rs.getString("potencia")));
+                coche.setGanancia(Double.parseDouble(rs.getString("ganancia")));
 
             rs.close();
         }catch (Exception e) {
@@ -181,17 +180,17 @@ class ModeloDatos {
             rs.close();
             return false;
         } catch (Exception e) {
-            System.out.println("Error en la consulta de los circuitos: " + e.getMessage());
+            System.out.println("Error en la consulta de los coches: " + e.getMessage());
         }
         return false;
     }
     
-    public void insertarCoche(String nombre, Double potencia)
+    public void insertarCoche(String nombre, Double ganancia)
     {
         try {
             set = con.createStatement();
             set.executeUpdate("INSERT INTO coche "
-                    + " (NOMBRE_CIRCUITO,potencia) VALUES ('" + nombre + "','"+potencia+")");
+                    + " (NOMBRE_COCHE,ganancia) VALUES ('" + nombre + "',"+ganancia+")");
             rs.close();
             set.close();
         } catch (Exception e) {

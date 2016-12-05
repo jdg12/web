@@ -11,11 +11,11 @@ package clases;
  */
 public class Coche {
     private String nombre;
-    private double potencia;
+    private double ganancia;
 
-    public Coche(String nombre, double potencia) {
+    public Coche(String nombre, double ganancia) {
         this.nombre = nombre;
-        this.potencia = potencia;
+        this.ganancia = ganancia;
     }
 
     public Coche() {
@@ -29,17 +29,17 @@ public class Coche {
         this.nombre = nombre;
     }
 
-    public double getPotencia() {
-        return potencia;
+    public double getGanancia() {
+        return ganancia;
     }
 
-    public void setPotencia(double potencia) {
-        this.potencia = potencia;
+    public void setGanancia(double ganancia) {
+        this.ganancia = ganancia;
     }
 
     @Override
     public String toString() {
-        return "Coche{" + "nombre=" + nombre + ", ganancia=" + potencia + '}';
+        return "Coche{" + "nombre=" + nombre + ", ganancia=" + ganancia + '}';
     }
     
     
