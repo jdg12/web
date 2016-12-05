@@ -4,6 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="style/style.css">
         <title>Calculo de Ganancia</title>
     </head>
     
@@ -19,7 +20,7 @@
            String nomCircuito = (String) session.getAttribute("circuito");
            Double res = (Double) session.getAttribute("resultado");
         %>
-        <h1>Ganancia del coche <%= nomCoche%> , en el circuito <%= nomCircuito%></h1>
+        <h2>Ganancia del coche <%= nomCoche%> , en el circuito <%= nomCircuito%></h2>
         <br>
         <%= res%> KW
         

@@ -55,6 +55,7 @@ public class potenciaServlet extends HttpServlet {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
+                out.println("<link rel=\"stylesheet\" href=\"style/style.css\">");
                 out.println("<title>Servlet potenciaServlet</title>");
                 out.println("</head>");
                 out.println("<body>");
@@ -66,7 +67,7 @@ public class potenciaServlet extends HttpServlet {
                         + "            <li><a  href=\"/Practica6/potenciaServlet\">Calculo Kers</a></li>\n"
                         + "        </ul>");
 
-                out.println("<h1>Elige un circuito y un coche</h1>");
+                out.println("<h2>Elige un circuito y un coche</h2>");
                 out.println("<form name=\"formulario\" action=\"/Practica6/CalculoServlet\">");
 
                 //circuitos
