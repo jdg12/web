@@ -63,7 +63,7 @@ public class potenciaServlet extends HttpServlet {
                         + "            <li><a href=\"/Practica6/index.html\">Inicio</a></li>\n"
                         + "            <li><a href=\"/Practica6/nuevoCircuito.html\">Nuevo circuito</a></li>\n"
                         + "            <li><a href=\"/Practica6/nuevoCoche.html\">Nuevo coche</a></li>\n"
-                        + "            <li><a href=\"/Practica6/verTodos.html\">Ver todos</a></li>\n"
+                        + "            <li><a href=\"/Practica6/verTodoServlet\">Ver todos</a></li>"
                         + "            <li><a  href=\"/Practica6/potenciaServlet\">Calculo Kers</a></li>\n"
                         + "        </ul>");
 
