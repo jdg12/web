@@ -1,0 +1,65 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+html{
+	font-family: 'Times New Roman', sans-serif;
+	background-color:#f1f1f1;
+	height: 100vh;
+}
+
+body{
+    height:100%; /* force the BODY element to match the height of the HTML element */
+    width:100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+h1 { 
+    color: #f9f9f9; font-family: 'Helvetica Neue', sans-serif; font-size: 50px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; text-shadow: 2px 2px #050005; 
+}
+h2 { 
+    color: #ff7f7f; font-size: 25px; font-family: "Libre Baskerville", serif; line-height: 45px; text-align: center; text-shadow: 0 1px 1px #fff; padding-bottom: 40px; padding-top: 40px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
