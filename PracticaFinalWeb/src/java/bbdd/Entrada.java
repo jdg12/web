@@ -9,13 +9,13 @@ package bbdd;
  *
  * @author JD
  */
-public class Entrada {
-    private String id;
-    private Sesion sesion;
-    private int fila;
-    private int columna;
-    private boolean vendida;
-    private double precio;
+public abstract class Entrada {
+    protected String id;
+    protected Sesion sesion;
+    protected int fila;
+    protected int columna;
+    protected boolean vendida;
+    protected double precio;
 
     public Entrada(String id, Sesion sesion, int fila, int columna, boolean vendida, double precio) {
         this.id = id;
@@ -77,6 +77,9 @@ public class Entrada {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    @Override
+    public abstract String toString();
     
     
     

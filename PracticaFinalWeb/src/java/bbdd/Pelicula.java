@@ -27,21 +27,7 @@ public class Pelicula {
     private int clasificacion;
     private String otros;
 
-    public Pelicula(String nombre, String sinopsis, String pagina, String titulo, String genero, String nacionalidad, int duracion, int año, String distribuidora, String director, ArrayList<Actor> actores, int edad, String otros) {
-        this.nombre = nombre;
-        this.sinopsis = sinopsis;
-        this.pagina = pagina;
-        this.titulo = titulo;
-        this.genero = genero;
-        this.nacionalidad = nacionalidad;
-        this.duracion = duracion;
-        this.ano = año;
-        this.distribuidora = distribuidora;
-        this.director = director;
-        this.actores = actores;
-        this.clasificacion = edad;
-        this.otros = otros;
-    }
+    
 
     public Pelicula() {
     }

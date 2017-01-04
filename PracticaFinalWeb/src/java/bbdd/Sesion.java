@@ -10,7 +10,6 @@ package bbdd;
  * @author JD
  */
 public class Sesion {
-    private String id;
     private String pelicula;
     private String sala;
     private Fecha fecha;
@@ -23,13 +22,6 @@ public class Sesion {
         this.hora = hora;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     
     public String getPelicula() {
