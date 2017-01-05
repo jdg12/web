@@ -4,9 +4,41 @@
         <servlet-name>pruebaServlet</servlet-name>
         <servlet-class>servlet.pruebaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>prueba</servlet-name>
+        <servlet-class>servlet.prueba</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>accesoServlet</servlet-name>
+        <servlet-class>servlet.accesoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>registroServlet</servlet-name>
+        <servlet-class>servlet.registroServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>guardarReservaEntrada</servlet-name>
+        <servlet-class>servlet.guardarReservaEntrada</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>pruebaServlet</servlet-name>
         <url-pattern>/pruebaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>prueba</servlet-name>
+        <url-pattern>/prueba</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>accesoServlet</servlet-name>
+        <url-pattern>/accesoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registroServlet</servlet-name>
+        <url-pattern>/registroServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>guardarReservaEntrada</servlet-name>
+        <url-pattern>/guardarReservaEntrada</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
