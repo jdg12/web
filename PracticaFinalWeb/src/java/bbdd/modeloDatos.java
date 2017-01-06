@@ -112,8 +112,49 @@ public class modeloDatos implements BBDD {
 
     @Override
     public ArrayList<Reserva> getReservas(String idUsuario) {
-         //TODO TODO EL RESTO
-         return null;
+        ArrayList<Reserva> reservas = new ArrayList<>();
+        Reserva reserva = null;
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM RESERVA");
+            while (rs.next()) {
+                reserva = new Reserva();
+                String idPelicula = rs.getString(1);
+                String idSala = rs.getString(2);
+                String hora = rs.getString(3);
+                int fila = Integer.valueOf(rs.getString(5));
+                int columna = Integer.valueOf(rs.getString(6));
+                String tipo = getTipoEntrada(idPelicula, idSala, hora, fila, columna);
+                Entrada entrada;
+                if (tipo.equals("normal")) {
+                    entrada = (EntradaNormal) getEntrada(idPelicula, idSala, hora, fila, columna);
+                } else {
+                    entrada = (EntradaReducida) getEntrada(idPelicula, idSala, hora, fila, columna);
+                }
+                reserva.setEntrada(entrada);
+                reserva.setIdReserva(rs.getString(7));
+                reservas.add(reserva);
+            }
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al obtener las reservas: " + e.getMessage());
+        }
+        return reservas;
+    }
+
+    @Override
+    public Sesion getSesion(String idPelicula, String idSala, String hora) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTipoEntrada(String idPelicula, String idSala, String hora, int fila, int columna) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Entrada getEntrada(String idPelicula, String idSala, String hora, int fila, int columna) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
