@@ -9,8 +9,26 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style/style.css">
     </head>
     <body>
-        <div>TODO write content</div>
+         <ul class="menu">
+            <li><a href="inicio.jsp">Inicio</a></li>
+            <li><a href="cartelera.jsp">Cartelera</a></li>
+            <li><a href="acceso.html">Acceder</a></li>
+            <li><a href="registro.html">Registro</a></li>
+            <li><a href="perfil.jsp">Mi perfil</a></li>
+        </ul>
+        <h2>Acceder</h2>
+        <div class="cuadrado">
+            <form action="/PracticaFinalWeb/accesoServlet" class="acceder" id="formulario" method="POST">
+                <p>
+                    <label>Nombre de usuario: </label><br><input id="idUsuario" type="text" name="idUsuario" autofocus required />
+                    <br /><label>Contraseña: </label><br><input id="contrasena" type="password" name="contrasena" required/>
+                    <br /><br>
+                    <input class="boton" type="submit" value="Subir">
+                </p>
+            </form>
+        </div>
     </body>
 </html>

@@ -6,11 +6,34 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Registro</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style/style.css">
     </head>
     <body>
-        <div>TODO write content</div>
+         <ul class="menu">
+            <li><a href="inicio.jsp">Inicio</a></li>
+            <li><a href="cartelera.jsp">Cartelera</a></li>
+            <li><a href="acceso.html">Acceder</a></li>
+            <li><a href="registro.html">Registro</a></li>
+            <li><a href="perfil.jsp">Mi perfil</a></li>
+        </ul>
+        <h2>Registrese</h2>
+        <div class="cuadrado">
+            <form action="/PracticaFinalWeb/registroServlet" class="nuevoUsuario" id="formulario" method="POST">
+                <p>
+                    <label>Nombre de usuario: </label><br><input id="idUsuario" type="text" name="idUsuario" autofocus required />
+                    <br /><label>Correo: </label><br><input id="correo" type="email" name="correo" autofocus required/>
+                    <br /><label>Nombre: </label><br><input id="nombre" type="text" name="nombre" autofocus/>
+                    <br /><label>Apellidos: </label><br><input id="apellidos" type="text" name="apellidos"/>
+                    <br /><label>Direccion: </label><br><input id="direccion" type="text" name="direccion" required/>
+                    <br /><label>Contraseña: </label><br><input id="contrasena" type="password" name="contrasena" required/>
+                    <br /><label>Cuenta bancaria(voluntario): </label><br><input id="cuenta" type="text" name="cuenta"/>
+                    <br /><br>
+                    <input class="boton" type="submit" value="Subir">
+                </p>
+            </form>
+        </div>
     </body>
 </html>
