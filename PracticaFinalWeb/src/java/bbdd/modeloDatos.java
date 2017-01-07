@@ -293,7 +293,6 @@ public class modeloDatos implements BBDD {
 
     @Override
     public ArrayList<Pelicula> getPeliculas() {
-        ArrayList<Entrada> entradas = new ArrayList<>();
         ArrayList<Pelicula> peliculas = new ArrayList<>();
         try {
             set = con.createStatement();
@@ -319,6 +318,204 @@ public class modeloDatos implements BBDD {
             System.out.println("Error al obtener las peliculas: " + e.getMessage());
         }
         return peliculas;
+    }
+
+    @Override
+    public Pelicula getPelicula(String idPelicula) {
+        Pelicula pelicula = new Pelicula();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM PELICULA WHERE NOMBRE='" + idPelicula + "'");
+            rs.next();
+            pelicula.setNombre(rs.getString(1));
+            pelicula.setSinopsis(rs.getString(2));
+            pelicula.setPagina(rs.getString(3));
+            pelicula.setTitulo(rs.getString(4));
+            pelicula.setGenero(rs.getString(5));
+            pelicula.setNacionalidad(rs.getString(6));
+            pelicula.setDuracion(Integer.valueOf(rs.getString(7)));
+            pelicula.setAno(Integer.valueOf(rs.getString(8)));
+            pelicula.setDistribuidora(rs.getString(9));
+            pelicula.setDirector(rs.getString(10));
+            pelicula.setClasificacion(Integer.valueOf(rs.getString(11)));
+            pelicula.setOtros(rs.getString(12));
+
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al obtener la pelicula: " + e.getMessage());
+        }
+        return pelicula;
+    }
+
+    @Override
+    public ArrayList<Actor> getActores(String idPelicula) {
+        ArrayList<Actor> actores = new ArrayList<>();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM RELACTORPEL WHERE NOMBREPELICULA='" + idPelicula + "'");
+            while (rs.next()) {
+                Actor actor = new Actor();
+                actor.setNombre(rs.getString(2));
+                actor.setApellidos(rs.getString(3));
+                actores.add(actor);
+            }
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al obtener los actores: " + e.getMessage());
+        }
+        return actores;
+    }
+
+    @Override
+    public ArrayList<Comentario> getComentarios(String idPelicula) {
+        ArrayList<Comentario> comentarios = new ArrayList<>();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM COMENTARIO WHERE IDPELICULA='" + idPelicula + "'");
+            while (rs.next()) {
+                Comentario c = new Comentario();
+                c.setIdPelicula(rs.getString(1));
+                c.setIdUsuario(rs.getString(2));
+                c.setIdComentario(rs.getString(3));
+                c.setTexto(rs.getString(4));
+                c.setPuntuacion(Integer.valueOf(rs.getString(5)));
+                comentarios.add(c);
+            }
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al obtener los comentarios: " + e.getMessage());
+        }
+        return comentarios;
+    }
+
+    @Override
+    public void guardarComentario(Comentario comentario) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO COMENTARIO (IDPELICULA, IDUSUARIO, IDCOMENTARIO, TEXTO, PUNTUACION) VALUES ('" + comentario.getIdPelicula()
+                    + "', '" + comentario.getIdUsuario()
+                    + "', '" + comentario.getIdComentario()
+                    + "', '" + comentario.getTexto()
+                    + "', " + comentario.getPuntuacion()
+                    + ")");
+            System.out.println("Estoy aqui: ");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No se ha guardado el comentario " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void eliminarPelicula(String idPelicula) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM PELICULA"
+                    + " WHERE NOMBRE= '" + idPelicula
+                    + "'");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar la pelicula: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void modificarPelicula(Pelicula pelicula) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("UPDATE PELICULA "
+                    + "SET nombre='" + pelicula.getNombre()
+                    + "',sinopsis='" + pelicula.getSinopsis()
+                    + "',pagina='" + pelicula.getPagina()
+                    + "',titulor='" + pelicula.getTitulo()
+                    + "',genero='" + pelicula.getGenero()
+                    + "',nacionalidad='" + pelicula.getNacionalidad()
+                    + "',duracion=" + pelicula.getDuracion()
+                    + ",ano=" + pelicula.getAno()
+                    + ",distribuidora='" + pelicula.getDistribuidora()
+                    + "',director='" + pelicula.getDirector()
+                    + "',clasificacion=" + pelicula.getClasificacion()
+                    + ",otros='" + pelicula.getOtros()
+                    + "' "
+                    + "WHERE nombre='" + pelicula.getNombre()
+                    + "'"
+                    + "");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("Error al modificar la pelicula " + pelicula.getNombre()+ " ," + e.getMessage());
+        }
+    }
+
+    @Override
+    public void eliminarEntradasPelicula(String idPelicula) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM ENTRADA"
+                    + " WHERE IDSESION IN (SELECT IDSESION FROM SESION WHERE IDPELICULA = '"+idPelicula
+                    + "')");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar las entradas de la pelicula: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void eliminarReservasPelicula(String idPelicula) {
+         try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM RESERVA"
+                    + " WHERE IDENTRADA IN (SELECT IDENTRADA FROM ENTRADA WHERE IDSESION IN (SELECT IDSESION FROM SESION WHERE IDPELICULA = '"+idPelicula
+                    + "'))");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar las reservas de la pelicula: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void eliminarComentariosPelicula(String idPelicula) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM COMENTARIO"
+                    + " WHERE IDPELICULA = '"+idPelicula+
+                     "'");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar los comentarios de la pelicula: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void eliminarSesionPelicula(String idPelicula) {
+         try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM SESION"
+                    + " WHERE IDPELICULA = '"+idPelicula+
+                     "'");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar las sesiones de la pelicula: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void borrarActoresPelicula(String idPelicula) {
+         try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM RELACTORPEL"
+                    + " WHERE NOMBREPELICULA = '"+idPelicula+
+                     "'");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar los actores " + e.getMessage());
+        }
     }
 
 }

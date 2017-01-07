@@ -28,6 +28,22 @@
         <servlet-name>borrarEntradaServlet</servlet-name>
         <servlet-class>servlet.borrarEntradaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>verMasPeliculaServlet</servlet-name>
+        <servlet-class>servlet.verMasPeliculaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dejarComentario</servlet-name>
+        <servlet-class>servlet.dejarComentario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>modificarPelicula</servlet-name>
+        <servlet-class>servlet.modificarPelicula</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>borrarPelicula</servlet-name>
+        <servlet-class>servlet.borrarPelicula</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>pruebaServlet</servlet-name>
         <url-pattern>/pruebaServlet</url-pattern>
@@ -55,6 +71,22 @@
     <servlet-mapping>
         <servlet-name>borrarEntradaServlet</servlet-name>
         <url-pattern>/borrarEntradaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>verMasPeliculaServlet</servlet-name>
+        <url-pattern>/verMasPeliculaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dejarComentario</servlet-name>
+        <url-pattern>/dejarComentario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarPelicula</servlet-name>
+        <url-pattern>/modificarPelicula</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>borrarPelicula</servlet-name>
+        <url-pattern>/borrarPelicula</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

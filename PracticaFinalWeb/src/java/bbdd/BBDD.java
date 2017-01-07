@@ -25,4 +25,15 @@ interface BBDD {
     public void eliminarEntrada(String idEntrada);
     public void eliminarReserva(String idReserva);
     public ArrayList<Pelicula> getPeliculas();
+    public Pelicula getPelicula(String idPelicula);
+    public ArrayList<Actor> getActores(String idPelicula);
+    public ArrayList<Comentario> getComentarios(String idPelicula);
+    public void guardarComentario(Comentario comentario);
+    public void eliminarPelicula(String idPelicula);
+    public void modificarPelicula(Pelicula pelicula);
+    public void eliminarEntradasPelicula(String idPelicula);
+    public void eliminarReservasPelicula(String idPelicula);
+    public void eliminarComentariosPelicula(String idPelicula);
+    public void eliminarSesionPelicula(String idPelicula);
+    public void borrarActoresPelicula(String idPelicula);
 }
