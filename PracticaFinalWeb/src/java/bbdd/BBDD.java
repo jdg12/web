@@ -24,4 +24,5 @@ interface BBDD {
     public ArrayList<Entrada> getEntradas();
     public void eliminarEntrada(String idEntrada);
     public void eliminarReserva(String idReserva);
+    public ArrayList<Pelicula> getPeliculas();
 }

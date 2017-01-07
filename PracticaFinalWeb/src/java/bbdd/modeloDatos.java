@@ -111,7 +111,11 @@ public class modeloDatos implements BBDD {
         Reserva reserva = null;
         try {
             set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM RESERVA WHERE IDUSUARIO='" + idUsuario + "'");
+            if (idUsuario.equals("admin")) {
+                rs = set.executeQuery("SELECT * FROM RESERVA");
+            } else {
+                rs = set.executeQuery("SELECT * FROM RESERVA WHERE IDUSUARIO='" + idUsuario + "'");
+            }
             while (rs.next()) {
                 reserva = new Reserva();
                 Entrada e;
@@ -285,6 +289,36 @@ public class modeloDatos implements BBDD {
         } catch (Exception e) {
             System.out.println("No ha sido posible eliminar la entrada" + e.getMessage());
         }
+    }
+
+    @Override
+    public ArrayList<Pelicula> getPeliculas() {
+        ArrayList<Entrada> entradas = new ArrayList<>();
+        ArrayList<Pelicula> peliculas = new ArrayList<>();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM PELICULA");
+            while (rs.next()) {
+                Pelicula pelicula = new Pelicula();
+                pelicula.setNombre(rs.getString(1));
+                pelicula.setSinopsis(rs.getString(2));
+                pelicula.setPagina(rs.getString(3));
+                pelicula.setTitulo(rs.getString(4));
+                pelicula.setGenero(rs.getString(5));
+                pelicula.setNacionalidad(rs.getString(6));
+                pelicula.setDuracion(Integer.valueOf(rs.getString(7)));
+                pelicula.setAno(Integer.valueOf(rs.getString(8)));
+                pelicula.setDistribuidora(rs.getString(9));
+                pelicula.setDirector(rs.getString(10));
+                pelicula.setClasificacion(Integer.valueOf(rs.getString(11)));
+                pelicula.setOtros(rs.getString(12));
+                peliculas.add(pelicula);
+            }
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al obtener las peliculas: " + e.getMessage());
+        }
+        return peliculas;
     }
 
 }

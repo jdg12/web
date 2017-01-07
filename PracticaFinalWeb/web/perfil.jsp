@@ -63,6 +63,8 @@
             </p>
         </form>
         <%} else { %>
+        <h2>Informes</h2>
+        <input type="button" value="Ir a informes" onClick=" window.location.href='informes.jsp' ">
          <h2>Entradas</h2>
         <%
             ArrayList<Entrada> entradas = bd.getEntradas();
@@ -85,9 +87,21 @@
         <%}%>
         <h2>Reservas</h2>
         <%
-            ArrayList<Reserva> reservas = bd.getReservas(usuarioActual.getIdUsuario());
+            ArrayList<Reserva> reservas = bd.getReservas(usuarioActual.getIdUsuario());%>
+            <p>Total: <%=reservas.size()%>
+                <%
             for (int k = 0; k < reservas.size(); k++){%>
-                
+                <div class="reserva">
+            <h3>id Reserva: <%= reservas.get(k).getIdReserva()%></h3>
+            <h3>Datos de la sesion:</h3>
+            <p>Pelicula: <%=reservas.get(k).getEntrada().getSesion().getPelicula()%></p>
+            <p>Sala: <%=reservas.get(k).getEntrada().getSesion().getSala()%></p>
+            <p>Horario: <%=reservas.get(k).getEntrada().getSesion().getHora()%></p>
+            <p>Fecha: <%=reservas.get(k).getEntrada().getSesion().getFechaS()%></p>
+            <h3>Datos de la entrada: </h3>
+            <p>Fila y columna: <%= reservas.get(k).getEntrada().getFila()%> <%=reservas.get(k).getEntrada().getColumna()%></P>
+            <p>Precio: <%= reservas.get(k).getEntrada().getPrecio()%></p>
+        </div>
             <%}%>
         <%}%>
     </body>
