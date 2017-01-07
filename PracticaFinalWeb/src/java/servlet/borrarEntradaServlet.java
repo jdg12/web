@@ -5,20 +5,18 @@
  */
 package servlet;
 
-import bbdd.modeloDatos;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author jesus
  */
-public class accesoServlet extends HttpServlet {
+public class borrarEntradaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,17 +30,17 @@ public class accesoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession sesion = request.getSession();
-        String idUsuario, contrasena;
-        idUsuario = request.getParameter("idUsuario");
-        contrasena = request.getParameter("contrasena");
-        modeloDatos bd = new modeloDatos();
-        bd.abrirConexion();
-        if (bd.estaUsuario(idUsuario) && bd.contrasenaCorrecta(idUsuario, contrasena)) {
-            sesion.setAttribute("usuarioActual", bd.getUsuario(idUsuario));
-            response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/perfil.jsp"));
-        } else {
-            response.sendRedirect(response.encodeRedirectURL("acceso.html"));
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet borrarEntradaServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet borrarEntradaServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

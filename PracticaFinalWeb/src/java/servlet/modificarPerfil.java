@@ -5,9 +5,9 @@
  */
 package servlet;
 
+import bbdd.Usuario;
 import bbdd.modeloDatos;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author jesus
  */
-public class accesoServlet extends HttpServlet {
+public class modificarPerfil extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,18 +32,26 @@ public class accesoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession sesion = request.getSession();
-        String idUsuario, contrasena;
-        idUsuario = request.getParameter("idUsuario");
-        contrasena = request.getParameter("contrasena");
-        modeloDatos bd = new modeloDatos();
+         HttpSession sesion = request.getSession();
+        String id = request.getParameter("inputName");
+        Usuario usuarioActual = (Usuario) sesion.getAttribute("usuarioActual");
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(request.getParameter("idUsuario"));
+        usuario.setNombre(request.getParameter("nombre"));
+        usuario.setApellidos(request.getParameter("apellidos"));
+        usuario.setCorreo(request.getParameter("correo"));
+        usuario.setContrasena(request.getParameter("contrasena"));
+        usuario.setDireccion(request.getParameter("direccion"));
+        usuario.setCuenta(request.getParameter("cuenta"));
+        
+        //Ahora guardamos el cambio
+         modeloDatos bd = new modeloDatos();
         bd.abrirConexion();
-        if (bd.estaUsuario(idUsuario) && bd.contrasenaCorrecta(idUsuario, contrasena)) {
-            sesion.setAttribute("usuarioActual", bd.getUsuario(idUsuario));
-            response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/perfil.jsp"));
-        } else {
-            response.sendRedirect(response.encodeRedirectURL("acceso.html"));
-        }
+        
+        //Directamente ejecutamos el comando eliminar Usuario  de la fachada
+        //Este primero eliminará todas las carcasas para a continuación eliminar el usuario
+        bd.modificarUsuario(usuario);
+        response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/perfil.jsp"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

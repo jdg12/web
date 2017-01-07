@@ -20,6 +20,14 @@
         <servlet-name>guardarReservaEntrada</servlet-name>
         <servlet-class>servlet.guardarReservaEntrada</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>modificarPerfil</servlet-name>
+        <servlet-class>servlet.modificarPerfil</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>borrarEntradaServlet</servlet-name>
+        <servlet-class>servlet.borrarEntradaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>pruebaServlet</servlet-name>
         <url-pattern>/pruebaServlet</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>guardarReservaEntrada</servlet-name>
         <url-pattern>/guardarReservaEntrada</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarPerfil</servlet-name>
+        <url-pattern>/modificarPerfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>borrarEntradaServlet</servlet-name>
+        <url-pattern>/borrarEntradaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

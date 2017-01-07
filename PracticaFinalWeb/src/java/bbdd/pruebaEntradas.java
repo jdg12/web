@@ -16,6 +16,7 @@ public class pruebaEntradas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        /*
         Fecha f= new Fecha(2,10,2016);
         Sesion s = new Sesion("nombre pelicula","nombre sala",f,"21:30");
         
@@ -26,6 +27,7 @@ public class pruebaEntradas {
         System.out.println(e.toString());
         e = factor.nuevaEntrada(1, "1", s, 5, 14, false, 6);
         System.out.println(e.toString());
+*/
     }
     
 }

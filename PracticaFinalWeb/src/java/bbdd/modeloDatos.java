@@ -18,9 +18,9 @@ public class modeloDatos implements BBDD {
 
     public void abrirConexion() {
         String sURL = "jdbc:odbc:mvc";
-        String url = "jdbc:derby://localhost:1527/finalweb";
-        String usuario = "finalweb";
-        String contrasena = "finalweb";
+        String url = "jdbc:derby://localhost:1527/finalweb2";
+        String usuario = "final";
+        String contrasena = "final";
         try {
             //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -111,18 +111,23 @@ public class modeloDatos implements BBDD {
         Reserva reserva = null;
         try {
             set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM RESERVA WHERE IDUSUARIO='"+idUsuario+"'");
+            rs = set.executeQuery("SELECT * FROM RESERVA WHERE IDUSUARIO='" + idUsuario + "'");
             while (rs.next()) {
                 reserva = new Reserva();
                 Entrada e;
-                if (this.getTipoEntrada(rs.getString(1)).equals("reducida")) {
-                    e = (EntradaReducida) this.getEntrada(rs.getString(1));
+                String usuario = rs.getString(2);
+                String idReserva = rs.getString(3);
+                String idEntrada = rs.getString(1);
+                String tipo = this.getTipoEntrada(idEntrada);
+                if (tipo.equals("reducida")) {
+                    e = (EntradaReducida) this.getEntrada(idEntrada);
                 } else {
-                    e = (EntradaNormal) this.getEntrada(rs.getString(1));
+                    e = (EntradaNormal) this.getEntrada(idEntrada);
                 }
                 reserva.setEntrada(e);
-                reserva.setIdUsuario(rs.getString(2));
-                reserva.setIdReserva(rs.getString(3));
+                reserva.setIdUsuario(usuario);
+                reserva.setIdReserva(idReserva);
+                reservas.add(reserva);
             }
             rs.close();
         } catch (Exception e) {
@@ -160,11 +165,16 @@ public class modeloDatos implements BBDD {
                 entrada = new EntradaNormal();
             }
             entrada.setId(rs.getString(1));
+            int fila = Integer.valueOf(rs.getString(3));
+            int columna = Integer.valueOf(rs.getString(4));
+            double precio = Double.parseDouble(rs.getString(6));
+            boolean vendida = Boolean.valueOf(rs.getString(7));
+
             entrada.setSesion(this.getSesion(rs.getString(2)));
-            entrada.setFila(Integer.valueOf(rs.getString(3)));
-            entrada.setColumna(Integer.valueOf(rs.getString(4)));
-            entrada.setPrecio(Double.parseDouble(rs.getString(6)));
-            entrada.setVendida(Boolean.valueOf(rs.getString(7)));
+            entrada.setFila(fila);
+            entrada.setColumna(columna);
+            entrada.setPrecio(precio);
+            entrada.setVendida(vendida);
             rs.close();
         } catch (Exception e) {
             System.out.println("Error al recuperar la entrada: " + e.getMessage());
@@ -191,6 +201,62 @@ public class modeloDatos implements BBDD {
             System.out.println("Error al recuperar la sesion");
         }
         return sesion;
+    }
+
+    @Override
+    public void modificarUsuario(Usuario usuario) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("UPDATE USUARIO "
+                    + "SET nombre='" + usuario.getNombre()
+                    + "',apellidos='" + usuario.getApellidos()
+                    + "',correo='" + usuario.getCorreo()
+                    + "', cuenta='" + usuario.getCuenta()
+                    + "', direccion='" + usuario.getDireccion()
+                    + "' "
+                    + "WHERE idusuario='" + usuario.getIdUsuario()
+                    + "'"
+                    + "");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("Error al modificar el usuario " + usuario.getIdUsuario() + " ," + e.getMessage());
+        }
+    }
+
+    @Override
+    public ArrayList<Entrada> getEntradas() {
+        ArrayList<Entrada> entradas = new ArrayList<>();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM ENTRADA");
+            while (rs.next()) {
+                String idEntrada = rs.getString(1);
+                String idSesion = rs.getString(2);
+                int fila = Integer.valueOf(rs.getString(3));
+                int columna = Integer.valueOf(rs.getString(4));
+                double precio = Double.parseDouble(rs.getString(6));
+                boolean vendida = Boolean.valueOf(rs.getString(7));
+                String tipo = this.getTipoEntrada(idEntrada);
+                Entrada entrada;
+                if (tipo.equals("reducida")) {
+                    entrada = new EntradaReducida();
+                } else {
+                    entrada = new EntradaNormal();
+                }
+                entrada.setId(idEntrada);
+                entrada.setSesion(this.getSesion(idSesion));
+                entrada.setFila(fila);
+                entrada.setColumna(columna);
+                entrada.setPrecio(precio);
+                entrada.setVendida(vendida);
+                entradas.add(entrada);
+            }
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al obtener las entradas: " + e.getMessage());
+        }
+        return entradas;
     }
 
 }

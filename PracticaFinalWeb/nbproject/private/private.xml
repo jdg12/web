@@ -3,15 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/src/java/bbdd/BBDD.java</file>
             <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/web/perfil.jsp</file>
+            <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/src/java/servlet/accesoServlet.java</file>
+            <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/src/java/servlet/modificarPerfil.java</file>
             <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/src/java/bbdd/modeloDatos.java</file>
-            <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/web/acceso.html</file>
             <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/src/java/bbdd/Reserva.java</file>
+            <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/src/java/bbdd/pruebaEntradas.java</file>
             <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/src/java/bbdd/Entrada.java</file>
             <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/src/java/bbdd/Sesion.java</file>
-            <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/web/index.html</file>
-            <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/src/java/bbdd/EntradaReducida.java</file>
+            <file>file:/C:/Users/jesus/Documents/Universidad/4º/Web/Practicas/PracticaFinalWeb/src/java/bbdd/EntradaNormal.java</file>
         </group>
     </open-files>
 </project-private>

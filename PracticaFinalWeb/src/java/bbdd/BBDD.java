@@ -20,4 +20,6 @@ interface BBDD {
     public Sesion getSesion(String idSesion);
     public String getTipoEntrada(String idEntrada);
     public Entrada getEntrada(String idEntrada);
+    public void modificarUsuario(Usuario usuario);
+    public ArrayList<Entrada> getEntradas();
 }

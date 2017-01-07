@@ -15,7 +15,15 @@ public class Sesion {
     private String sala;
     private Fecha fecha;
     private String hora;
-    private String diaSemana, diaMes, mes;
+    private String diaSemana, diaMes, mes, fechaS;
+
+    public String getFechaS() {
+        return this.diaSemana+": "+this.diaMes+"/"+this.mes+"/2017";
+    }
+
+    public void setFechaS(String fechaS) {
+        this.fechaS = fechaS;
+    }
 
     public Sesion(String idSesion, String pelicula, String sala, Fecha fecha, String hora) {
         this.idSesion = idSesion;
