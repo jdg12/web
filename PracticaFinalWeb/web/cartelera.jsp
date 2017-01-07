@@ -4,6 +4,7 @@
     Author     : jesus
 --%>
 
+<%@page import="bbdd.Usuario"%>
 <%@page import="bbdd.modeloDatos"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="bbdd.Pelicula"%>
@@ -16,6 +17,13 @@
         <title>Cartelera</title>
     </head>
     <body>
+        <%Usuario usuario = (Usuario) session.getAttribute("usuarioActual");
+            if (usuario == null) {
+                System.out.println("Estoy aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+                usuario = new Usuario();
+                usuario.setNombre("visitante");
+                usuario.setIdUsuario("visitante");
+            }%>
         <ul class="menu">
             <li><a href="inicio.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
@@ -23,6 +31,9 @@
             <li><a href="registro.html">Registro</a></li>
             <li><a href="perfil.jsp">Mi perfil</a></li>
         </ul>
+            <% if (usuario.getNombre().equals("admin")){%>
+            <input type="button" value="Nueva película" onClick="window.location.href='nuevaPelicula.html'">
+            <%}%>
         <h1>Cartelera</h1>
         <h2>Películas</h2>
         <%  modeloDatos bd = new modeloDatos();
@@ -37,6 +48,12 @@
                 <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">
                 <input class="boton" type="submit" value="Ver mas">
             </form>
+            <% if (usuario.getNombre().equals("admin")) {%>
+            <form action="/PracticaFinalWeb/borrarPelicula" class="pelicula" id="formulario" method="POST">
+                <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">
+                <input class="boton" type="submit" value="Eliminar">
+            </form>
+            <%}%>
         </div>
         <%}%>
     </body>
