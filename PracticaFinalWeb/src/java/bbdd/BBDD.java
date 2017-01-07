@@ -17,7 +17,7 @@ interface BBDD {
     public Usuario getUsuario(String idUsuario);
     public void guardarUsuario(Usuario usuario);
     public ArrayList<Reserva> getReservas(String idUsuario);
-    public Sesion getSesion(String idPelicula, String idSala, String hora);
-    public String getTipoEntrada(String idPelicula, String idSala, String hora, int fila, int columna);
-    public Entrada getEntrada(String idPelicula, String idSala, String hora, int fila, int columna);
+    public Sesion getSesion(String idSesion);
+    public String getTipoEntrada(String idEntrada);
+    public Entrada getEntrada(String idEntrada);
 }

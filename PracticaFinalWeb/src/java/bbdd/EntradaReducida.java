@@ -15,7 +15,7 @@ public class EntradaReducida extends Entrada{
         super(id, sesion, fila, columna, vendida, precio/2);
     }
     
-    
+    public EntradaReducida(){}
     @Override
     public String toString() {
         return "Entrada Reducida {" + "id: " + id +" "+ sesion.toString() +" fila:" +fila+" columna: "+columna+" vendida: "+vendida+" precio: "+precio+'}';

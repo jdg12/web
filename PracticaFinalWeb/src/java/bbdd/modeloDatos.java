@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author jesus
@@ -116,24 +111,18 @@ public class modeloDatos implements BBDD {
         Reserva reserva = null;
         try {
             set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM RESERVA");
+            rs = set.executeQuery("SELECT * FROM RESERVA WHERE IDUSUARIO='"+idUsuario+"'");
             while (rs.next()) {
                 reserva = new Reserva();
-                String idPelicula = rs.getString(1);
-                String idSala = rs.getString(2);
-                String hora = rs.getString(3);
-                int fila = Integer.valueOf(rs.getString(5));
-                int columna = Integer.valueOf(rs.getString(6));
-                String tipo = getTipoEntrada(idPelicula, idSala, hora, fila, columna);
-                Entrada entrada;
-                if (tipo.equals("normal")) {
-                    entrada = (EntradaNormal) getEntrada(idPelicula, idSala, hora, fila, columna);
+                Entrada e;
+                if (this.getTipoEntrada(rs.getString(1)).equals("reducida")) {
+                    e = (EntradaReducida) this.getEntrada(rs.getString(1));
                 } else {
-                    entrada = (EntradaReducida) getEntrada(idPelicula, idSala, hora, fila, columna);
+                    e = (EntradaNormal) this.getEntrada(rs.getString(1));
                 }
-                reserva.setEntrada(entrada);
-                reserva.setIdReserva(rs.getString(7));
-                reservas.add(reserva);
+                reserva.setEntrada(e);
+                reserva.setIdUsuario(rs.getString(2));
+                reserva.setIdReserva(rs.getString(3));
             }
             rs.close();
         } catch (Exception e) {
@@ -143,18 +132,65 @@ public class modeloDatos implements BBDD {
     }
 
     @Override
-    public Sesion getSesion(String idPelicula, String idSala, String hora) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getTipoEntrada(String idEntrada) {
+        String tipo = "";
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT TIPO FROM ENTRADA WHERE IDENTRADA='" + idEntrada + "'");
+            rs.next();
+            tipo = rs.getString(1);
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al recuperar el tipo de la entrada: " + e.getMessage());
+        }
+        return tipo;
     }
 
     @Override
-    public String getTipoEntrada(String idPelicula, String idSala, String hora, int fila, int columna) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Entrada getEntrada(String idEntrada) {
+        Entrada entrada = null;
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM ENTRADA WHERE IDENTRADA='" + idEntrada + "'");
+            rs.next();
+            String tipo = rs.getString(5);
+            if (tipo.equals("reducida")) {
+                entrada = new EntradaReducida();
+            } else {
+                entrada = new EntradaNormal();
+            }
+            entrada.setId(rs.getString(1));
+            entrada.setSesion(this.getSesion(rs.getString(2)));
+            entrada.setFila(Integer.valueOf(rs.getString(3)));
+            entrada.setColumna(Integer.valueOf(rs.getString(4)));
+            entrada.setPrecio(Double.parseDouble(rs.getString(6)));
+            entrada.setVendida(Boolean.valueOf(rs.getString(7)));
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al recuperar la entrada: " + e.getMessage());
+        }
+        return entrada;
     }
 
     @Override
-    public Entrada getEntrada(String idPelicula, String idSala, String hora, int fila, int columna) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Sesion getSesion(String idSesion) {
+        Sesion sesion = new Sesion();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM SESION WHERE IDSESION='" + idSesion + "'");
+            rs.next();
+            sesion.setIdSesion(rs.getString(1));
+            sesion.setPelicula(rs.getString(2));
+            sesion.setSala(rs.getString(3));
+            sesion.setHora(rs.getString(4));
+            sesion.setDiaSemana(rs.getString(5));
+            sesion.setDiaMes(rs.getString(6));
+            sesion.setMes(rs.getString(7));
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al recuperar la sesion");
+        }
+        return sesion;
     }
 
 }

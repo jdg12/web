@@ -15,6 +15,8 @@ public class EntradaNormal extends Entrada{
         super(id, sesion, fila, columna, vendida, precio);
         
     }
+    
+    public EntradaNormal(){}
 
     @Override
     public String toString() {

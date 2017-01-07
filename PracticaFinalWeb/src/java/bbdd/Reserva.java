@@ -11,19 +11,8 @@ package bbdd;
  */
 public class Reserva {
     private Entrada entrada;
-    private Sesion sesion;
     private String idUsuario;
     private String idReserva;
-
-    public Reserva(Entrada entrada, Sesion sesion, String idUsuario, String idReserva) {
-        this.entrada = entrada;
-        this.sesion = sesion;
-        this.idUsuario = idUsuario;
-        this.idReserva = idReserva;
-    }
-
-    public Reserva() {
-    }
 
     public Entrada getEntrada() {
         return entrada;
@@ -31,14 +20,6 @@ public class Reserva {
 
     public void setEntrada(Entrada entrada) {
         this.entrada = entrada;
-    }
-
-    public Sesion getSesion() {
-        return sesion;
-    }
-
-    public void setSesion(Sesion sesion) {
-        this.sesion = sesion;
     }
 
     public String getIdUsuario() {
@@ -59,8 +40,9 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva{" + "entrada=" + entrada + ", sesion=" + sesion + ", idUsuario=" + idUsuario + ", idReserva=" + idReserva + '}';
+        return "Reserva{" + "entrada=" + entrada.toString() + ", idUsuario=" + idUsuario + ", idReserva=" + idReserva + '}';
     }
-    
+
+   
     
 }
