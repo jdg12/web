@@ -62,7 +62,9 @@
                 <input class="boton" type="submit" value="Modificar">
             </p>
         </form>
-        <%} else {
+        <%} else { %>
+         <h2>Entradas</h2>
+        <%
             ArrayList<Entrada> entradas = bd.getEntradas();
             for (int j = 0; j < entradas.size(); j++) {
         %>
@@ -81,6 +83,12 @@
             <input class="boton" type="submit" value="Eliminar entrada">
         </form>
         <%}%>
+        <h2>Reservas</h2>
+        <%
+            ArrayList<Reserva> reservas = bd.getReservas(usuarioActual.getIdUsuario());
+            for (int k = 0; k < reservas.size(); k++){%>
+                
+            <%}%>
         <%}%>
     </body>
 </html>

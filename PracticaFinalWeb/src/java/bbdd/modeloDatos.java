@@ -259,4 +259,32 @@ public class modeloDatos implements BBDD {
         return entradas;
     }
 
+    @Override
+    public void eliminarEntrada(String idEntrada) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM ENTRADA"
+                    + " WHERE IDENTRADA= '" + idEntrada
+                    + "'");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar la entrada" + e.getMessage());
+        }
+    }
+
+    @Override
+    public void eliminarReserva(String idReserva) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM RESERVA"
+                    + " WHERE IDENTRADA= '" + idReserva
+                    + "'");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar la entrada" + e.getMessage());
+        }
+    }
+
 }
