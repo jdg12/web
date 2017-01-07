@@ -36,4 +36,8 @@ interface BBDD {
     public void eliminarComentariosPelicula(String idPelicula);
     public void eliminarSesionPelicula(String idPelicula);
     public void borrarActoresPelicula(String idPelicula);
+    public void guardarPelicula(Pelicula peli);
+    public void guardarActor(Actor actor, String pelicula);
+    public boolean estaPelicula(String pelicula);
+    public boolean estaActor(String nombre, String apellidos);
 }

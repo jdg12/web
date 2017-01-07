@@ -56,7 +56,7 @@
             <p>Apellidos: <%=actores.get(j).getApellidos()%></p>
             <%}%>
             <h2>Otros datos</h2>
-            <p>Nacionalidad: <%=pelicula.getClasificacion()%></p>
+            <p>Nacionalidad: <%=pelicula.getNacionalidad()%></p>
             <p>Duracion: <%=pelicula.getDuracion()%></p>
             <p>Año: <%=pelicula.getAno()%></p>
             <p>Otros: <%=pelicula.getOtros()%></p>

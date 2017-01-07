@@ -7,8 +7,12 @@ package bbdd;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class modeloDatos implements BBDD {
 
@@ -444,7 +448,7 @@ public class modeloDatos implements BBDD {
             rs.close();
             set.close();
         } catch (Exception e) {
-            System.out.println("Error al modificar la pelicula " + pelicula.getNombre()+ " ," + e.getMessage());
+            System.out.println("Error al modificar la pelicula " + pelicula.getNombre() + " ," + e.getMessage());
         }
     }
 
@@ -453,7 +457,7 @@ public class modeloDatos implements BBDD {
         try {
             set = con.createStatement();
             set.executeUpdate("DELETE FROM ENTRADA"
-                    + " WHERE IDSESION IN (SELECT IDSESION FROM SESION WHERE IDPELICULA = '"+idPelicula
+                    + " WHERE IDSESION IN (SELECT IDSESION FROM SESION WHERE IDPELICULA = '" + idPelicula
                     + "')");
             rs.close();
             set.close();
@@ -464,10 +468,10 @@ public class modeloDatos implements BBDD {
 
     @Override
     public void eliminarReservasPelicula(String idPelicula) {
-         try {
+        try {
             set = con.createStatement();
             set.executeUpdate("DELETE FROM RESERVA"
-                    + " WHERE IDENTRADA IN (SELECT IDENTRADA FROM ENTRADA WHERE IDSESION IN (SELECT IDSESION FROM SESION WHERE IDPELICULA = '"+idPelicula
+                    + " WHERE IDENTRADA IN (SELECT IDENTRADA FROM ENTRADA WHERE IDSESION IN (SELECT IDSESION FROM SESION WHERE IDPELICULA = '" + idPelicula
                     + "'))");
             rs.close();
             set.close();
@@ -481,8 +485,8 @@ public class modeloDatos implements BBDD {
         try {
             set = con.createStatement();
             set.executeUpdate("DELETE FROM COMENTARIO"
-                    + " WHERE IDPELICULA = '"+idPelicula+
-                     "'");
+                    + " WHERE IDPELICULA = '" + idPelicula
+                    + "'");
             rs.close();
             set.close();
         } catch (Exception e) {
@@ -492,11 +496,11 @@ public class modeloDatos implements BBDD {
 
     @Override
     public void eliminarSesionPelicula(String idPelicula) {
-         try {
+        try {
             set = con.createStatement();
             set.executeUpdate("DELETE FROM SESION"
-                    + " WHERE IDPELICULA = '"+idPelicula+
-                     "'");
+                    + " WHERE IDPELICULA = '" + idPelicula
+                    + "'");
             rs.close();
             set.close();
         } catch (Exception e) {
@@ -506,11 +510,11 @@ public class modeloDatos implements BBDD {
 
     @Override
     public void borrarActoresPelicula(String idPelicula) {
-         try {
+        try {
             set = con.createStatement();
             set.executeUpdate("DELETE FROM RELACTORPEL"
-                    + " WHERE NOMBREPELICULA = '"+idPelicula+
-                     "'");
+                    + " WHERE NOMBREPELICULA = '" + idPelicula
+                    + "'");
             rs.close();
             set.close();
         } catch (Exception e) {
@@ -518,4 +522,96 @@ public class modeloDatos implements BBDD {
         }
     }
 
+    @Override
+    public void guardarPelicula(Pelicula peli) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO PELICULA (NOMBRE, SINOPSIS, PAGINA, TITULOR, GENERO, NACIONALIDAD, DURACION, ANO, DISTRIBUIDORA, DIRECTOR, CLASIFICACION,OTROS) "
+                    + "VALUES ('" + peli.getNombre()
+                    + "', '" + peli.getSinopsis()
+                    + "', '" + peli.getPagina()
+                    + "', '" + peli.getTitulo()
+                    + "', '" + peli.getGenero()
+                    + "', '" + peli.getNacionalidad()
+                    + "', " + peli.getDuracion()
+                    + ", " + peli.getAno()
+                    + ", '" + peli.getDistribuidora()
+                    + "', '" + peli.getDirector()
+                    + "', " + peli.getClasificacion()
+                    + ", '" + peli.getOtros()
+                    + "')");
+
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No se ha guardado la pelicula" + e.getMessage());
+        }
+    }
+
+    @Override
+    public void guardarActor(Actor actor, String pelicula) {
+
+        try {
+            set = con.createStatement();
+            String consulta = "INSERT INTO ACTOR(NOMBRE, APELLIDOS) VALUES('";
+            consulta += actor.getNombre()
+                    + "', '" + actor.getApellidos()
+                    + "')";
+
+            set.executeUpdate(consulta);
+
+            set = con.createStatement();
+            consulta = "INSERT INTO RELACTORPEL(NOMBREPELICULA,NOMBREACTOR,APELLIDOS) VALUES('";
+            consulta += pelicula
+                    + "', '" + actor.getNombre()
+                    + "', '" + actor.getApellidos()
+                    + "')";
+
+            set.executeUpdate(consulta);
+            set.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(modeloDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public boolean estaPelicula(String pelicula) {
+        try {
+            set = con.createStatement();
+            rs=set.executeQuery("select nombre from pelicula");
+            while (rs.next()) {
+                if (rs.getString("nombre").equals(pelicula)) {
+                    rs.close();
+                    set.close();
+                    return true;
+                }
+            }
+            rs.close();
+            set.close();
+            return false;
+        } catch (SQLException ex) {
+            Logger.getLogger(modeloDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public boolean estaActor(String nombre, String apellidos) {
+        try {
+            set = con.createStatement();
+            rs=set.executeQuery("select nombre,apellidos from actor");
+            while (rs.next()) {
+                if (rs.getString("nombre").equals(nombre) && rs.getString("apellidos").equals(apellidos)) {
+                    rs.close();
+                    set.close();
+                    return true;
+                }
+            }
+            rs.close();
+            set.close();
+            return false;
+        } catch (SQLException ex) {
+            Logger.getLogger(modeloDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }

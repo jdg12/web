@@ -17,7 +17,7 @@ public class Pelicula13Builder extends PeliculaBuilder{
     
     @Override
     public void ponerOtros(String otros){
-        otros+="\nPelicula No recomendada para menores de 13 anios.";
+        //otros+="\nPelicula No recomendada para menores de 13 anios.";
         pelicula.setOtros(otros);
     }
 }

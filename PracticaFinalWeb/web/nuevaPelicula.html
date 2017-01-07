@@ -5,12 +5,157 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+
+<head>
+    <title>Nueva Pelicula</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var actores = "";
+
+            $("#formulario").submit(function() {
+
+                document.getElementById("listaActores").value = actores;
+
+                
+            });
+
+            function anadirActor() {
+                var nombreAux = $("#nombreA").val();
+                var apellidoAux = $("#apellidoA").val();
+                var res, flag = 0;
+
+                if (nombreAux == "" || apellidoAux == "") {
+                    alert("rellena el nombre y apellido del actor")
+                    return false;
+                }
+                var a = nombreAux + "," + apellidoAux;
+
+                if (actores != "") {
+
+                    res = actores.split(";");
+                    $.each(res, function(ind, elem) {
+                        if (elem == a) {
+
+                            flag = 1;
+                            return false;
+                        }
+                    });
+                    if (flag == 1) {
+                        alert("Ya existe el actor: " + a)
+                        return false;
+                    }
+                    actores += ";"
+
+                }
+
+                actores += a;
+
+                $('#seleccion').append(new Option(a, a));
+
+                document.getElementById("listaActores").value = actores;
+            }
+
+            $("#nuevo").click(function() {
+
+                var inpObj = document.getElementById("nombreA");
+                if (inpObj.checkValidity() == false) {
+                    document.getElementById("demo").innerHTML = inpObj.validationMessage;
+                    return false;
+                } else {
+                    document.getElementById("demo").innerHTML = "Input OK";
+                }
+                var inpObj = document.getElementById("apellidoA");
+                if (inpObj.checkValidity() == false) {
+                    document.getElementById("demo2").innerHTML = inpObj.validationMessage;
+                    return false;
+                } else {
+                    document.getElementById("demo2").innerHTML = "Input OK";
+                }
+                anadirActor();
+            });
+
+            $('#seleccion').change(function() {
+                var selectedValue = jQuery(this).val();
+                var actoresNuevo = "";
+                var res = actores.split(";");
+                $('#seleccion').empty();
+
+                $.each(res, function(ind, elem) {
+                    if (elem != selectedValue && elem != "" && ind == 0) {
+                        actoresNuevo += elem;
+                    }
+                    if (elem != selectedValue && elem != "" && ind != 0) {
+                        actoresNuevo += ";" + elem;
+                    }
+                    if (elem != selectedValue && elem != "") {
+                        $('#seleccion').append(new Option(elem, elem));
+                    }
+
+
+                });
+                actores = actoresNuevo;
+                document.getElementById("listaActores").value = actores;
+            });
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Nueva Película</h1>
+    </div>
+    <div class="cuadrado">
+        <form action="/PracticaFinalWeb/nuevaPeliServlet" class="nuevaPeli" id="formulario" method="POST">
+
+            <label>Nombre: </label><br><input id="nombre" type="text" name="nombre" autofocus required />
+            <br /><label>Sinopsis</label><br><textarea id="sinopsis" name="sinopsis" rows="6" cols="33" autofocus required></textarea>
+            <br />
+            <label>Web oficial: </label><br><input id="pagina" type="url" name="pagina" autofocus required />
+            <br/>
+            <label>Titulo Original: </label><br><input id="titulo" type="text" name="titulo" autofocus required />
+            <br />
+            <label>Género: </label><br><input id="genero" type="text" name="genero" autofocus required />
+            <br />
+            <label>Nacionalidad: </label><br><input id="nacionalidad" type="text" name="nacionalidad" autofocus required/>
+            <br />
+            <label>Duracion (minutos): </label><br><input id="duracion" type="number" name="duracion" autofocus required />
+            <br />
+            <label>Año: </label><br><input id="ano" type="number" name="ano" min="1887" max="2017" autofocus required />
+            <br />
+            <label>Distribuidora: </label><br><input id="distribuidora" type="text" name="distribuidora" autofocus required />
+            <br />
+            <label>Director: </label><br><input id="director" type="text" name="director" autofocus required />
+            <br />
+            <label>Clasificacion por Edad: </label><br>
+            <input type="radio" id="clasificacion" name="clasificacion" value="7" checked> 7
+            <input type="radio" id="clasificacion" name="clasificacion" value="13"> 13
+            <input type="radio" id="clasificacion" name="clasificacion" value="18"> 18
+            <br>
+            <label>Otros datos</label><br><textarea id="otros" name="otros" rows="6" cols="33" autofocus></textarea>
+            <br>
+            <p>-Actores </p>
+            <select id="seleccion" name="seleccion" size=7 style="min-width: 150px;"></select><br>
+            <label>Nombre: </label><br>
+            <input id="nombreA" type="text" name="nombreA" pattern="[A-Za-z][ A-Za-z]*" autofocus />
+            <p id=demo></p>
+            <br />
+            <label>Apellido: </label><br>
+
+            <input id="apellidoA" type="text" name="apellidoA" pattern="[A-Za-z][ A-Za-z]*" autofocus />
+            <p id=demo2></p>
+            <br/>
+            <input id="listaActores" name="listaActores" type="text" hidden/>
+            <input class="boton" type="button" id="nuevo" value="Nuevo actor">
+            <br> <br>
+            <input class="boton" type="submit" value="Subir" />
+
+        </form>
+    </div>
+</body>
+
 </html>
