@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -299,6 +298,7 @@ public class modeloDatos implements BBDD {
 
     @Override
     public ArrayList<Pelicula> getPeliculas() {
+        this.abrirConexion();
         ArrayList<Pelicula> peliculas = new ArrayList<>();
         try {
             set = con.createStatement();
@@ -733,6 +733,7 @@ public class modeloDatos implements BBDD {
 
     @Override
     public ArrayList<Sala> getSalas() {
+        this.abrirConexion();
         ArrayList<Sala> salas = new ArrayList<>();
         try {
             set = con.createStatement();
@@ -814,6 +815,116 @@ public class modeloDatos implements BBDD {
             System.out.println("Error en la consulta de la sala: " + e.getMessage());
         }
         return false;
+    }
+
+    @Override
+    public ArrayList<Sesion> getSesiones() {
+        ArrayList<Sesion> sesiones = new ArrayList<>();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM SESION");
+            while (rs.next()) {
+                Sesion sesion = new Sesion();
+                sesion.setIdSesion(rs.getString(1));
+                sesion.setPelicula(rs.getString(2));
+                sesion.setSala(rs.getString(3));
+                sesion.setHora(rs.getString(4));
+                sesion.setDiaSemana(rs.getString(5));
+                sesion.setDiaMes(rs.getString(6));
+                sesion.setMes(rs.getString(7));
+                sesiones.add(sesion);
+            }
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al obtener las sesiones: " + e.getMessage());
+        }
+        return sesiones;
+    }
+
+    @Override
+    public void eliminarSesion(String idSesion) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM SESION"
+                    + " WHERE IDSESION= '" + idSesion
+                    + "'");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar la sesion: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void modificarSesion(Sesion sesion) {
+        try {
+            set = con.createStatement();
+            System.out.println("Guardo: "+sesion.toString());
+            set.executeUpdate("UPDATE SESION "
+                    + "SET IDSESION='" + sesion.getIdSesion()
+                    + "',IDPELICULA='" + sesion.getPelicula()
+                    + "',IDSALA='" + sesion.getSala()
+                    + "',HORA='" + sesion.getHora()
+                    + "',DIASEMANA='" + sesion.getDiaSemana()
+                    + "',DIAMES= " + sesion.getDiaMes()
+                    + ",MES= " + sesion.getMes()
+                    + " WHERE IDSESION='" + sesion.getIdSesion()
+                    + "'"
+                    + "");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible modificar la sesion: "+e.getMessage());
+        }
+    }
+
+    @Override
+    public void anadirSesion(Sesion sesion) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO SESION (IDSESION, IDPELICULA, IDSALA, "
+                    + "HORA, DIASEMANA, DIAMES, MES) "
+                    + "VALUES ('" + sesion.getIdSesion()
+                    + "', '" + sesion.getPelicula()
+                    + "', '" + sesion.getSala()
+                    + "', '" + sesion.getHora()
+                    + "', '" + sesion.getDiaSemana()
+                    + "', " + sesion.getDiaMes()
+                    + ", " + sesion.getMes()
+                    + ")");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No se ha guardado la sesion: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void eliminarEntradasSesion(String idSesion) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM ENTRADA"
+                    + " WHERE IDSESION= '" + idSesion
+                    + "'");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar las entradas de esa sesion" + e.getMessage());
+        }
+    }
+
+    @Override
+    public void eliminarReservasSesion(String idSesion) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM RESERVA"
+                    + " WHERE IDENTRADA IN (SELECT IDENTRADA FROM ENTRADA WHERE IDSESION = '"+idSesion
+                    + "')");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar las reservas de esa sesion" + e.getMessage());
+        }
     }
 
 }

@@ -50,4 +50,10 @@ interface BBDD {
     public void modificarSala(Sala sala);
     public void anadirSala(Sala sala);
     public boolean estaSala(Sala sala);
+    public ArrayList<Sesion> getSesiones();
+    public void eliminarSesion(String idSesion);
+    public void modificarSesion(Sesion sesion);
+    public void anadirSesion(Sesion sesion);
+    public void eliminarEntradasSesion(String idSesion);
+    public void eliminarReservasSesion(String idSesion);
 }

@@ -64,6 +64,14 @@
         <servlet-name>eliminarSala</servlet-name>
         <servlet-class>servlet.eliminarSala</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>modificarSesionServlet</servlet-name>
+        <servlet-class>servlet.modificarSesionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eliminarSesion</servlet-name>
+        <servlet-class>servlet.eliminarSesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>pruebaServlet</servlet-name>
         <url-pattern>/pruebaServlet</url-pattern>
@@ -127,6 +135,14 @@
     <servlet-mapping>
         <servlet-name>eliminarSala</servlet-name>
         <url-pattern>/eliminarSala</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarSesionServlet</servlet-name>
+        <url-pattern>/modificarSesionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eliminarSesion</servlet-name>
+        <url-pattern>/eliminarSesion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
