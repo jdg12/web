@@ -1,3 +1,4 @@
+<%@page import="bbdd.Usuario"%>
 <%@page import="bbdd.Sala"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="bbdd.Pelicula"%>
@@ -20,7 +21,7 @@ and open the template in the editor.
             modeloDatos bd = new modeloDatos();
             ArrayList<Pelicula> peliculas = bd.getPeliculas();
             ArrayList<Sala> salas = bd.getSalas();
-            
+
             private void ponerPeliculas(javax.servlet.jsp.JspWriter out) {
                 try {
                     for (int i = 0; i < peliculas.size(); i++) {
@@ -42,13 +43,17 @@ and open the template in the editor.
                 }
             }
         %> 
-
+        <%Usuario usuario = (Usuario) session.getAttribute("usuarioActual");%>
         <ul class="menu">
             <li><a href="inicio.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
+                <% if (usuario == null || usuario.getIdUsuario().equals("") || usuario.getIdUsuario().equals("visitante")) {%> 
             <li><a href="acceso.html">Acceder</a></li>
             <li><a href="registro.html">Registro</a></li>
-            <li><a href="perfil.jsp">Mi perfil</a></li>
+                <%} else {%>
+            <li><a href="perfil.jsp">Hola: <%=usuario.getIdUsuario()%></a></li>
+            <li><a href="/PracticaFinalWeb/SalirServlet">Salir</a></li>
+                <%}%>
         </ul>
         <form action="/PracticaFinalWeb/modificarSesionServlet">
             <br /><label>Id sesion: </label><br><input id="nombre" type="text" name="nombre" autofocus required/>
@@ -64,7 +69,7 @@ and open the template in the editor.
             <br /><label>Dia semana: </label> <input id="diasemana" type="text"  name="diasemana" autofocus required/>
             <br /><label>Dia mes: </label> <input id="diames" min="1" max="31" type="number" name="diames"  autofocus required/>
             <br /><label>Mes: </label> <input id="mes" type="number" min="1" max="12" name="mes" autofocus required/>
-            <input type="hidden" id="thisField" name="inputName" value="anadir ">
+            <input type="hidden" id="thisField" name="inputName" value="anadir">
             <br/><input class="boton" type="submit" value="Guardar">
         </form>
     </body>

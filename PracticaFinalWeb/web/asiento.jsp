@@ -31,12 +31,16 @@
             modeloDatos bd = new modeloDatos();
             bd.abrirConexion();
         %>
-        <ul class="menu">
+       <ul class="menu">
             <li><a href="inicio.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
+                <% if (usuarioActual == null || usuarioActual.getIdUsuario().equals("") || usuarioActual.getIdUsuario().equals("visitante") ) {%> 
             <li><a href="acceso.html">Acceder</a></li>
             <li><a href="registro.html">Registro</a></li>
-            <li><a href="perfil.jsp">Mi perfil</a></li>
+                <%} else {%>
+            <li><a href="perfil.jsp">Hola: <%=usuarioActual.getIdUsuario()%></a></li>
+            <li><a href="/PracticaFinalWeb/SalirServlet">Salir</a></li>
+                <%}%>
         </ul>
         <h1>Seleccione el tipo de entrada y el asiento</h1>
         <% for (int j = -1; j < sala.getColumnas(); j++) {%>

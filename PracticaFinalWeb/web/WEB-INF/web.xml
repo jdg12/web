@@ -72,6 +72,10 @@
         <servlet-name>eliminarSesion</servlet-name>
         <servlet-class>servlet.eliminarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SalirServlet</servlet-name>
+        <servlet-class>servlet.SalirServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>pruebaServlet</servlet-name>
         <url-pattern>/pruebaServlet</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>eliminarSesion</servlet-name>
         <url-pattern>/eliminarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SalirServlet</servlet-name>
+        <url-pattern>/SalirServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -27,9 +27,13 @@
         <ul class="menu">
             <li><a href="inicio.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
+                <% if (usuario == null || usuario.getIdUsuario().equals("") || usuario.getIdUsuario().equals("visitante") ) {%> 
             <li><a href="acceso.html">Acceder</a></li>
             <li><a href="registro.html">Registro</a></li>
-            <li><a href="perfil.jsp">Mi perfil</a></li>
+                <%} else {%>
+            <li><a href="perfil.jsp">Hola: <%=usuario.getIdUsuario()%></a></li>
+            <li><a href="/PracticaFinalWeb/SalirServlet">Salir</a></li>
+                <%}%>
         </ul>
         <% if (usuario.getNombre().equals("admin")) {%>
         <input type="button" value="Nueva película" onClick="window.location.href = 'nuevaPelicula.html'">
@@ -53,11 +57,11 @@
                 <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">
                 <input class="boton" type="submit" value="Eliminar">
             </form>
-                <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
+            <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
                 <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">
                 <input class="boton" type="submit" value="Comprar entrada">
             </form>
-            <%}else{%>
+            <%} else {%>
             <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
                 <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">
                 <input class="boton" type="submit" value="Reservar entrada">

@@ -20,7 +20,6 @@
             <li><a href="inicio.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
             <li><a href="acceso.html">Acceder</a></li>
-            <li><a href="registro.html">Registro</a></li>
             <li><a href="perfil.jsp">Mi perfil</a></li>
         </ul>
         <h1>Sesiones</h1>

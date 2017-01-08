@@ -629,9 +629,10 @@ public class modeloDatos implements BBDD {
                 sesion.setIdSesion(rs.getString(1));
                 sesion.setPelicula(rs.getString(2));
                 sesion.setSala(rs.getString(3));
-                sesion.setDiaMes(rs.getString(5));
-                sesion.setDiaSemana(rs.getString(4));
-                sesion.setMes(rs.getString(6));
+                sesion.setHora(rs.getString(4));
+                sesion.setDiaSemana(rs.getString(5));
+                sesion.setDiaMes(rs.getString(6));
+                sesion.setMes(rs.getString(7));
                 sesiones.add(sesion);
             }
             rs.close();

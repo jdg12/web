@@ -30,6 +30,17 @@
             md.abrirConexion();
             ArrayList<Sesion> sesiones = md.getSesionesPelicula(id);
         %>
+        <ul class="menu">
+            <li><a href="inicio.jsp">Inicio</a></li>
+            <li><a href="cartelera.jsp">Cartelera</a></li>
+                <% if (usuarioActual == null || usuarioActual.getIdUsuario().equals("") || usuarioActual.getIdUsuario().equals("visitante")) {%> 
+            <li><a href="acceso.html">Acceder</a></li>
+            <li><a href="registro.html">Registro</a></li>
+                <%} else {%>
+            <li><a href="perfil.jsp">Hola: <%=usuarioActual.getIdUsuario()%></a></li>
+            <li><a href="/PracticaFinalWeb/SalirServlet">Salir</a></li>
+                <%}%>
+        </ul>
         <h1>Sesiones</h1>
         <h2>Escoja la sesion de la película </h2>
         <% for (int i = 0; i < sesiones.size(); i++) {%>
@@ -44,6 +55,7 @@
                 <input class="boton" type="submit" value="Seleccionar">
             </p>
         </form>
+                <br>
         <%}%>
     </body>
 </html>

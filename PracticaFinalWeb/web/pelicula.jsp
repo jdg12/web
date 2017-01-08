@@ -36,9 +36,13 @@
         <ul class="menu">
             <li><a href="inicio.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
+                <% if (usuario == null || usuario.getIdUsuario().equals("") || usuario.getIdUsuario().equals("visitante")) {%> 
             <li><a href="acceso.html">Acceder</a></li>
             <li><a href="registro.html">Registro</a></li>
-            <li><a href="perfil.jsp">Mi perfil</a></li>
+                <%} else {%>
+            <li><a href="perfil.jsp">Hola: <%=usuario.getIdUsuario()%></a></li>
+            <li><a href="/PracticaFinalWeb/SalirServlet">Salir</a></li>
+                <%}%>
         </ul>
         <%if (!usuario.getIdUsuario().equals("admin")) {%>
         <h1><%=pelicula.getNombre()%></h1>
