@@ -40,4 +40,9 @@ interface BBDD {
     public void guardarActor(Actor actor, String pelicula);
     public boolean estaPelicula(String pelicula);
     public boolean estaActor(String nombre, String apellidos);
+    public ArrayList<Sesion> getSesionesPelicula(String idPelicula);
+    public Sala getSala(String idSala);
+    public boolean estaOcupadoAsiento(String idSesion,int fila, int columna);
+    public void guardarEntrada(Entrada entrada);
+    public void guardarReserva(Reserva reserva);
 }

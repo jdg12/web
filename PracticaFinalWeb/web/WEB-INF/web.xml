@@ -44,6 +44,18 @@
         <servlet-name>borrarPelicula</servlet-name>
         <servlet-class>servlet.borrarPelicula</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>sesionPelicula</servlet-name>
+        <servlet-class>servlet.sesionPelicula</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>comprarServlet</servlet-name>
+        <servlet-class>servlet.comprarServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>seleccionTipoServlet</servlet-name>
+        <servlet-class>servlet.seleccionTipoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>pruebaServlet</servlet-name>
         <url-pattern>/pruebaServlet</url-pattern>
@@ -87,6 +99,18 @@
     <servlet-mapping>
         <servlet-name>borrarPelicula</servlet-name>
         <url-pattern>/borrarPelicula</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sesionPelicula</servlet-name>
+        <url-pattern>/sesionPelicula</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>comprarServlet</servlet-name>
+        <url-pattern>/comprarServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>seleccionTipoServlet</servlet-name>
+        <url-pattern>/seleccionTipoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

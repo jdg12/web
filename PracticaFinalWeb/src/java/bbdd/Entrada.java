@@ -77,11 +77,11 @@ public abstract class Entrada {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
+    
     @Override
     public abstract String toString();
     
-    
+
     
     
 }

@@ -31,9 +31,9 @@
             <li><a href="registro.html">Registro</a></li>
             <li><a href="perfil.jsp">Mi perfil</a></li>
         </ul>
-            <% if (usuario.getNombre().equals("admin")){%>
-            <input type="button" value="Nueva película" onClick="window.location.href='nuevaPelicula.html'">
-            <%}%>
+        <% if (usuario.getNombre().equals("admin")) {%>
+        <input type="button" value="Nueva película" onClick="window.location.href = 'nuevaPelicula.html'">
+        <%}%>
         <h1>Cartelera</h1>
         <h2>Películas</h2>
         <%  modeloDatos bd = new modeloDatos();
@@ -52,6 +52,15 @@
             <form action="/PracticaFinalWeb/borrarPelicula" class="pelicula" id="formulario" method="POST">
                 <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">
                 <input class="boton" type="submit" value="Eliminar">
+            </form>
+                <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
+                <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">
+                <input class="boton" type="submit" value="Comprar entrada">
+            </form>
+            <%}else{%>
+            <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
+                <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">
+                <input class="boton" type="submit" value="Reservar entrada">
             </form>
             <%}%>
         </div>

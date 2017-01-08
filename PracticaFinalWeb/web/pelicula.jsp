@@ -42,6 +42,10 @@
         </ul>
         <%if (!usuario.getIdUsuario().equals("admin")) {%>
         <h1><%=pelicula.getNombre()%></h1>
+       <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
+                <input type="hidden" id="thisField" name="inputName" value="<%= pelicula.getNombre()%>">
+                <input class="boton" type="submit" value="Reservar entrada">
+            </form>
         <div class="datosPelicula">
             <h2>Sinopsis</h2>
             <p><%=pelicula.getSinopsis()%></p>
@@ -86,6 +90,10 @@
         </div>
         <%}%>
         <%} else {%>
+        <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
+                <input type="hidden" id="thisField" name="inputName" value="<%= pelicula.getNombre()%>">
+                <input class="boton" type="submit" value="Reservar entrada">
+            </form>
         <form action="/PracticaFinalWeb/modificarPelicula" class="pelicula" id="formulario" method="POST">
             <p>
                 <label>Nombre: </label><br><input id="idPelicula" type="text" name="idPelicula" autofocus required value="<%=pelicula.getNombre()%>" readonly></input>

@@ -24,5 +24,4 @@ public class EntradaNormal extends Entrada{
     }
     
     
-    
 }

@@ -113,6 +113,7 @@ public class modeloDatos implements BBDD {
     public ArrayList<Reserva> getReservas(String idUsuario) {
         ArrayList<Reserva> reservas = new ArrayList<>();
         Reserva reserva = null;
+        ResultSet rs;
         try {
             set = con.createStatement();
             if (idUsuario.equals("admin")) {
@@ -235,6 +236,7 @@ public class modeloDatos implements BBDD {
     @Override
     public ArrayList<Entrada> getEntradas() {
         ArrayList<Entrada> entradas = new ArrayList<>();
+        ResultSet rs;
         try {
             set = con.createStatement();
             rs = set.executeQuery("SELECT * FROM ENTRADA");
@@ -578,7 +580,7 @@ public class modeloDatos implements BBDD {
     public boolean estaPelicula(String pelicula) {
         try {
             set = con.createStatement();
-            rs=set.executeQuery("select nombre from pelicula");
+            rs = set.executeQuery("select nombre from pelicula");
             while (rs.next()) {
                 if (rs.getString("nombre").equals(pelicula)) {
                     rs.close();
@@ -595,10 +597,11 @@ public class modeloDatos implements BBDD {
         return false;
     }
 
+    @Override
     public boolean estaActor(String nombre, String apellidos) {
         try {
             set = con.createStatement();
-            rs=set.executeQuery("select nombre,apellidos from actor");
+            rs = set.executeQuery("select nombre,apellidos from actor");
             while (rs.next()) {
                 if (rs.getString("nombre").equals(nombre) && rs.getString("apellidos").equals(apellidos)) {
                     rs.close();
@@ -614,4 +617,118 @@ public class modeloDatos implements BBDD {
         }
         return false;
     }
+
+    @Override
+    public ArrayList<Sesion> getSesionesPelicula(String idPelicula) {
+        ArrayList<Sesion> sesiones = new ArrayList<>();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM SESION WHERE IDPELICULA = '" + idPelicula + "'");
+            while (rs.next()) {
+                Sesion sesion = new Sesion();
+                sesion.setIdSesion(rs.getString(1));
+                sesion.setPelicula(rs.getString(2));
+                sesion.setSala(rs.getString(3));
+                sesion.setDiaMes(rs.getString(5));
+                sesion.setDiaSemana(rs.getString(4));
+                sesion.setMes(rs.getString(6));
+                sesiones.add(sesion);
+            }
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al obtener las sesiones de la película: " + e.getMessage());
+        }
+        return sesiones;
+    }
+
+    @Override
+    public Sala getSala(String idSala) {
+        Sala sala = new Sala();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM SALA WHERE IDSALA='" + idSala + "'");
+            rs.next();
+            sala.setNombre(idSala);
+            sala.setFilas(Integer.valueOf(rs.getString(2)));
+            sala.setColumnas(Integer.valueOf(rs.getString(3)));
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al obtener la sala: " + e.getMessage());
+        }
+        return sala;
+    }
+
+    @Override
+    public boolean estaOcupadoAsiento(String idSesion, int fila, int columna) {
+        if (existeEntrada(idSesion, fila, columna)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean existeEntrada(String idSesion, int fila, int columna) {
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM ENTRADA WHERE IDSESION = '" + idSesion
+                    + "'AND FILA =" + fila
+                    + "AND COLUMNA = " + columna
+                    + "");
+            while (rs.next()) {
+                if (rs.getString(2).equals(idSesion)) {
+                    rs.close();
+                    set.close();
+                    return true;
+                }
+            }
+            rs.close();
+            set.close();
+            return false;
+        } catch (SQLException ex) {
+            Logger.getLogger(modeloDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    @Override
+    public void guardarEntrada(Entrada entrada) {
+        String tipo = "";
+        if (entrada instanceof EntradaReducida) {
+            tipo = "reducida";
+        } else {
+            tipo = "normal";
+        }
+        try {
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO ENTRADA (IDENTRADA, IDSESION, FILA, COLUMNA, TIPO, PRECIO, VENDIDA) VALUES ('"
+                    + entrada.getId() + "', '" + entrada.getSesion().getIdSesion()
+                    + "', " + entrada.getFila() + ", " + entrada.getColumna()
+                    + ", '" + tipo
+                    + "', " + entrada.getPrecio()
+                    + ", " + entrada.isVendida()
+                    + ")");
+
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No se ha guardado la entrada " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void guardarReserva(Reserva reserva) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO RESERVA (IDENTRADA, IDUSUARIO, IDRESERVA) VALUES ('" + reserva.getEntrada().getId()
+                    + "', '" + reserva.getIdUsuario()
+                    + "', '" + reserva.getIdReserva()
+                    + "')");
+
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No se ha guardado la reserva " + e.getMessage());
+        }
+    }
+
 }
