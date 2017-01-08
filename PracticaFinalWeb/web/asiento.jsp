@@ -19,7 +19,22 @@
     </head>
     <body>
         <%
-            Usuario usuarioActual = (Usuario) session.getAttribute("usuarioActual");
+            modeloDatos bd = new modeloDatos();
+            Cookie[] cookies = request.getCookies();
+            String idUsuario = "";
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    Cookie cookie = cookies[i];
+                    String nombre = cookie.getName();
+                    if (nombre.equals("idUsuario")) {
+                        idUsuario = cookie.getValue();
+                        System.out.println("Id: " + idUsuario);
+                    }
+                }
+            }
+            bd.abrirConexion();
+            Usuario usuarioActual = bd.getUsuario(idUsuario);
+            bd.abrirConexion();
             if (usuarioActual == null) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Registrese primero');");
@@ -28,13 +43,11 @@
             }
             String idSesion = (String) session.getAttribute("idSesion");
             Sala sala = (Sala) session.getAttribute("sala");
-            modeloDatos bd = new modeloDatos();
-            bd.abrirConexion();
         %>
-       <ul class="menu">
+        <ul class="menu">
             <li><a href="inicio.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
-                <% if (usuarioActual == null || usuarioActual.getIdUsuario().equals("") || usuarioActual.getIdUsuario().equals("visitante") ) {%> 
+                <% if (usuarioActual == null || usuarioActual.getIdUsuario().equals("") || usuarioActual.getIdUsuario().equals("visitante")) {%> 
             <li><a href="acceso.html">Acceder</a></li>
             <li><a href="registro.html">Registro</a></li>
                 <%} else {%>

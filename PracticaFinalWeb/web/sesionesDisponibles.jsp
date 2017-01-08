@@ -18,7 +18,23 @@
     </head>
     <body>
         <%
-            Usuario usuarioActual = (Usuario) session.getAttribute("usuarioActual");
+            modeloDatos bd = new modeloDatos();
+            Cookie[] cookies = request.getCookies();
+            String idUsuario = "";
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    Cookie cookie = cookies[i];
+                    String nombre = cookie.getName();
+                    if (nombre.equals("idUsuario")) {
+                        idUsuario = cookie.getValue();
+                        System.out.println("Id: "+idUsuario);
+                    }
+                }
+            }
+            bd.abrirConexion();
+            Usuario usuarioActual = bd.getUsuario(idUsuario);
+            bd.abrirConexion();
+       
             if (usuarioActual == null) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Registrese primero');");
@@ -26,9 +42,7 @@
                 out.println("</script>");
             }
             String id = (String) session.getAttribute("idPelicula");
-            modeloDatos md = new modeloDatos();
-            md.abrirConexion();
-            ArrayList<Sesion> sesiones = md.getSesionesPelicula(id);
+            ArrayList<Sesion> sesiones = bd.getSesionesPelicula(id);
         %>
         <ul class="menu">
             <li><a href="inicio.jsp">Inicio</a></li>

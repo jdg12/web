@@ -21,10 +21,23 @@
     <body>
         <%
             modeloDatos bd = new modeloDatos();
+            Cookie[] cookies = request.getCookies();
+            String idUsuario = "";
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    Cookie cookie = cookies[i];
+                    String nombre = cookie.getName();
+                    if (nombre.equals("idUsuario")) {
+                        idUsuario = cookie.getValue();
+                        System.out.println("Id: "+idUsuario);
+                    }
+                }
+            }
+            bd.abrirConexion();
+            Usuario usuario = bd.getUsuario(idUsuario);
             bd.abrirConexion();
             //Obtenemos datos como el usuario y la pelicula a mostrar
-            Usuario usuario = (Usuario) session.getAttribute("usuarioActual");
-            if (usuario == null) {
+            if (usuario.getIdUsuario() == null) {
                 System.out.println("Estoy aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
                 usuario = new Usuario();
                 usuario.setNombre("visitante");

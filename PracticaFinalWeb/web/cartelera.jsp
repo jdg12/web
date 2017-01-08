@@ -17,8 +17,23 @@
         <title>Cartelera</title>
     </head>
     <body>
-        <%Usuario usuario = (Usuario) session.getAttribute("usuarioActual");
-            if (usuario == null) {
+        <%
+            modeloDatos bd = new modeloDatos();
+            Cookie[] cookies = request.getCookies();
+            String idUsuario = "";
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    Cookie cookie = cookies[i];
+                    String nombre = cookie.getName();
+                    if (nombre.equals("idUsuario")) {
+                        idUsuario = cookie.getValue();
+                        System.out.println("Id: "+idUsuario);
+                    }
+                }
+            }
+            bd.abrirConexion();
+            Usuario usuario = bd.getUsuario(idUsuario);
+            if (usuario.getIdUsuario() == null) {
                 System.out.println("Estoy aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
                 usuario = new Usuario();
                 usuario.setNombre("visitante");
@@ -40,9 +55,7 @@
         <%}%>
         <h1>Cartelera</h1>
         <h2>Películas</h2>
-        <%  modeloDatos bd = new modeloDatos();
-            bd.abrirConexion();
-            ArrayList<Pelicula> peliculas = bd.getPeliculas();
+        <%  ArrayList<Pelicula> peliculas = bd.getPeliculas();
             for (int i = 0; i < peliculas.size(); i++) {%>
         <div class="pelicula">
             <p>Titulo: <%=peliculas.get(i).getNombre()%></p>

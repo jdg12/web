@@ -18,10 +18,24 @@
         <title>Mi perfil</title>
     </head>
     <body>
-        <%Usuario usuarioActual = (Usuario) session.getAttribute("usuarioActual");
+        <%
             modeloDatos bd = new modeloDatos();
+            Cookie[] cookies = request.getCookies();
+            String idUsuario = "";
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    Cookie cookie = cookies[i];
+                    String nombre = cookie.getName();
+                    if (nombre.equals("idUsuario")) {
+                        idUsuario = cookie.getValue();
+                        System.out.println("Id: "+idUsuario);
+                    }
+                }
+            }
+            bd.abrirConexion();
+            Usuario usuarioActual = bd.getUsuario(idUsuario);
             bd.abrirConexion();%>
-       <ul class="menu">
+        <ul class="menu">
             <li><a href="inicio.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
                 <% if (usuarioActual == null || usuarioActual.getIdUsuario().equals("") || usuarioActual.getIdUsuario().equals("visitante")) {%> 
@@ -68,12 +82,12 @@
         </form>
         <%} else { %>
         <h2>Informes</h2>
-        <input type="button" value="Ir a informes" onClick=" window.location.href='informes.jsp' ">
+        <input type="button" value="Ir a informes" onClick=" window.location.href = 'informes.jsp'">
         <h2>Salas</h2>
-         <input type="button" value="Gestionar salas" onClick=" window.location.href='salas.jsp' ">
-         <h2>Sesiones</h2>
-          <input type="button" value="Gestionar sesiones" onClick=" window.location.href='sesiones.jsp' ">
-         <h2>Entradas</h2>
+        <input type="button" value="Gestionar salas" onClick=" window.location.href = 'salas.jsp'">
+        <h2>Sesiones</h2>
+        <input type="button" value="Gestionar sesiones" onClick=" window.location.href = 'sesiones.jsp'">
+        <h2>Entradas</h2>
         <%
             ArrayList<Entrada> entradas = bd.getEntradas();
             for (int j = 0; j < entradas.size(); j++) {
@@ -96,10 +110,10 @@
         <h2>Reservas</h2>
         <%
             ArrayList<Reserva> reservas = bd.getReservas(usuarioActual.getIdUsuario());%>
-            <p>Total: <%=reservas.size()%>
-                <%
-            for (int k = 0; k < reservas.size(); k++){%>
-                <div class="reserva">
+        <p>Total: <%=reservas.size()%>
+            <%
+                for (int k = 0; k < reservas.size(); k++) {%>
+        <div class="reserva">
             <h3>id Reserva: <%= reservas.get(k).getIdReserva()%></h3>
             <h3>Datos de la sesion:</h3>
             <p>Pelicula: <%=reservas.get(k).getEntrada().getSesion().getPelicula()%></p>
@@ -110,7 +124,7 @@
             <p>Fila y columna: <%= reservas.get(k).getEntrada().getFila()%> <%=reservas.get(k).getEntrada().getColumna()%></P>
             <p>Precio: <%= reservas.get(k).getEntrada().getPrecio()%></p>
         </div>
-            <%}%>
+        <%}%>
         <%}%>
     </body>
 </html>

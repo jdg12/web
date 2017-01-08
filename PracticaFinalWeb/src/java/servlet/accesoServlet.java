@@ -9,6 +9,7 @@ import bbdd.modeloDatos;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +41,9 @@ public class accesoServlet extends HttpServlet {
         bd.abrirConexion();
         if (bd.estaUsuario(idUsuario) && bd.contrasenaCorrecta(idUsuario, contrasena)) {
             sesion.setAttribute("usuarioActual", bd.getUsuario(idUsuario));
+            Cookie cookie = new Cookie("idUsuario",idUsuario);
+            cookie.setMaxAge(-1); 
+            response.addCookie(cookie);
             response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/perfil.jsp"));
         } else {
             response.sendRedirect(response.encodeRedirectURL("acceso.html"));
