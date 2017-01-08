@@ -65,6 +65,10 @@
         <%} else { %>
         <h2>Informes</h2>
         <input type="button" value="Ir a informes" onClick=" window.location.href='informes.jsp' ">
+        <h2>Salas</h2>
+         <input type="button" value="Gestionar salas" onClick=" window.location.href='salas.jsp' ">
+         <h2>Sesiones</h2>
+          <input type="button" value="Añadir sesion" onClick=" window.location.href='sesion.jsp' ">
          <h2>Entradas</h2>
         <%
             ArrayList<Entrada> entradas = bd.getEntradas();

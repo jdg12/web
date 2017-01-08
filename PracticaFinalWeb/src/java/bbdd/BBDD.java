@@ -45,4 +45,9 @@ interface BBDD {
     public boolean estaOcupadoAsiento(String idSesion,int fila, int columna);
     public void guardarEntrada(Entrada entrada);
     public void guardarReserva(Reserva reserva);
+    public ArrayList<Sala> getSalas();
+    public void eliminarSala(String idSala);
+    public void modificarSala(Sala sala);
+    public void anadirSala(Sala sala);
+    public boolean estaSala(Sala sala);
 }

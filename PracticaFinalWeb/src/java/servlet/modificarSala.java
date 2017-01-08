@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import bbdd.Sala;
 import bbdd.modeloDatos;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jesus
  */
-public class borrarPelicula extends HttpServlet {
+public class modificarSala extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,15 +32,27 @@ public class borrarPelicula extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("inputName");
+        String nombre = request.getParameter("nombre");
+        int filas = Integer.valueOf(request.getParameter("filas"));
+        int columnas = Integer.valueOf(request.getParameter("columnas"));
+        String select = request.getParameter("inputName");
+        Sala sala = new Sala();
+        sala.setNombre(nombre);
+        sala.setFilas(filas);
+        sala.setColumnas(columnas);
+
         modeloDatos bd = new modeloDatos();
         bd.abrirConexion();
-        
-        //Borramos la pelicula, los comentarios etc.....
-        bd.eliminarComentariosPelicula(id);
-        bd.borrarActoresPelicula(id);
-        bd.eliminarPelicula(id);
-        response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/cartelera.jsp"));
+        if (select.equals("anadir")) {
+            if (!bd.estaSala(sala)) {
+                bd.anadirSala(sala);
+            }
+        } else {
+            bd.modificarSala(sala);
+        }
+
+        //Redirigimos de nuevo
+        response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/salas.jsp"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

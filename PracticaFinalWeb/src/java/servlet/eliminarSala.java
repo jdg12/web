@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jesus
  */
-public class borrarPelicula extends HttpServlet {
+public class eliminarSala extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,11 +35,12 @@ public class borrarPelicula extends HttpServlet {
         modeloDatos bd = new modeloDatos();
         bd.abrirConexion();
         
-        //Borramos la pelicula, los comentarios etc.....
-        bd.eliminarComentariosPelicula(id);
-        bd.borrarActoresPelicula(id);
-        bd.eliminarPelicula(id);
-        response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/cartelera.jsp"));
+        //Varios paso, tenemos que eliminar todas las entradas y sesiones asociadas 
+        //con esa sala
+        bd.eliminarSala(id);
+        
+        //Redirigimos
+        response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/salas.jsp"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

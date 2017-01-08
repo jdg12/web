@@ -22,7 +22,7 @@ public class modeloDatos implements BBDD {
 
     public void abrirConexion() {
         String sURL = "jdbc:odbc:mvc";
-        String url = "jdbc:derby://localhost:1527/finalweb2";
+        String url = "jdbc:derby://localhost:1527/finalweb3";
         String usuario = "final";
         String contrasena = "final";
         try {
@@ -729,6 +729,91 @@ public class modeloDatos implements BBDD {
         } catch (Exception e) {
             System.out.println("No se ha guardado la reserva " + e.getMessage());
         }
+    }
+
+    @Override
+    public ArrayList<Sala> getSalas() {
+        ArrayList<Sala> salas = new ArrayList<>();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM SALA");
+            while (rs.next()) {
+                Sala sala = new Sala();
+                sala.setNombre(rs.getString(1));
+                sala.setFilas(Integer.valueOf(rs.getString(2)));
+                sala.setColumnas(Integer.valueOf(rs.getString(3)));
+                salas.add(sala);
+            }
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Error al obtener los actores: " + e.getMessage());
+        }
+        return salas;
+    }
+
+    @Override
+    public void eliminarSala(String idSala) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("DELETE FROM SALA"
+                    + " WHERE IDSALA= '" + idSala
+                    + "'");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar la sala: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void modificarSala(Sala sala) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("UPDATE SALA "
+                    + "SET IDSALA='" + sala.getNombre()
+                    + "',FILAS=" + sala.getFilas()
+                    + ",COLUMNAS=" + sala.getColumnas()
+                    + " WHERE IDSALA='" + sala.getNombre()
+                    + "'"
+                    + "");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Override
+    public void anadirSala(Sala sala) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO SALA (IDSALA, FILAS, COLUMNAS) VALUES ('" + sala.getNombre()
+                    + "', " + sala.getFilas()
+                    + ", " + sala.getColumnas()
+                    + ")");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No se ha guardado la sala" + e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean estaSala(Sala sala) {
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM SALA");
+            while (rs.next()) {
+                if (rs.getString("IDSALA").equals(sala.getNombre())) {
+                    return true;
+                }
+            }
+            rs.close();
+            return false;
+        } catch (Exception e) {
+            System.out.println("Error en la consulta de la sala: " + e.getMessage());
+        }
+        return false;
     }
 
 }

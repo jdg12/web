@@ -56,6 +56,14 @@
         <servlet-name>seleccionTipoServlet</servlet-name>
         <servlet-class>servlet.seleccionTipoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>modificarSala</servlet-name>
+        <servlet-class>servlet.modificarSala</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eliminarSala</servlet-name>
+        <servlet-class>servlet.eliminarSala</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>pruebaServlet</servlet-name>
         <url-pattern>/pruebaServlet</url-pattern>
@@ -111,6 +119,14 @@
     <servlet-mapping>
         <servlet-name>seleccionTipoServlet</servlet-name>
         <url-pattern>/seleccionTipoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarSala</servlet-name>
+        <url-pattern>/modificarSala</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eliminarSala</servlet-name>
+        <url-pattern>/eliminarSala</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
