@@ -64,10 +64,10 @@ public class comprarServlet extends HttpServlet {
         //Creamos la entrada
         if (tipo.equals("reducida")) {
             entrada = new EntradaReducida();
-            entrada.setPrecio(4.5);
+            entrada.setPrecio(4);
         } else {
             entrada = new EntradaNormal();
-            entrada.setPrecio(7);
+            entrada.setPrecio(5.9);
         }
         entrada.setId(idEntrada);
         entrada.setSesion(sesion2);
@@ -75,15 +75,19 @@ public class comprarServlet extends HttpServlet {
         entrada.setColumna(columna);
         entrada.setVendida(true);
 
-        bd.guardarEntrada(entrada);
 
         //Ahora guardamos la reserva si la habia realizado el usuario
         if (!usuario.getIdUsuario().equals("admin")) {
+            entrada.setPrecio(7);
+            bd.guardarEntrada(entrada);
             Reserva reserva = new Reserva();
             reserva.setEntrada(entrada);
             reserva.setIdUsuario(usuario.getIdUsuario());
             reserva.setIdReserva("r-" + entrada.getId());
             bd.guardarReserva(reserva);
+        }else
+        {
+            bd.guardarEntrada(entrada);
         }
         response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/perfil.jsp"));
     }

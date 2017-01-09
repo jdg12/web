@@ -194,9 +194,9 @@ and open the template in the editor.
             <h2>PRECIOS</h2>
             <br><br/>
             <div class="info">
-                <p>Entrada estándar: 5.90?</p><br></br>
-                <p>Entrada reducida: 4.00?</p><br></br>
-                <p>Reserva entrada:  6.90?</p>
+                <p>Entrada estándar: 5.90</p><br></br>
+                <p>Entrada reducida: 4.00</p><br></br>
+                <p>Reserva entrada:  7</p>
             </div>
         </div>
 
