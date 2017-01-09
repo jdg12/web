@@ -85,7 +85,8 @@
         Aquí acaba la parte predefinida del header que se repite
         -->
         
-        <h1>Seleccione el tipo de entrada y el asiento</h1>
+        <h1>Asientos</h1>
+        <h2>Seleccione el tipo de entrada y el asiento</h2>
         <div class="seleccionAsiento">
         <% for (int j = -1; j < sala.getColumnas(); j++) {%>
         <form style="float: left;">

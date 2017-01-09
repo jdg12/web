@@ -88,7 +88,7 @@
         <h1>Sesiones</h1>
         <h2>Escoja la sesion de la película </h2>
         <% for (int i = 0; i < sesiones.size(); i++) {%>
-        <form action="/PracticaFinalWeb/sesionPelicula" class="pelicula" id="formulario" method="POST">
+        <form action="/PracticaFinalWeb/sesionPelicula" class="sesionDisponible" id="formulario" method="POST">
             <p>
                 <label>IDsesion: </label><br><input id="idSesion" type="text" name="idSesion" autofocus required value="<%= sesiones.get(i).getIdSesion()%>" readonly></input>
                 <br/><label>Sala: </label><br><input id="sala" type="text" name="sala" autofocus required value="<%= sesiones.get(i).getSala()%>" readonly></input>

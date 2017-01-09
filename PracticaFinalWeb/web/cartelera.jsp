@@ -56,8 +56,6 @@
         <div>
 
             <div style="height: 200px; width: 100%;">
-
-
                 <a class="user" id="date"></a> 
                 <script>
                     var date = new Date();
@@ -77,17 +75,19 @@
         <!--
         Aquí acaba la parte predefinida del header que se repite
         -->
-        <% if (usuario.getNombre().equals("admin")) {%>
-        <input type="button" value="Nueva película" onClick="window.location.href = 'nuevaPelicula.jsp'">
-        <%}%>
         <h1>Cartelera</h1>
-        <h1>Películas</h1>
+        <h2>Películas</h2>
+         <% if (usuario.getNombre().equals("admin")) {%>
+        <input class="botonAnadirPelicula" type="button" value="Nueva película" onClick="window.location.href = 'nuevaPelicula.jsp'">
+        <%}%>
         <%  ArrayList<Pelicula> peliculas = bd.getPeliculas();
             for (int i = 0; i < peliculas.size(); i++) {%>
         <div class="pelicula">
-            <p>Titulo: <%=peliculas.get(i).getNombre()%></p>
+            <h1>Titulo: <%=peliculas.get(i).getNombre()%></h1>
+            <div class="descripcion">
             <p>Sinopsis: <%=peliculas.get(i).getSinopsis()%></p>
             <p>Genero: <%=peliculas.get(i).getGenero()%></p>
+            </div>
             <form action="/PracticaFinalWeb/verMasPeliculaServlet" class="verMas" id="formulario" method="POST">
                 <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">
                 <input class="boton" type="submit" value="Ver mas">

@@ -86,7 +86,9 @@
         Aquí acaba la parte predefinida del header que se repite
         -->
         <h1>Salas</h1>
-        <input type="button" value="Añadir una sala" onClick=" window.location.href='nuevaSala.jsp' ">
+        <h2>Gestion salas</h2>
+        <input class="boton" type="button" value="Añadir una sala" onClick=" window.location.href='nuevaSala.jsp' ">
+        <h2>Consulta de salas</h2>
         <% 
             ArrayList<Sala> salas = bd.getSalas();
             for (int i = 0; i < salas.size(); i++) {

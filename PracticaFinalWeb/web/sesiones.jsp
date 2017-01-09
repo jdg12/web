@@ -64,9 +64,7 @@
         <div>
 
             <div style="height: 200px; width: 100%;">
-
-
-                <a class="user" id="date"></a> 
+             <a class="user" id="date"></a> 
                 <script>
                     var date = new Date();
                     var day = date.getDate();
@@ -86,14 +84,17 @@
         Aquí acaba la parte predefinida del header que se repite
         -->
         <h1>Sesiones</h1>
-        <input type="button" value="Añadir una sesion" onClick=" window.location.href = 'nuevaSesion.jsp'">
+        <h2>Gestion sesiones</h2>
+        <input class="boton" type="button" value="Añadir una sesion" onClick=" window.location.href = 'nuevaSesion.jsp'">
+        <h2>Consulta sesiones</h2>
         <%
             bd.abrirConexion();
             ArrayList<Sesion> sesiones = bd.getSesiones();
             for (int i = 0; i < sesiones.size(); i++) {
         %>
+        <div class="sesion">
         <form action="/PracticaFinalWeb/modificarSesionServlet">
-            <br /><label>Id sesion: </label><br><input id="nombre" type="text" value="<%=sesiones.get(i).getIdSesion()%>"name="nombre" autofocus required readonly/>
+            <br /><label>Id sesion: </label><input id="nombre" type="text" value="<%=sesiones.get(i).getIdSesion()%>"name="nombre" autofocus required readonly/>
             <br /><label>Id pelicula: </label> <input id="pelicula" type="text" name="pelicula" value="<%=sesiones.get(i).getPelicula()%>"autofocus required readonly/>
             <br /><label>Id sala </label> <input id="sala" type="text" name="sala" value="<%=sesiones.get(i).getSala()%>" autofocus required readonly/>
             <br /><label>Hora: </label> <input id="hora" type="text" name="hora" value="<%=sesiones.get(i).getHora()%>" autofocus required/>
@@ -107,6 +108,7 @@
             <input type="hidden" id="thisField" name="inputName" value="<%=sesiones.get(i).getIdSesion()%>">
             <input class="boton" type="submit" value="Eliminar">
         </form>
+        </div>
         <%}%>
         <!--
 Esta es la parte predefinida del footer que se repite

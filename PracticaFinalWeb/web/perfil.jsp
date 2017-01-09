@@ -111,17 +111,17 @@
         </form>
         <%} else { %>
         <h2>Informes</h2>
-        <input type="button" value="Ir a informes" onClick=" window.location.href = 'informes.jsp'">
+        <input class="boton" type="button" value="Ir a informes" onClick=" window.location.href = 'informes.jsp'">
         <h2>Salas</h2>
-        <input type="button" value="Gestionar salas" onClick=" window.location.href = 'salas.jsp'">
+        <input class="boton" type="button" value="Gestionar salas" onClick=" window.location.href = 'salas.jsp'">
         <h2>Sesiones</h2>
-        <input type="button" value="Gestionar sesiones" onClick=" window.location.href = 'sesiones.jsp'">
+        <input class="boton" type="button" value="Gestionar sesiones" onClick=" window.location.href = 'sesiones.jsp'">
         <h2>Entradas</h2>
         <%
             ArrayList<Entrada> entradas = bd.getEntradas();
             for (int j = 0; j < entradas.size(); j++) {
         %>
-        <form action="/PracticaFinalWeb/borrarEntradaServlet" class="perfil" id="formulario" method="POST">
+        <form action="/PracticaFinalWeb/borrarEntradaServlet" class="entrada" id="formulario" method="POST">
             <div class="reserva">
                 <h3>Id entrada: <%=entradas.get(j).getId()%></h3>
                 <p>Fila y columna: <%=entradas.get(j).getFila()%> <%=entradas.get(j).getColumna()%></p>
@@ -139,7 +139,6 @@
         <h2>Reservas</h2>
         <%
             ArrayList<Reserva> reservas = bd.getReservas(usuarioActual.getIdUsuario());%>
-        <p>Total: <%=reservas.size()%>
             <%
                 for (int k = 0; k < reservas.size(); k++) {%>
         <div class="reserva">

@@ -98,13 +98,16 @@
         Aquí acaba la parte predefinida del header que se repite
         -->
 
-        <h1>Tipo de entrada</h1>
-        <form action="seleccionTipoServlet" class="pelicula" name="formulario" id="formulario" method="POST">
+        <h1>Compra/Reserva</h1>
+        <h2>Cuenta bancaria y tipo de entrada</h2>
+        <form action="seleccionTipoServlet" class="tipoycuenta" name="formulario" id="formulario" method="POST">
+            <%if (!usuario.getIdUsuario().equals("admin")){%>
             <p>Cuenta bancaria: <input type="text" id="cuenta" name="cuenta" value="<%=usuario.getCuenta()%>"></p></br>
+            <%}%>
             <select id="tipo" name="tipo" >
                 <option value="normal">Normal</option>
                 <option value="reducida">Reducida</option>
-            </select>
+            </select><br>
             <input class="boton" type="submit" value="Seleccionar tipo">
         </form>
         <!--

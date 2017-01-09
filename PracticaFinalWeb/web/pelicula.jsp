@@ -44,8 +44,8 @@
             String idPelicula = (String) session.getAttribute("peliculaId");
             Pelicula pelicula = bd.getPelicula(idPelicula);
         %>
-       <!--
-        Esta es la parte predefinida del header que se repite
+        <!--
+         Esta es la parte predefinida del header que se repite
         -->
         <ul class="menu">
             <li><img src="style/chinchon.png" alt="" class="unstyled"></li>
@@ -59,38 +59,38 @@
             <li><a href="/PracticaFinalWeb/SalirServlet">Salir</a></li>
                 <%}%>
         </ul>
-		<br><br/>
-		<div>
-		
-	<div style="height: 200px; width: 100%;">
-	
-		
-	<a class="user" id="date"></a> 
-	<script>
-		var date = new Date();
-		var day = date.getDate();
-		var month = date.getMonth()+1;
-		var year = date.getFullYear();
-		var fecha = day + "/" + month + "/" + year;
-		document.getElementById("date").innerHTML = fecha;
-	</script>
-	<br><br/>
-	<a class="user">Bienvenido, <%=usuario.getIdUsuario()%></a>  <!-- AQUÍ VA EL MÉTODO DE COGER EL USUARIO-->
-	</div>
-	</div>
-                	
-	<div class="linea">
-	</div>
+        <br><br/>
+        <div>
+
+            <div style="height: 200px; width: 100%;">
+
+
+                <a class="user" id="date"></a> 
+                <script>
+                    var date = new Date();
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+                    var fecha = day + "/" + month + "/" + year;
+                    document.getElementById("date").innerHTML = fecha;
+                </script>
+                <br><br/>
+                <a class="user">Bienvenido, <%=usuario.getIdUsuario()%></a>  <!-- AQUÍ VA EL MÉTODO DE COGER EL USUARIO-->
+            </div>
+        </div>
+
+        <div class="linea">
+        </div>
         <!--
         Aquí acaba la parte predefinida del header que se repite
         -->
-        
+
         <%if (!usuario.getIdUsuario().equals("admin")) {%>
         <h1><%=pelicula.getNombre()%></h1>
-       <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
-                <input type="hidden" id="thisField" name="inputName" value="<%= pelicula.getNombre()%>">
-                <input class="boton" type="submit" value="Reservar entrada">
-            </form>
+        <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
+            <input type="hidden" id="thisField" name="inputName" value="<%= pelicula.getNombre()%>">
+            <input class="boton" type="submit" value="Reservar entrada">
+        </form>
         <div class="datosPelicula">
             <h2>Sinopsis</h2>
             <p><%=pelicula.getSinopsis()%></p>
@@ -101,8 +101,10 @@
             <h2>Actores</h2>
             <% ArrayList<Actor> actores = bd.getActores(pelicula.getNombre());
                 for (int j = 0; j < actores.size(); j++) {%>
-            <p>Nombre: <%=actores.get(j).getNombre()%></p>
-            <p>Apellidos: <%=actores.get(j).getApellidos()%></p>
+            <div class="actor">
+                <p>Nombre: <%=actores.get(j).getNombre()%></p>
+                <p>Apellidos: <%=actores.get(j).getApellidos()%></p>
+            </div>
             <%}%>
             <h2>Otros datos</h2>
             <p>Nacionalidad: <%=pelicula.getNacionalidad()%></p>
@@ -111,6 +113,14 @@
             <p>Otros: <%=pelicula.getOtros()%></p>
         </div>
         <h2>Comentarios</h2>
+        <% ArrayList<Comentario> comentarios = bd.getComentarios(pelicula.getNombre());
+            for (int k = 0; k < comentarios.size(); k++) {%>
+        <div class="comentario">
+            <div class="autor"><%=comentarios.get(k).getIdUsuario()%></div>
+            <div class="comentario"><%=comentarios.get(k).getTexto()%></div>
+            <div class="puntuacion"><%=comentarios.get(k).getPuntuacion()%></div>
+        </div>
+        <%}%>
         <% if (usuario.getIdUsuario().equals("visitante")) {%>
         <h2>Registrse para dejar un comentario</h2>
         <%} else {%>
@@ -126,19 +136,10 @@
         </form>
         <%}%>
         <!--Ahora mostramos los comentarios y dejamos un cuadro de texto para dejar uno nuevo-->
-        <% ArrayList<Comentario> comentarios = bd.getComentarios(pelicula.getNombre());
-            for (int k = 0; k < comentarios.size(); k++) {%>
-        <div class="comentario">
-            <div class="autor"><%=comentarios.get(k).getIdUsuario()%></div>
-            <div class="comentario"><%=comentarios.get(k).getTexto()%></div>
-            <div class="puntuacion"><%=comentarios.get(k).getPuntuacion()%></div>
-        </div>
-        <%}%>
+
         <%} else {%>
-        <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
-                <input type="hidden" id="thisField" name="inputName" value="<%= pelicula.getNombre()%>">
-                <input class="boton" type="submit" value="Reservar entrada">
-            </form>
+        <h1><%=pelicula.getNombre()%></h1>
+        <h2>Datos pelicula</h2>
         <form action="/PracticaFinalWeb/modificarPelicula" class="pelicula" id="formulario" method="POST">
             <p>
                 <label>Nombre: </label><br><input id="idPelicula" type="text" name="idPelicula" autofocus required value="<%=pelicula.getNombre()%>" readonly></input>
@@ -158,37 +159,41 @@
                 <input class="boton" type="submit" value="Modificar">
             </p>
         </form>
+        <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
+            <input type="hidden" id="thisField" name="inputName" value="<%= pelicula.getNombre()%>">
+            <input class="boton" type="submit" value="Reservar entrada">
+        </form>
         <form action="/PracticaFinalWeb/borrarPelicula" class="pelicula" id="formulario" method="POST">
             <input type="hidden" id="thisField" name="inputName" value="<%= pelicula.getNombre()%>">
             <input class="boton" type="submit" value="Eliminar">
         </form>
         <%}%>
-                    <!--
-        Esta es la parte predefinida del footer que se repite
+        <!--
+Esta es la parte predefinida del footer que se repite
         -->
-	<br><br/>
-	<div class="vacio">
-	</div>
-		<div class="containerFooter">
-			<h3>Aviso Legal</h3>
-			<br><br/>
-			<div class="footer">
-				<p>Estás en el sitio web de Chinchón Multicines Madrid. Aquí puedes acceder al aviso legal. © 1997 AWESOME MULTICINES</p><br></br>
-			</div>
-		</div>
-		
-		<div class="containerRestFooter">
-			<h3>Aviso Sobre Cookies</h3>
-			<br><br/>
-			<div class="footer">
-				<p>Cuando visite nuestra página, podemos enviar a su computadora una o más cookies, un pequeño archivo de texto que contiene una cadena de caracteres alfanuméricos, que identifica de forma exclusiva su navegador y le permite conectarse más rápido y mejorar su navegación a través del sitio. Una cookie no recopila información personal sobre usted. Este sitio utiliza cookies de sesión y cookies persistentes. Una cookie persistente permanece en su disco duro después de cerrar su navegador.</p><br></br>
-			</div>
-		</div>
-		
-		<div class="containerRightFooter">
-			<div class="footer">
-				<img src="style/escudo.png" alt="" class="unstyled">
-			</div>
-		</div>
+        <br><br/>
+        <div class="vacio">
+        </div>
+        <div class="containerFooter">
+            <h3>Aviso Legal</h3>
+            <br><br/>
+            <div class="footer">
+                <p>Estás en el sitio web de Chinchón Multicines Madrid. Aquí puedes acceder al aviso legal. © 1997 AWESOME MULTICINES</p><br></br>
+            </div>
+        </div>
+
+        <div class="containerRestFooter">
+            <h3>Aviso Sobre Cookies</h3>
+            <br><br/>
+            <div class="footer">
+                <p>Cuando visite nuestra página, podemos enviar a su computadora una o más cookies, un pequeño archivo de texto que contiene una cadena de caracteres alfanuméricos, que identifica de forma exclusiva su navegador y le permite conectarse más rápido y mejorar su navegación a través del sitio. Una cookie no recopila información personal sobre usted. Este sitio utiliza cookies de sesión y cookies persistentes. Una cookie persistente permanece en su disco duro después de cerrar su navegador.</p><br></br>
+            </div>
+        </div>
+
+        <div class="containerRightFooter">
+            <div class="footer">
+                <img src="style/escudo.png" alt="" class="unstyled">
+            </div>
+        </div>
     </body>
 </html>
