@@ -40,7 +40,6 @@ public class accesoServlet extends HttpServlet {
         modeloDatos bd = new modeloDatos();
         bd.abrirConexion();
         if (bd.estaUsuario(idUsuario) && bd.contrasenaCorrecta(idUsuario, contrasena)) {
-            sesion.setAttribute("usuarioActual", bd.getUsuario(idUsuario));
             Cookie cookie = new Cookie("idUsuario",idUsuario);
             cookie.setMaxAge(-1); 
             response.addCookie(cookie);

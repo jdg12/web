@@ -10,6 +10,43 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style/style.css">
+         <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#formulario").submit(function () {
+                    if ($("#idUsuario").val().length > 20) {
+                        alert("El idUsuario es demasiado largo");
+                        return false;
+                    }
+                    if ($("#correo").val().length > 100) {
+                        alert("El correo es demasiado largo");
+                        return false;
+                    }
+                    if ($("#nombre").val().length > 20) {
+                        alert("El nombre es demasiado largo");
+                        return false;
+                    }if ($("#apellidos").val().length > 20) {
+                        alert("Los apellidos son demasiado largos");
+                        return false;
+                    }
+                    if ($("#direccion").val().length > 100) {
+                        alert("La direccion es demasiado larga");
+                        return false;
+                    }
+                    if ($("#contrasena").val().length > 20) {
+                        alert("La contrasena es demasiado larga");
+                        return false;
+                    }
+                    if ($("#cuenta").val().length > 20) {
+                        alert("La cuenta es demasiado larga");
+                        return false;
+                    }
+                    
+                    return true;
+                });
+            });
+
+        </script>
     </head>
     <body>
         <!--

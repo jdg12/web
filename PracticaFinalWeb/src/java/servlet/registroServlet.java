@@ -10,6 +10,7 @@ import bbdd.modeloDatos;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,13 +49,13 @@ public class registroServlet extends HttpServlet {
         bd.abrirConexion();
         if (!bd.estaUsuario(usuario.getIdUsuario())) {
             bd.guardarUsuario(usuario);
-            sesion.setAttribute("usuarioActual", usuario);
-
+            Cookie cookie = new Cookie("idUsuario", usuario.getIdUsuario());
+            cookie.setMaxAge(-1);
+            response.addCookie(cookie);
             //A continuación redirigimos a mi perfil
             response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/perfil.jsp"));
-        }else
-        {
-             response.sendRedirect(response.encodeRedirectURL("acceso.html"));
+        } else {
+            response.sendRedirect(response.encodeRedirectURL("acceso.html"));
         }
     }
 

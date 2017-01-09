@@ -77,7 +77,7 @@
         -->
         <h1>Cartelera</h1>
         <h2>Películas</h2>
-         <% if (usuario.getNombre().equals("admin")) {%>
+        <% if (usuario.getNombre().equals("admin")) {%>
         <input class="botonAnadirPelicula" type="button" value="Nueva película" onClick="window.location.href = 'nuevaPelicula.jsp'">
         <%}%>
         <%  ArrayList<Pelicula> peliculas = bd.getPeliculas();
@@ -85,8 +85,11 @@
         <div class="pelicula">
             <h1>Titulo: <%=peliculas.get(i).getNombre()%></h1>
             <div class="descripcion">
-            <p>Sinopsis: <%=peliculas.get(i).getSinopsis()%></p>
-            <p>Genero: <%=peliculas.get(i).getGenero()%></p>
+                <p>Sinopsis</p>
+                <textarea id="sinopsis" name="sinopsis" rows="6" cols="20" autofocus readonly style="background: #062F4F;
+                          border: 0px;
+                          color: white;"><%=peliculas.get(i).getSinopsis()%></textarea>
+                <p>Genero: <%=peliculas.get(i).getGenero()%></p>
             </div>
             <form action="/PracticaFinalWeb/verMasPeliculaServlet" class="verMas" id="formulario" method="POST">
                 <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">

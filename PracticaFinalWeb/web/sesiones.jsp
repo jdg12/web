@@ -27,7 +27,7 @@
                         alert("La hora es demasiado larga");
                         return false;
                     }
-                    if ($("#nombre").val().length > 20) {
+                    if ($("#nombre").val().length > 100) {
                         alert("El id es demasiado largo");
                         return false;
                     }

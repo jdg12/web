@@ -21,11 +21,11 @@ and open the template in the editor.
                 $("#formulario").submit(function () {
 
                     document.getElementById("listaActores").value = actores;
-                    if ($("#titulo").val().length > 20) {
+                    if ($("#titulo").val().length > 100) {
                         alert("El titulo es demasiado largo");
                         return false;
                     }
-                    if ($("#sinopsis").val().length > 100) {
+                    if ($("#sinopsis").val().length > 500) {
                         alert("La sinopsis es demasiado larga");
                         return false;
                     }

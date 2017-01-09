@@ -25,7 +25,11 @@
                         alert("El titulo es demasiado largo");
                         return false;
                     }
-                    if ($("#sinopsis").val().length > 100) {
+                    if ($("#idPelicula").val().length > 100) {
+                        alert("El id es demasiado largo");
+                        return false;
+                    }
+                    if ($("#sinopsis").val().length > 500) {
                         alert("La sinopsis es demasiado larga");
                         return false;
                     }
