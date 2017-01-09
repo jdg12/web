@@ -63,7 +63,7 @@ li a:hover {
 }
 
 h1 { 
-    color: #f9f9f9; font-family: 'Helvetica Neue', sans-serif; font-size: 50px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; text-shadow: 2px 2px #050005; 
+    color: #f9f9f9; font-family: 'Helvetica Neue', sans-serif; font-size: 50px; padding-top: 40px; padding-bottom: 25px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; text-shadow: 2px 2px #050005; 
 }
 h2 { 
     color: #984B43; font-size: 24px; font-family: Charcoal; line-height: 35px; text-align: left; text-shadow: 0 1px 1px #000; padding-bottom: 10px; padding-top: 40px;
@@ -187,6 +187,9 @@ font-size: 17px;
 font-family: Charcoal;
 /*background-color: #999999;
 border: 3px groove #0e0b16; */ 
+}
+label{
+    color: #ffffff; 
 }
 
 .infoL{
