@@ -13,7 +13,6 @@ public class ModeloDatos {
         try {
 //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Class.forName( "org.apache.derby.jdbc.ClientDriver" );
-            System.out.println("Estoy aqui");
 //    con = DriverManager.getConnection(sURL,"","");
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/subir", "subir", "subir");
             System.out.println("Se ha conectado");
@@ -73,6 +72,35 @@ public class ModeloDatos {
             con.close();
         } catch (Exception e) {
         }
+    }
+    
+    public ResultSet getVotos()
+    {
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM Jugadores");
+            rs.close();
+            return rs;
+        } catch (Exception e) {
+            System.out.println("Error en la consulta");
+        }
+        return null;
+    }
+    
+    public ResultSetMetaData getMetaData()
+    {
+        ResultSetMetaData rsm = null;
+         try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM Jugadores");
+            rsm = rs.getMetaData();
+            rs.close();
+            set.close();
+            return rsm;
+        } catch (Exception e) {
+            System.out.println("No se ha conseguido el metadata");
+        }
+        return rsm;
     }
 
 }
