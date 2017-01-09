@@ -13,8 +13,8 @@ import bbdd.Sesion;
 import bbdd.Usuario;
 import bbdd.modeloDatos;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,8 +43,20 @@ public class comprarServlet extends HttpServlet {
         HttpSession sesion = request.getSession();
         String tipo = (String) sesion.getAttribute("tipo");
         String idSesion = (String) sesion.getAttribute("idSesion");
-        Usuario usuarioActual = (Usuario) sesion.getAttribute("usuarioActual");
+        Cookie[] cookies = request.getCookies();
         modeloDatos bd = new modeloDatos();
+        String idUsuario = "";
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                Cookie cookie = cookies[i];
+                String nombre = cookie.getName();
+                if (nombre.equals("idUsuario")) {
+                    idUsuario = cookie.getValue();
+                }
+            }
+        }
+        bd.abrirConexion();
+        Usuario usuario = bd.getUsuario(idUsuario);
         bd.abrirConexion();
         Sesion sesion2 = bd.getSesion(idSesion);
         String idEntrada = idSesion + "-" + String.valueOf((fila + 1) * columna);
@@ -52,26 +64,25 @@ public class comprarServlet extends HttpServlet {
         //Creamos la entrada
         if (tipo.equals("reducida")) {
             entrada = new EntradaReducida();
-             entrada.setPrecio(4.5);
+            entrada.setPrecio(4.5);
         } else {
             entrada = new EntradaNormal();
-             entrada.setPrecio(7);
+            entrada.setPrecio(7);
         }
         entrada.setId(idEntrada);
         entrada.setSesion(sesion2);
         entrada.setFila(fila);
         entrada.setColumna(columna);
         entrada.setVendida(true);
-        
+
         bd.guardarEntrada(entrada);
-        
+
         //Ahora guardamos la reserva si la habia realizado el usuario
-        if (!usuarioActual.getIdUsuario().equals("admin"))
-        {
+        if (!usuario.getIdUsuario().equals("admin")) {
             Reserva reserva = new Reserva();
             reserva.setEntrada(entrada);
-            reserva.setIdUsuario(usuarioActual.getIdUsuario());
-            reserva.setIdReserva("r-"+entrada.getId());
+            reserva.setIdUsuario(usuario.getIdUsuario());
+            reserva.setIdReserva("r-" + entrada.getId());
             bd.guardarReserva(reserva);
         }
         response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/perfil.jsp"));
