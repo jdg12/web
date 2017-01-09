@@ -82,6 +82,7 @@
         -->
         
         <h1>Seleccione el tipo de entrada y el asiento</h1>
+        <div class="seleccionAsiento">
         <% for (int j = -1; j < sala.getColumnas(); j++) {%>
         <form style="float: left;">
             <button type="submit" style="width: 50px;
@@ -91,6 +92,7 @@
         <br>
         <br>
         <br>
+        
         <% for (int i = 0; i < sala.getFilas(); i++) {%>
         <!--En la primera fila mostramos los numeros-->
         <form style="float: left;">
@@ -120,7 +122,7 @@
         <br>
         <br>
         <%}%>
-        
+        </div>
                                 <!--
         Esta es la parte predefinida del footer que se repite
         -->
