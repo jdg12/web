@@ -34,7 +34,7 @@
     <body>
         <h1>Informes de Sistema</h1>
         <ul class="menu" >
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
             <li><a href="acceso.jsp">Acceder</a></li>
             <li><a href="registro.html">Registro</a></li>

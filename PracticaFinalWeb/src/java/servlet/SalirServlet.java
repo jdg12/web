@@ -49,7 +49,7 @@ public class SalirServlet extends HttpServlet {
         }
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            response.sendRedirect(response.encodeRedirectURL("acceso.html"));
+            response.sendRedirect(response.encodeRedirectURL("acceso.jsp"));
         }
     }
 

@@ -13,6 +13,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tipo de entrada</title>
         <link rel="stylesheet" href="style/style.css">
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#formulario").submit(function () {
+                    if ($("#cuenta").val().length < 16) {
+                        alert("La cuenta bancaria es incorrecta. Cambiela en su perfil");
+                        location='perfil.jsp';
+                        return false;
+                    }
+                    return true;
+                });
+            });
+
+        </script>
     </head>
     <body>
         <%
@@ -39,7 +53,7 @@
             if (usuario == null || usuario.getIdUsuario().equals("visitante")) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Registrese primero');");
-                out.println("location='acceso.html';");
+                out.println("location='acceso.jsp';");
                 out.println("</script>");
             }
             String id = request.getParameter("inputName");
@@ -64,8 +78,6 @@
         <div>
 
             <div style="height: 200px; width: 100%;">
-
-
                 <a class="user" id="date"></a> 
                 <script>
                     var date = new Date();
@@ -87,7 +99,8 @@
         -->
 
         <h1>Tipo de entrada</h1>
-        <form action="seleccionTipoServlet" class="pelicula" id="formulario" method="POST">
+        <form action="seleccionTipoServlet" class="pelicula" name="formulario" id="formulario" method="POST">
+            <p>Cuenta bancaria: <input type="text" id="cuenta" name="cuenta" value="<%=usuario.getCuenta()%>"></p></br>
             <select id="tipo" name="tipo" >
                 <option value="normal">Normal</option>
                 <option value="reducida">Reducida</option>

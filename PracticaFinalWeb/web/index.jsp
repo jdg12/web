@@ -120,7 +120,6 @@ and open the template in the editor.
                     String nombre = cookie.getName();
                     if (nombre.equals("idUsuario")) {
                         idUsuario = cookie.getValue();
-                        System.out.println("Id: " + idUsuario);
                     }
                 }
             }

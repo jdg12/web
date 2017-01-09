@@ -38,7 +38,7 @@
             if (usuarioActual == null) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Registrese primero');");
-                out.println("location='acceso.html';");
+                out.println("location='acceso.jsp';");
                 out.println("</script>");
             }
             String id = (String) session.getAttribute("idPelicula");

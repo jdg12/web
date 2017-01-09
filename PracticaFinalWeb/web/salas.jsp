@@ -17,7 +17,7 @@
         <title>Salas</title>
     </head>
     <body>
-        <%
+  <%
             modeloDatos bd = new modeloDatos();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
@@ -33,10 +33,15 @@
             bd.abrirConexion();
             Usuario usuarioActual = bd.getUsuario(idUsuario);
 
-            if (usuarioActual == null || !usuarioActual.getIdUsuario().equals("admin")) {
+            if (usuarioActual == null) {
+                usuarioActual = new Usuario();
+                usuarioActual.setIdUsuario("visitante");
+            }
+
+            if (!usuarioActual.getIdUsuario().equals("admin")) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Tiene que ser el administrador');");
-                out.println("location='acceso.html';");
+                out.println("location='acceso.jsp';");
                 out.println("</script>");
             }
         %>
@@ -81,7 +86,7 @@
         Aquí acaba la parte predefinida del header que se repite
         -->
         <h1>Salas</h1>
-        <input type="button" value="Añadir una sala" onClick=" window.location.href='nuevaSala.html' ">
+        <input type="button" value="Añadir una sala" onClick=" window.location.href='nuevaSala.jsp' ">
         <% 
             ArrayList<Sala> salas = bd.getSalas();
             for (int i = 0; i < salas.size(); i++) {

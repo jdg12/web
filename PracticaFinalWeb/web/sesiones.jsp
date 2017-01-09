@@ -33,17 +33,22 @@
             bd.abrirConexion();
             Usuario usuarioActual = bd.getUsuario(idUsuario);
 
-            if (usuarioActual == null || !usuarioActual.getIdUsuario().equals("admin")) {
+            if (usuarioActual == null) {
+                usuarioActual = new Usuario();
+                usuarioActual.setIdUsuario("visitante");
+            }
+
+            if (!usuarioActual.getIdUsuario().equals("admin")) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Tiene que ser el administrador');");
-                out.println("location='acceso.html';");
+                out.println("location='acceso.jsp';");
                 out.println("</script>");
             }
         %>
-      <!--
-        Esta es la parte predefinida del header que se repite
+        <!--
+          Esta es la parte predefinida del header que se repite
         -->
-       <ul class="menu">
+        <ul class="menu">
             <li><img src="style/chinchon.png" alt="" class="unstyled"></li>
             <li><a href="index.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
@@ -55,38 +60,37 @@
             <li><a href="/PracticaFinalWeb/SalirServlet">Salir</a></li>
                 <%}%>
         </ul>
-		<br><br/>
-		<div>
-		
-	<div style="height: 200px; width: 100%;">
-	
-		
-	<a class="user" id="date"></a> 
-	<script>
-		var date = new Date();
-		var day = date.getDate();
-		var month = date.getMonth()+1;
-		var year = date.getFullYear();
-		var fecha = day + "/" + month + "/" + year;
-		document.getElementById("date").innerHTML = fecha;
-	</script>
-	<br><br/>
-	<a class="user">Bienvenido, admin</a>  <!-- AQUÍ VA EL MÉTODO DE COGER EL USUARIO-->
-	</div>
-	</div>
-                	
-	<div class="linea">
-	</div>
+        <br><br/>
+        <div>
+
+            <div style="height: 200px; width: 100%;">
+
+
+                <a class="user" id="date"></a> 
+                <script>
+                    var date = new Date();
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+                    var fecha = day + "/" + month + "/" + year;
+                    document.getElementById("date").innerHTML = fecha;
+                </script>
+                <br><br/>
+                <a class="user">Bienvenido, admin</a>  <!-- AQUÍ VA EL MÉTODO DE COGER EL USUARIO-->
+            </div>
+        </div>
+
+        <div class="linea">
+        </div>
         <!--
         Aquí acaba la parte predefinida del header que se repite
         -->
         <h1>Sesiones</h1>
-        <input type="button" value="Añadir una sesion" onClick=" window.location.href='nuevaSesion.jsp' ">
-        <% 
-        bd.abrirConexion();
-        ArrayList<Sesion> sesiones = bd.getSesiones();
-        for (int i = 0; i < sesiones.size(); i++)
-        {
+        <input type="button" value="Añadir una sesion" onClick=" window.location.href = 'nuevaSesion.jsp'">
+        <%
+            bd.abrirConexion();
+            ArrayList<Sesion> sesiones = bd.getSesiones();
+            for (int i = 0; i < sesiones.size(); i++) {
         %>
         <form action="/PracticaFinalWeb/modificarSesionServlet">
             <br /><label>Id sesion: </label><br><input id="nombre" type="text" value="<%=sesiones.get(i).getIdSesion()%>"name="nombre" autofocus required readonly/>
@@ -104,32 +108,32 @@
             <input class="boton" type="submit" value="Eliminar">
         </form>
         <%}%>
-                <!--
-        Esta es la parte predefinida del footer que se repite
+        <!--
+Esta es la parte predefinida del footer que se repite
         -->
-	<br><br/>
-	<div class="vacio">
-	</div>
-		<div class="containerFooter">
-			<h3>Aviso Legal</h3>
-			<br><br/>
-			<div class="footer">
-				<p>Estás en el sitio web de Chinchón Multicines Madrid. Aquí puedes acceder al aviso legal. © 1997 AWESOME MULTICINES</p><br></br>
-			</div>
-		</div>
-		
-		<div class="containerRestFooter">
-			<h3>Aviso Sobre Cookies</h3>
-			<br><br/>
-			<div class="footer">
-				<p>Cuando visite nuestra página, podemos enviar a su computadora una o más cookies, un pequeño archivo de texto que contiene una cadena de caracteres alfanuméricos, que identifica de forma exclusiva su navegador y le permite conectarse más rápido y mejorar su navegación a través del sitio. Una cookie no recopila información personal sobre usted. Este sitio utiliza cookies de sesión y cookies persistentes. Una cookie persistente permanece en su disco duro después de cerrar su navegador.</p><br></br>
-			</div>
-		</div>
-		
-		<div class="containerRightFooter">
-			<div class="footer">
-				<img src="style/escudo.png" alt="" class="unstyled">
-			</div>
-		</div>
+        <br><br/>
+        <div class="vacio">
+        </div>
+        <div class="containerFooter">
+            <h3>Aviso Legal</h3>
+            <br><br/>
+            <div class="footer">
+                <p>Estás en el sitio web de Chinchón Multicines Madrid. Aquí puedes acceder al aviso legal. © 1997 AWESOME MULTICINES</p><br></br>
+            </div>
+        </div>
+
+        <div class="containerRestFooter">
+            <h3>Aviso Sobre Cookies</h3>
+            <br><br/>
+            <div class="footer">
+                <p>Cuando visite nuestra página, podemos enviar a su computadora una o más cookies, un pequeño archivo de texto que contiene una cadena de caracteres alfanuméricos, que identifica de forma exclusiva su navegador y le permite conectarse más rápido y mejorar su navegación a través del sitio. Una cookie no recopila información personal sobre usted. Este sitio utiliza cookies de sesión y cookies persistentes. Una cookie persistente permanece en su disco duro después de cerrar su navegador.</p><br></br>
+            </div>
+        </div>
+
+        <div class="containerRightFooter">
+            <div class="footer">
+                <img src="style/escudo.png" alt="" class="unstyled">
+            </div>
+        </div>
     </body>
 </html>

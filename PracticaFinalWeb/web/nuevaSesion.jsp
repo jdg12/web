@@ -17,7 +17,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="style/style.css">
     </head>
     <body>
-        <%
+         <%
             modeloDatos bd = new modeloDatos();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
@@ -33,10 +33,15 @@ and open the template in the editor.
             bd.abrirConexion();
             Usuario usuarioActual = bd.getUsuario(idUsuario);
 
-            if (usuarioActual == null || !usuarioActual.getIdUsuario().equals("admin")) {
+            if (usuarioActual == null) {
+                usuarioActual = new Usuario();
+                usuarioActual.setIdUsuario("visitante");
+            }
+
+            if (!usuarioActual.getIdUsuario().equals("admin")) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Tiene que ser el administrador');");
-                out.println("location='acceso.html';");
+                out.println("location='acceso.jsp';");
                 out.println("</script>");
             }
         %>
