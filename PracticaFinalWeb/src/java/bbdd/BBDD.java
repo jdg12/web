@@ -15,6 +15,7 @@ interface BBDD {
     public boolean estaUsuario(String idUsuario);
     public boolean contrasenaCorrecta(String idUsuario, String contrasena);
     public Usuario getUsuario(String idUsuario);
+    public ArrayList<Usuario> getUsuarios();
     public void guardarUsuario(Usuario usuario);
     public ArrayList<Reserva> getReservas(String idUsuario);
     public Sesion getSesion(String idSesion);
@@ -56,4 +57,5 @@ interface BBDD {
     public void anadirSesion(Sesion sesion);
     public void eliminarEntradasSesion(String idSesion);
     public void eliminarReservasSesion(String idSesion);
+    public ArrayList<Entrada> getEntradasPelicula(String idPelicula);
 }

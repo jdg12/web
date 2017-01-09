@@ -87,6 +87,32 @@ public class modeloDatos implements BBDD {
         }
         return usuario;
     }
+    
+    @Override
+    public ArrayList<Usuario> getUsuarios(){
+         ArrayList<Usuario> usuarios = new ArrayList<>();
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM usuario");
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setIdUsuario(rs.getString(1));
+                usuario.setNombre(rs.getString(2));
+                usuario.setApellidos(rs.getString(3));
+                usuario.setDireccion(rs.getString(4));
+                usuario.setCorreo(rs.getString(5));
+                usuario.setContrasena(rs.getString(6));
+                usuario.setCuenta(rs.getString(7));
+                
+                usuarios.add(usuario);
+            }
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("Error al obtener los usuarios: " + e.getMessage());
+        }
+        return usuarios;
+     }
 
     @Override
     public void guardarUsuario(Usuario usuario) {
@@ -320,12 +346,13 @@ public class modeloDatos implements BBDD {
                 peliculas.add(pelicula);
             }
             rs.close();
+            set.close();
         } catch (Exception e) {
             System.out.println("Error al obtener las peliculas: " + e.getMessage());
         }
         return peliculas;
     }
-
+    
     @Override
     public Pelicula getPelicula(String idPelicula) {
         Pelicula pelicula = new Pelicula();
@@ -452,6 +479,45 @@ public class modeloDatos implements BBDD {
         } catch (Exception e) {
             System.out.println("Error al modificar la pelicula " + pelicula.getNombre() + " ," + e.getMessage());
         }
+    }
+    @Override
+    public ArrayList<Entrada> getEntradasPelicula(String idPelicula) {
+        ArrayList<Entrada> entradas = new ArrayList<>();
+            ResultSet rs;
+        try {
+            
+            set = con.createStatement();
+            rs=set.executeQuery("SELECT * FROM ENTRADA"
+                    + " WHERE IDSESION IN (SELECT IDSESION FROM SESION WHERE IDPELICULA = '" + idPelicula
+                    + "')");
+            while (rs.next()) {
+                String idEntrada = rs.getString(1);
+                String idSesion = rs.getString(2);
+                int fila = Integer.valueOf(rs.getString(3));
+                int columna = Integer.valueOf(rs.getString(4));
+                double precio = Double.parseDouble(rs.getString(6));
+                boolean vendida = Boolean.valueOf(rs.getString(7));
+                String tipo = this.getTipoEntrada(idEntrada);
+                Entrada entrada;
+                if (tipo.equals("reducida")) {
+                    entrada = new EntradaReducida();
+                } else {
+                    entrada = new EntradaNormal();
+                }
+                entrada.setId(idEntrada);
+                entrada.setSesion(this.getSesion(idSesion));
+                entrada.setFila(fila);
+                entrada.setColumna(columna);
+                entrada.setPrecio(precio);
+                entrada.setVendida(vendida);
+                entradas.add(entrada);
+            }
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No ha sido posible eliminar las entradas de la pelicula: " + e.getMessage());
+        }
+        return entradas;
     }
 
     @Override

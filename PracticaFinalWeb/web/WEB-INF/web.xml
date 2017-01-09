@@ -76,6 +76,14 @@
         <servlet-name>SalirServlet</servlet-name>
         <servlet-class>servlet.SalirServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>informeServlet</servlet-name>
+        <servlet-class>servlet.informeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>nuevaPeliServlet</servlet-name>
+        <servlet-class>servlet.nuevaPeliServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>pruebaServlet</servlet-name>
         <url-pattern>/pruebaServlet</url-pattern>
@@ -151,6 +159,14 @@
     <servlet-mapping>
         <servlet-name>SalirServlet</servlet-name>
         <url-pattern>/SalirServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>informeServlet</servlet-name>
+        <url-pattern>/informeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>nuevaPeliServlet</servlet-name>
+        <url-pattern>/nuevaPeliServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
