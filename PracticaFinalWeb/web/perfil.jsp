@@ -38,13 +38,17 @@
 <!--
         Esta es la parte predefinida del header que se repite
         -->
-        <ul class="menu">
-			<li><img src="style/chinchon.png" alt="" class="unstyled"></li>
-            <li><a href="index.html">Inicio</a></li>
+       <ul class="menu">
+            <li><img src="style/chinchon.png" alt="" class="unstyled"></li>
+            <li><a href="index.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
-            <li><a href="acceso.html">Acceder</a></li>
+                <%if (usuarioActual == null || usuarioActual.getIdUsuario().equals("visitante")) {%>
+            <li><a href="acceso.jsp">Acceder</a></li>
             <li><a href="registro.html">Registro</a></li>
+                <%} else {%>
             <li><a href="perfil.jsp">Mi perfil</a></li>
+            <li><a href="/PracticaFinalWeb/SalirServlet">Salir</a></li>
+                <%}%>
         </ul>
 		<br><br/>
 		<div>

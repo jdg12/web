@@ -17,16 +17,43 @@ and open the template in the editor.
         <link rel="stylesheet" href="style/style.css">
     </head>
     <body>
+        <%
+            modeloDatos bd = new modeloDatos();
+            Cookie[] cookies = request.getCookies();
+            String idUsuario = "";
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    Cookie cookie = cookies[i];
+                    String nombre = cookie.getName();
+                    if (nombre.equals("idUsuario")) {
+                        idUsuario = cookie.getValue();
+                    }
+                }
+            }
+            bd.abrirConexion();
+            Usuario usuarioActual = bd.getUsuario(idUsuario);
+
+            if (usuarioActual == null || !usuarioActual.getIdUsuario().equals("admin")) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Tiene que ser el administrador');");
+                out.println("location='acceso.html';");
+                out.println("</script>");
+            }
+        %>
         <!--
         Esta es la parte predefinida del header que se repite
         -->
         <ul class="menu">
-			<li><img src="style/chinchon.png" alt="" class="unstyled"></li>
-            <li><a href="index.html">Inicio</a></li>
+            <li><img src="style/chinchon.png" alt="" class="unstyled"></li>
+            <li><a href="index.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
-            <li><a href="acceso.html">Acceder</a></li>
+                <%if (usuarioActual == null || usuarioActual.getIdUsuario().equals("visitante")) {%>
+            <li><a href="acceso.jsp">Acceder</a></li>
             <li><a href="registro.html">Registro</a></li>
+                <%} else {%>
             <li><a href="perfil.jsp">Mi perfil</a></li>
+            <li><a href="/PracticaFinalWeb/SalirServlet">Salir</a></li>
+                <%}%>
         </ul>
 		<br><br/>
 		<div>
@@ -44,7 +71,7 @@ and open the template in the editor.
 		document.getElementById("date").innerHTML = fecha;
 	</script>
 	<br><br/>
-	<a class="user">Bienvenido, Yisus</a>  <!-- AQUÍ VA EL MÉTODO DE COGER EL USUARIO-->
+	<a class="user">Bienvenido, admin</a>  <!-- AQUÍ VA EL MÉTODO DE COGER EL USUARIO-->
 	</div>
 	</div>
                 	

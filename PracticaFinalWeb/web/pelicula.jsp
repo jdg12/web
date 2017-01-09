@@ -29,7 +29,6 @@
                     String nombre = cookie.getName();
                     if (nombre.equals("idUsuario")) {
                         idUsuario = cookie.getValue();
-                        System.out.println("Id: "+idUsuario);
                     }
                 }
             }
@@ -38,7 +37,6 @@
             bd.abrirConexion();
             //Obtenemos datos como el usuario y la pelicula a mostrar
             if (usuario.getIdUsuario() == null) {
-                System.out.println("Estoy aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
                 usuario = new Usuario();
                 usuario.setNombre("visitante");
                 usuario.setIdUsuario("visitante");
@@ -50,12 +48,16 @@
         Esta es la parte predefinida del header que se repite
         -->
         <ul class="menu">
-			<li><img src="style/chinchon.png" alt="" class="unstyled"></li>
-            <li><a href="index.html">Inicio</a></li>
+            <li><img src="style/chinchon.png" alt="" class="unstyled"></li>
+            <li><a href="index.jsp">Inicio</a></li>
             <li><a href="cartelera.jsp">Cartelera</a></li>
-            <li><a href="acceso.html">Acceder</a></li>
+                <%if (usuario == null || usuario.getIdUsuario().equals("visitante")) {%>
+            <li><a href="acceso.jsp">Acceder</a></li>
             <li><a href="registro.html">Registro</a></li>
+                <%} else {%>
             <li><a href="perfil.jsp">Mi perfil</a></li>
+            <li><a href="/PracticaFinalWeb/SalirServlet">Salir</a></li>
+                <%}%>
         </ul>
 		<br><br/>
 		<div>
@@ -73,7 +75,7 @@
 		document.getElementById("date").innerHTML = fecha;
 	</script>
 	<br><br/>
-	<a class="user">Bienvenido, Yisus</a>  <!-- AQUÍ VA EL MÉTODO DE COGER EL USUARIO-->
+	<a class="user">Bienvenido, <%=usuario.getIdUsuario()%></a>  <!-- AQUÍ VA EL MÉTODO DE COGER EL USUARIO-->
 	</div>
 	</div>
                 	
