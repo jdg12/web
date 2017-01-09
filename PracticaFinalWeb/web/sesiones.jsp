@@ -15,6 +15,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sesiones</title>
         <link rel="stylesheet" href="style/style.css">
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#formulario").submit(function () {
+                    if ($("#diasemana").val().length > 20) {
+                        alert("El dia de la semana es demasiado largo");
+                        return false;
+                    }
+                    if ($("#hora").val().length > 20) {
+                        alert("La hora es demasiado larga");
+                        return false;
+                    }
+                    if ($("#nombre").val().length > 20) {
+                        alert("El id es demasiado largo");
+                        return false;
+                    }
+                    return true;
+                });
+            });
+
+        </script>
     </head>
     <body>
         <%
@@ -93,7 +114,7 @@
             for (int i = 0; i < sesiones.size(); i++) {
         %>
         <div class="sesion">
-        <form action="/PracticaFinalWeb/modificarSesionServlet">
+        <form action="/PracticaFinalWeb/modificarSesionServlet" id="formulario" name="formulario">
             <br /><label>Id sesion: </label><input id="nombre" type="text" value="<%=sesiones.get(i).getIdSesion()%>"name="nombre" autofocus required readonly/>
             <br /><label>Id pelicula: </label> <input id="pelicula" type="text" name="pelicula" value="<%=sesiones.get(i).getPelicula()%>"autofocus required readonly/>
             <br /><label>Id sala </label> <input id="sala" type="text" name="sala" value="<%=sesiones.get(i).getSala()%>" autofocus required readonly/>

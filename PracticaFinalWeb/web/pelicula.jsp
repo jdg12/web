@@ -17,6 +17,47 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="style/style2.css">
         <title>Película</title>
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#formulario").submit(function () {
+                    if ($("#titulo").val().length > 20) {
+                        alert("El titulo es demasiado largo");
+                        return false;
+                    }
+                    if ($("#sinopsis").val().length > 100) {
+                        alert("La sinopsis es demasiado larga");
+                        return false;
+                    }
+                    if ($("#pagina").val().length > 50) {
+                        alert("La pagina web es demasiado larga");
+                        return false;
+                    }
+                    if ($("#genero").val().length > 20) {
+                        alert("El genero es demasiado largo");
+                        return false;
+                    }
+                    if ($("#nacionalidad").val().length > 20) {
+                        alert("La nacionalidad es demasiado larga");
+                        return false;
+                    }
+                     if ($("#distribuidora").val().length > 20) {
+                        alert("La distirbuidora es demasiado larga");
+                        return false;
+                    }
+                     if ($("#director").val().length > 20) {
+                        alert("El director es demasiado largo");
+                        return false;
+                    }
+                    if ($("#otros").val().length > 20) {
+                        alert("Los otros datos son demasiado largos");
+                        return false;
+                    }
+                    return true;
+                });
+            });
+
+        </script>
     </head>
     <body>
         <%
@@ -149,11 +190,10 @@
                 <br/><label>Genero: </label><br><input id="genero" type="text" name="genero" autofocus required value="<%=pelicula.getGenero()%>"></input>
                 <br/><label>Nacionalidad: </label><br><input id="nacionalidad" type="text" name="nacionalidad" autofocus required value="<%=pelicula.getNacionalidad()%>"></input>
                 <br/><label>Duracion: </label><br><input id="duracion" type="number" name="duracion" autofocus required value="<%=pelicula.getDuracion()%>"></input>
-                <br/><label>Titulo: </label><br><input id="titulo" type="text" name="titulo" autofocus required value="<%=pelicula.getTitulo()%>"></input>
-                <br/><label>Año: </label><br><input id="ano" type="number" name="ano" autofocus required value="<%=pelicula.getAno()%>"></input>
+                <br/><label>Año: </label><br><input id="ano" type="number" min="1950" max="2020" name="ano" autofocus required value="<%=pelicula.getAno()%>"></input>
                 <br/><label>Distribuidora: </label><br><input id="distribuidora" type="text" name="distribuidora" autofocus required value="<%=pelicula.getDistribuidora()%>"></input>
                 <br/><label>Director: </label><br><input id="director" type="text" name="director" autofocus required value="<%=pelicula.getDirector()%>"></input>
-                <br/><label>Clasificacion: </label><br><input id="clasificacion" type="number" name="clasificacion" autofocus required value="<%=pelicula.getClasificacion()%>"></input>
+                <br/><label>Clasificacion: </label><br><input id="clasificacion" min="0" max="18"type="number" name="clasificacion" autofocus required value="<%=pelicula.getClasificacion()%>"></input>
                 <br/><label>Otros: </label><br><input id="otros" type="text" name="otros" autofocus required value="<%=pelicula.getOtros()%>"></input>
                 <br /><br>
                 <input class="boton" type="submit" value="Modificar">

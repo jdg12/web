@@ -21,7 +21,43 @@ and open the template in the editor.
                 $("#formulario").submit(function () {
 
                     document.getElementById("listaActores").value = actores;
-
+                    if ($("#titulo").val().length > 20) {
+                        alert("El titulo es demasiado largo");
+                        return false;
+                    }
+                    if ($("#sinopsis").val().length > 100) {
+                        alert("La sinopsis es demasiado larga");
+                        return false;
+                    }
+                    if ($("#pagina").val().length > 50) {
+                        alert("La pagina web es demasiado larga");
+                        return false;
+                    }
+                    if ($("#genero").val().length > 20) {
+                        alert("El genero es demasiado largo");
+                        return false;
+                    }
+                    if ($("#nacionalidad").val().length > 20) {
+                        alert("La nacionalidad es demasiado larga");
+                        return false;
+                    }
+                    if ($("#distribuidora").val().length > 20) {
+                        alert("La distirbuidora es demasiado larga");
+                        return false;
+                    }
+                    if ($("#director").val().length > 20) {
+                        alert("El director es demasiado largo");
+                        return false;
+                    }
+                    if ($("#otros").val().length > 20) {
+                        alert("Los otros datos son demasiado largos");
+                        return false;
+                    }
+                    if ($("#nombre").val().length > 20) {
+                        alert("Los otros datos son demasiado largos");
+                        return false;
+                    }
+                    return true;
 
                 });
 
@@ -186,7 +222,7 @@ and open the template in the editor.
                 <label>Nombre: </label><br><input id="nombre" type="text" name="nombre" autofocus required />
                 <br /><label>Sinopsis</label><br><textarea id="sinopsis" name="sinopsis" rows="6" cols="33" autofocus required></textarea>
                 <br />
-                <label>Web oficial: </label><br><input id="pagina" type="url" name="pagina" autofocus required />
+                <label>Web oficial: </label><br><input id="pagina" type="text" name="pagina" autofocus required />
                 <br/>
                 <label>Titulo Original: </label><br><input id="titulo" type="text" name="titulo" autofocus required />
                 <br />

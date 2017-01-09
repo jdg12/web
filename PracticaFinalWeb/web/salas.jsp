@@ -15,6 +15,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="style/style.css">
         <title>Salas</title>
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#formulario").submit(function () {
+                    if ($("#nombre").val().length > 20) {
+                        alert("El nombre es demasiado largo");
+                        return false;
+                    }
+                    return true;
+                });
+            });
+
+        </script>
     </head>
     <body>
   <%
@@ -93,10 +106,10 @@
             ArrayList<Sala> salas = bd.getSalas();
             for (int i = 0; i < salas.size(); i++) {
         %>
-        <form action="/PracticaFinalWeb/modificarSala">
+        <form action="/PracticaFinalWeb/modificarSala" name="formulario">
             <br /><label>Nombre: </label><br><input id="nombre" type="text" name="nombre" value="<%=salas.get(i).getNombre()%>"autofocus required readonly/>
-            <br /><label>Filas: </label><br><input id="filas" type="number" name="filas" value="<%=salas.get(i).getFilas()%>" autofocus required/>
-            <br /><label>Columnas: </label><br><input id="columnas" type="number" name="columnas" value="<%=salas.get(i).getColumnas()%>" autofocus required/>
+            <br /><label>Filas: </label><br><input id="filas" type="number" min="1" max="20" name="filas" value="<%=salas.get(i).getFilas()%>" autofocus required/>
+            <br /><label>Columnas: </label><br><input id="columnas" type="number" min="1" max="20" name="columnas" value="<%=salas.get(i).getColumnas()%>" autofocus required/>
             <input type="hidden" id="thisField" name="inputName" value="modificar">
             <br/><input class="boton" type="submit" value="Modificar">
         </form>
