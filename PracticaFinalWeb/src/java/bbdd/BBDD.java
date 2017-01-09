@@ -58,4 +58,6 @@ interface BBDD {
     public void eliminarEntradasSesion(String idSesion);
     public void eliminarReservasSesion(String idSesion);
     public ArrayList<Entrada> getEntradasPelicula(String idPelicula);
+    public void relacionActorPelicula(Pelicula pelicula, Actor actor);
+    public boolean estaRelacionActor(Pelicula pelicula, Actor actor);
 }

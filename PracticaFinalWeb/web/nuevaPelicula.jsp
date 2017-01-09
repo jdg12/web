@@ -103,16 +103,12 @@ and open the template in the editor.
                     if (inpObj.checkValidity() == false) {
                         document.getElementById("demo").innerHTML = inpObj.validationMessage;
                         return false;
-                    } else {
-                        document.getElementById("demo").innerHTML = "Input OK";
-                    }
+                    } 
                     var inpObj = document.getElementById("apellidoA");
                     if (inpObj.checkValidity() == false) {
                         document.getElementById("demo2").innerHTML = inpObj.validationMessage;
                         return false;
-                    } else {
-                        document.getElementById("demo2").innerHTML = "Input OK";
-                    }
+                    } 
                     anadirActor();
                 });
 
@@ -192,8 +188,6 @@ and open the template in the editor.
         <div>
 
             <div style="height: 200px; width: 100%;">
-
-
                 <a class="user" id="date"></a> 
                 <script>
                     var date = new Date();
@@ -249,12 +243,12 @@ and open the template in the editor.
                 <label>Actores </label><br>
                 <select id="seleccion" name="seleccion" size=7 style="min-width: 150px;"></select><br>
                 <label>Nombre: </label><br>
-                <input id="nombreA" type="text" name="nombreA" pattern="[A-Za-z][ A-Za-z]*" autofocus />
+                <input id="nombreA" type="text" name="nombreA"  autofocus />
                 <p id=demo></p>
                 <br />
                 <label>Apellido: </label><br>
 
-                <input id="apellidoA" type="text" name="apellidoA" pattern="[A-Za-z][ A-Za-z]*" autofocus />
+                <input id="apellidoA" type="text" name="apellidoA"  autofocus />
                 <p id=demo2></p>
                 <br/>
                 <input id="listaActores" name="listaActores" type="text" hidden/>

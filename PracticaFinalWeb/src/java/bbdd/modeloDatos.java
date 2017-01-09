@@ -87,10 +87,10 @@ public class modeloDatos implements BBDD {
         }
         return usuario;
     }
-    
+
     @Override
-    public ArrayList<Usuario> getUsuarios(){
-         ArrayList<Usuario> usuarios = new ArrayList<>();
+    public ArrayList<Usuario> getUsuarios() {
+        ArrayList<Usuario> usuarios = new ArrayList<>();
         try {
             set = con.createStatement();
             rs = set.executeQuery("SELECT * FROM usuario");
@@ -103,7 +103,7 @@ public class modeloDatos implements BBDD {
                 usuario.setCorreo(rs.getString(5));
                 usuario.setContrasena(rs.getString(6));
                 usuario.setCuenta(rs.getString(7));
-                
+
                 usuarios.add(usuario);
             }
             rs.close();
@@ -112,7 +112,7 @@ public class modeloDatos implements BBDD {
             System.out.println("Error al obtener los usuarios: " + e.getMessage());
         }
         return usuarios;
-     }
+    }
 
     @Override
     public void guardarUsuario(Usuario usuario) {
@@ -352,7 +352,7 @@ public class modeloDatos implements BBDD {
         }
         return peliculas;
     }
-    
+
     @Override
     public Pelicula getPelicula(String idPelicula) {
         Pelicula pelicula = new Pelicula();
@@ -480,14 +480,15 @@ public class modeloDatos implements BBDD {
             System.out.println("Error al modificar la pelicula " + pelicula.getNombre() + " ," + e.getMessage());
         }
     }
+
     @Override
     public ArrayList<Entrada> getEntradasPelicula(String idPelicula) {
         ArrayList<Entrada> entradas = new ArrayList<>();
-            ResultSet rs;
+        ResultSet rs;
         try {
-            
+
             set = con.createStatement();
-            rs=set.executeQuery("SELECT * FROM ENTRADA"
+            rs = set.executeQuery("SELECT * FROM ENTRADA"
                     + " WHERE IDSESION IN (SELECT IDSESION FROM SESION WHERE IDPELICULA = '" + idPelicula
                     + "')");
             while (rs.next()) {
@@ -926,7 +927,7 @@ public class modeloDatos implements BBDD {
     public void modificarSesion(Sesion sesion) {
         try {
             set = con.createStatement();
-            System.out.println("Guardo: "+sesion.toString());
+            System.out.println("Guardo: " + sesion.toString());
             set.executeUpdate("UPDATE SESION "
                     + "SET IDSESION='" + sesion.getIdSesion()
                     + "',IDPELICULA='" + sesion.getPelicula()
@@ -941,7 +942,7 @@ public class modeloDatos implements BBDD {
             rs.close();
             set.close();
         } catch (Exception e) {
-            System.out.println("No ha sido posible modificar la sesion: "+e.getMessage());
+            System.out.println("No ha sido posible modificar la sesion: " + e.getMessage());
         }
     }
 
@@ -985,13 +986,48 @@ public class modeloDatos implements BBDD {
         try {
             set = con.createStatement();
             set.executeUpdate("DELETE FROM RESERVA"
-                    + " WHERE IDENTRADA IN (SELECT IDENTRADA FROM ENTRADA WHERE IDSESION = '"+idSesion
+                    + " WHERE IDENTRADA IN (SELECT IDENTRADA FROM ENTRADA WHERE IDSESION = '" + idSesion
                     + "')");
             rs.close();
             set.close();
         } catch (Exception e) {
             System.out.println("No ha sido posible eliminar las reservas de esa sesion" + e.getMessage());
         }
+    }
+
+    @Override
+    public void relacionActorPelicula(Pelicula pelicula, Actor actor) {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("INSERT INTO RELACTORPEL (NOMBREPELICULA, NOMBREACTOR, APELLIDOS) VALUES ('" + pelicula.getNombre()
+                    + "', '" + actor.getNombre()
+                    + "', '" + actor.getApellidos()
+                    + "')");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            System.out.println("No se ha guardado la relación entre la pelicula y el actor" + e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean estaRelacionActor(Pelicula pelicula, Actor actor) {
+         try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM RELACTORPEL");
+            while (rs.next()) {
+                if (rs.getString(1).equals(pelicula.getNombre()) && 
+                        rs.getString(2).equals(actor.getNombre()) && 
+                        rs.getString(3).equals(actor.getApellidos())) {
+                    return true;
+                }
+            }
+            rs.close();
+            return false;
+        } catch (Exception e) {
+            System.out.println("Error en la consulta de la relación: " + e.getMessage());
+        }
+        return false;
     }
 
 }

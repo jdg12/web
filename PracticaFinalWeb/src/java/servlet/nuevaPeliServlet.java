@@ -8,6 +8,7 @@ package servlet;
 import bbdd.Actor;
 import bbdd.ConstructorPelicula;
 import bbdd.Pelicula;
+import bbdd.Pelicula0Builder;
 import bbdd.Pelicula13Builder;
 import bbdd.Pelicula18Builder;
 import bbdd.Pelicula7Builder;
@@ -44,16 +45,20 @@ public class nuevaPeliServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession sesion = request.getSession();
         try {
-            
+
             ConstructorPelicula cons = new ConstructorPelicula();
+            Pelicula0Builder b0 = new Pelicula0Builder();
             Pelicula18Builder b1 = new Pelicula18Builder();
             Pelicula13Builder b2 = new Pelicula13Builder();
             Pelicula7Builder b3 = new Pelicula7Builder();
             Pelicula peli;
             //elegimos el Builder adecuado
             int clasi = Integer.parseInt(request.getParameter("clasificacion"));
-            
+
             switch (clasi) {
+                case 0:
+                    cons.setPeliculaBuilder(b0);
+                    break;
                 case 7:
                     cons.setPeliculaBuilder(b3);
                     break;
@@ -78,22 +83,22 @@ public class nuevaPeliServlet extends HttpServlet {
             String listaActores = request.getParameter("listaActores");
 
             //sacamos los actores del String
-            
             Actor miActor;
             ArrayList<Actor> arrayLActores = new ArrayList<>();
             String nombreA = "", apellidoA = "";
             String[] actores, actor;
-            if(!listaActores.equals("")){
-            actores = listaActores.split(";");
-            for (String a : actores) {
-                actor = a.split(",");
-                nombreA = actor[0];
-                apellidoA = actor[1];
-                miActor = new Actor(nombreA, apellidoA);
-                //System.out.println(miActor.toString());
-                arrayLActores.add(miActor);
+            if (!listaActores.equals("")) {
+                actores = listaActores.split(";");
+                for (String a : actores) {
+                    actor = a.split(",");
+                    nombreA = actor[0];
+                    apellidoA = actor[1];
+                    miActor = new Actor(nombreA, apellidoA);
+                    //System.out.println(miActor.toString());
+                    arrayLActores.add(miActor);
+                }
             }
-            }
+            System.out.println("ArrayActores: " + arrayLActores);
             //Creamos la pelicula
             cons.crearPelicula(nombre, sinopsis, pagina, titulo, genero, nacionalidad, duracion, ano, distribibuidora, director, arrayLActores, otros);
             peli = cons.getPelicula();
@@ -101,20 +106,20 @@ public class nuevaPeliServlet extends HttpServlet {
             modeloDatos bd = new modeloDatos();
             bd.abrirConexion();
             //Si ya existe esa pelicula, se le indica al usuario
-            if(bd.estaPelicula(nombre)){
+            if (bd.estaPelicula(nombre)) {
                 try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Ya existe la película</title>");                
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1> Ya hay una pelicula en el sistema con el nombre: "+nombre+"</h1>");
-                out.println("Intenta insertar otra o modificar la existente" );
-                out.println("</body>");
-                out.println("</html>");
-            }
+                    /* TODO output your page here. You may use following sample code. */
+                    out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Ya existe la película</title>");
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<h1> Ya hay una pelicula en el sistema con el nombre: " + nombre + "</h1>");
+                    out.println("Intenta insertar otra o modificar la existente");
+                    out.println("</body>");
+                    out.println("</html>");
+                }
             }
             bd.guardarPelicula(peli);
             //Se añaden los actores
@@ -122,17 +127,21 @@ public class nuevaPeliServlet extends HttpServlet {
             Actor a;
             while (it.hasNext()) {
                 a = (Actor) it.next();
-                if(!bd.estaActor(a.getNombre(), a.getApellidos()))
+                if (!bd.estaActor(a.getNombre(), a.getApellidos())) {
                     bd.guardarActor(a, nombre);
+                }
+                if (!bd.estaRelacionActor(peli, a)) {
+                    bd.relacionActorPelicula(peli, a);
+                }
             }
-            
+
             sesion.setAttribute("peliculaId", nombre);
             response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/pelicula.jsp"));
-            
+
         } catch (Exception e) {
             System.out.println("ERROR: " + e.toString());
             e.printStackTrace();
-            
+
         }
     }
 
