@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style/style2.css">
         <title>Cartelera</title>
     </head>
     <body>
