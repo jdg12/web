@@ -301,3 +301,19 @@ label{
 .sesion input{
     float: right;
 }
+
+table td{
+    background: #E6E6E6;
+}
+table th{
+    background: #984B43;
+}
+
+.opciones{
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.opcion form{
+    float: right;
+}

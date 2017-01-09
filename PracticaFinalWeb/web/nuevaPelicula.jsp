@@ -230,7 +230,7 @@ and open the template in the editor.
                 <br />
                 <label>Nacionalidad: </label><br><input id="nacionalidad" type="text" name="nacionalidad" autofocus required/>
                 <br />
-                <label>Duracion (minutos): </label><br><input id="duracion" type="number" name="duracion" autofocus required />
+                <label>Duracion (minutos): </label><br><input id="duracion" type="number" min="30" max="300" name="duracion" autofocus required />
                 <br />
                 <label>Año: </label><br><input id="ano" type="number" name="ano" min="1887" max="2017" autofocus required />
                 <br />
@@ -239,7 +239,8 @@ and open the template in the editor.
                 <label>Director: </label><br><input id="director" type="text" name="director" autofocus required />
                 <br />
                 <label>Clasificacion por Edad: </label><br>
-                <input type="radio" id="clasificacion" name="clasificacion" value="7" checked><label>7</label>
+                <input type="radio" id="clasificacion" name="clasificacion" value="0" checked><label>0</label>
+                <input type="radio" id="clasificacion" name="clasificacion" value="7"><label>7</label>
                 <input type="radio" id="clasificacion" name="clasificacion" value="13"><label>13</label>
                 <input type="radio" id="clasificacion" name="clasificacion" value="18"><label>18</label>
                 <br>
