@@ -36,9 +36,12 @@
             Usuario usuarioActual = bd.getUsuario(idUsuario);
 
             //Comprobamos el usuario
-            if (usuarioActual == null) {
+            if (usuarioActual.getIdUsuario() == null) {
+                usuarioActual.setIdUsuario("Visitante");
+            }
+            if (usuarioActual.getIdUsuario().equals("Visitante")) {
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('Registrese primero');");
+                out.println("alert('Tiene que ser estar registrado');");
                 out.println("location='acceso.jsp';");
                 out.println("</script>");
             }
@@ -47,6 +50,12 @@
             //usuario
             String idSesion = (String) session.getAttribute("idSesion");
             Sala sala = (Sala) session.getAttribute("sala");
+            if (sala == null)
+            {
+                sala = new Sala();
+                sala.setFilas(0);
+                sala.setColumnas(0);
+            }
         %>
         <!--
                 Esta es la parte predefinida del header que se repite

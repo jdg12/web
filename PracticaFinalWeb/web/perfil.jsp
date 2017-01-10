@@ -34,6 +34,17 @@
             }
             bd.abrirConexion();
             Usuario usuarioActual = bd.getUsuario(idUsuario);
+            if (usuarioActual.getIdUsuario() == null)
+            {
+                usuarioActual.setIdUsuario("Visitante");
+            }
+            if (usuarioActual.getIdUsuario().equals("Visitante"))
+            {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Tiene que ser estar registrado');");
+                out.println("location='acceso.jsp';");
+                out.println("</script>");
+            }
             bd.abrirConexion();%>
 <!--
         Esta es la parte predefinida del header que se repite
