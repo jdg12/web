@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlet;
 
 import java.io.IOException;
@@ -42,6 +38,8 @@ public class SalirServlet extends HttpServlet {
                 Cookie cookie = cookies[i];
                 String nombre = cookie.getName();
                 if (nombre.equals("idUsuario")) {
+                    //Poniendo la duración a 0 borramos el dato de la cookie
+                    //Por lo tanto el usuario ya no existe en la bbdd
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
                 }

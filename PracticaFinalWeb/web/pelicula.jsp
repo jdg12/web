@@ -106,10 +106,7 @@
         </ul>
         <br><br/>
         <div>
-
             <div style="height: 200px; width: 100%;">
-
-
                 <a class="user" id="date"></a> 
                 <script>
                     var date = new Date();
@@ -130,12 +127,16 @@
         Aquí acaba la parte predefinida del header que se repite
         -->
 
+        <!--MOSTRAREMOS DE DOS MANERAS LOS DATOS->
+        <!--En el caso de ser el admin además podremos modificar y eliminas la pelicula-->
         <%if (!usuario.getIdUsuario().equals("admin")) {%>
         <h1><%=pelicula.getNombre()%></h1>
+        <!--mostramos el boton de reservar la pelicula-->
         <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
             <input type="hidden" id="thisField" name="inputName" value="<%= pelicula.getNombre()%>">
             <input class="boton" type="submit" value="Reservar entrada">
         </form>
+         <!--Mostramos los datos de la pelicula-->
         <div class="datosPelicula">
             <h2>Sinopsis</h2>
             <p><%=pelicula.getSinopsis()%></p>
@@ -157,6 +158,7 @@
             <p>Año: <%=pelicula.getAno()%></p>
             <p>Otros: <%=pelicula.getOtros()%></p>
         </div>
+        <!--Mostramos los comentarios-->
         <h2>Comentarios</h2>
         <% ArrayList<Comentario> comentarios = bd.getComentarios(pelicula.getNombre());
             for (int k = 0; k < comentarios.size(); k++) {%>
@@ -169,6 +171,7 @@
         <% if (usuario.getIdUsuario().equals("visitante")) {%>
         <h2>Registrse para dejar un comentario</h2>
         <%} else {%>
+        <!--Cuadro de texto para dejar un comentario-->
         <form action="/PracticaFinalWeb/dejarComentario" class="dejarComentario" id="formulario" method="POST">
             <p>
                 <label>Comentario: </label><br><input id="comentario" type="text" name="comentario" autofocus required></input>
@@ -180,9 +183,8 @@
             </p>
         </form>
         <%}%>
-        <!--Ahora mostramos los comentarios y dejamos un cuadro de texto para dejar uno nuevo-->
-
         <%} else {%>
+        <!--Si somo el administrador los datos se mostrarán con textfields-->
         <h1><%=pelicula.getNombre()%></h1>
         <h2>Datos pelicula</h2>
         <form action="/PracticaFinalWeb/modificarPelicula" class="pelicula" id="formulario" method="POST">
@@ -212,6 +214,8 @@
             <input class="boton" type="submit" value="Eliminar">
         </form>
         <%}%>
+        
+        
         <!--
 Esta es la parte predefinida del footer que se repite
         -->

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlet;
 
 
@@ -38,8 +34,6 @@ public class informeServlet extends HttpServlet {
         String opcion = request.getParameter("informe");
         //Guardamos el id y se lo pasamos al jsp para que muestre los datos
         sesion.setAttribute("opcion", opcion);
-       
-        
         response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/informes.jsp"));
     }
 

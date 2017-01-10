@@ -18,6 +18,7 @@
     </head>
     <body>
         <%
+            //Obtenemos el usuario
             modeloDatos bd = new modeloDatos();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
@@ -31,6 +32,7 @@
                 }
             }
             bd.abrirConexion();
+            //Comprobamos el usuario
             Usuario usuario = bd.getUsuario(idUsuario);
             if (usuario.getIdUsuario() == null) {
                 usuario = new Usuario();
@@ -77,11 +79,14 @@
         -->
         <h1>Cartelera</h1>
         <h2>Películas</h2>
+        <!--Si el usuario es el admin mostramos el boton para añadir una pelicula-->
         <% if (usuario.getNombre().equals("admin")) {%>
         <input class="botonAnadirPelicula" type="button" value="Nueva película" onClick="window.location.href = 'nuevaPelicula.jsp'">
         <%}%>
         <%  ArrayList<Pelicula> peliculas = bd.getPeliculas();
             for (int i = 0; i < peliculas.size(); i++) {%>
+        
+            <!--Campos a mostrar en cada pelicula-->
         <div class="pelicula">
             <h1>Titulo: <%=peliculas.get(i).getNombre()%></h1>
             <div class="descripcion">
@@ -95,6 +100,8 @@
                 <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">
                 <input class="boton" type="submit" value="Ver mas">
             </form>
+            
+            <!--Si el usuario es el admin además mostramos los campos de comprar y eliminar la entrada-->
             <% if (usuario.getNombre().equals("admin")) {%>
             <form action="/PracticaFinalWeb/borrarPelicula" class="pelicula" id="formulario" method="POST">
                 <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">
@@ -105,6 +112,7 @@
                 <input class="boton" type="submit" value="Comprar entrada">
             </form>
             <%} else {%>
+            <!--Si no solo mostramos el de reservar entrada-->
             <form action="tipo.jsp" class="pelicula" id="formulario" method="POST">
                 <input type="hidden" id="thisField" name="inputName" value="<%= peliculas.get(i).getNombre()%>">
                 <input class="boton" type="submit" value="Reservar entrada">

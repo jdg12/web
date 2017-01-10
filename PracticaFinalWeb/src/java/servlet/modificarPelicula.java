@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlet;
 
 import bbdd.Pelicula;
 import bbdd.modeloDatos;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +29,7 @@ public class modificarPelicula extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession sesion = request.getSession();
+        //Obtenemos los datos de la pelicula
         String nombre = request.getParameter("idPelicula");
         String sinopsis = request.getParameter("sinopsis");
         String pagina = request.getParameter("pagina");

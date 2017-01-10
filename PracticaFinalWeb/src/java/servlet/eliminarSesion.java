@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlet;
 
 import bbdd.modeloDatos;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +29,9 @@ public class eliminarSesion extends HttpServlet {
         String select = request.getParameter("inputName");
         modeloDatos bd = new modeloDatos();
         bd.abrirConexion();
+        
+        //cuando eliminamos la sesion logicamente tenemos que eliminar las reservas
+        //y las entradas asociadas a esa sesion
         bd.eliminarReservasSesion(select);
         bd.eliminarEntradasSesion(select);
         bd.eliminarSesion(select);

@@ -2,11 +2,7 @@
 <%@page import="bbdd.modeloDatos"%>
 <%@page import="bbdd.modeloDatos"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <title>Login</title>
@@ -16,6 +12,7 @@ and open the template in the editor.
     </head>
     <body>
         <%
+            //Obtenemos el usuario almacenado en la cookie
             modeloDatos bd = new modeloDatos();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
@@ -30,6 +27,8 @@ and open the template in the editor.
             }
             bd.abrirConexion();
             Usuario usuarioActual = bd.getUsuario(idUsuario);
+            
+            //Comprobamos el usuario
             if (usuarioActual.getIdUsuario() == null) {
                 usuarioActual = new Usuario();
                 usuarioActual.setNombre("visitante");
@@ -54,10 +53,7 @@ and open the template in the editor.
         </ul>
         <br><br/>
         <div>
-
             <div style="height: 200px; width: 100%;">
-
-
                 <a class="user" id="date"></a> 
                 <script>
                     var date = new Date();
@@ -72,12 +68,11 @@ and open the template in the editor.
             </div>
         </div>
 
-        <div class="linea">
-        </div>
+        <div class="linea"></div>
         <!--
         Aquí acaba la parte predefinida del header que se repite
         -->
-
+        <!--Formulario para acceder-->
         <h2>Acceder</h2>
         <div class="cuadrado">
             <form action="/PracticaFinalWeb/accesoServlet" class="acceder" id="formulario" method="POST">
@@ -85,7 +80,7 @@ and open the template in the editor.
                     <label>Nombre de usuario: </label><br><input id="idUsuario" type="text" name="idUsuario" autofocus required />
                     <br /><label>Contraseña: </label><br><input id="contrasena" type="password" name="contrasena" required/>
                     <br /><br>
-                    <input class="boton" type="submit" value="Subir">
+                    <input class="boton" type="submit" value="Entrar">
                 </p>
             </form>
         </div>

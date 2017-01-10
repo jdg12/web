@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlet;
 
 import bbdd.Entrada;
@@ -38,6 +34,7 @@ public class comprarServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        //Obtenemos la fila, la columna, la sesion y el usuario
         int fila = Integer.valueOf(request.getParameter("inputName"));
         int columna = Integer.valueOf(request.getParameter("inputName2"));
         HttpSession sesion = request.getSession();
@@ -57,7 +54,6 @@ public class comprarServlet extends HttpServlet {
         }
         bd.abrirConexion();
         Usuario usuario = bd.getUsuario(idUsuario);
-        bd.abrirConexion();
         Sesion sesion2 = bd.getSesion(idSesion);
         String idEntrada = idSesion + "-" + String.valueOf((fila + 1) * columna);
         Entrada entrada;
@@ -74,8 +70,7 @@ public class comprarServlet extends HttpServlet {
         entrada.setFila(fila);
         entrada.setColumna(columna);
         entrada.setVendida(true);
-
-
+        
         //Ahora guardamos la reserva si la habia realizado el usuario
         if (!usuario.getIdUsuario().equals("admin")) {
             entrada.setPrecio(7);

@@ -50,7 +50,8 @@
                 usuarioActual = new Usuario();
                 usuarioActual.setIdUsuario("visitante");
             }
-
+            //Al igual que con las sesiones, salas, añadir sesion y salas, etc...
+            //En el caso de no ser el administrador redirigimos al acceso
             if (!usuarioActual.getIdUsuario().equals("admin")) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Tiene que ser el administrador');");

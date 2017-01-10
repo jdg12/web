@@ -210,6 +210,7 @@ and open the template in the editor.
         <div>
             <h1>Nueva Película</h1>
         </div>
+        <!--Formulario para añadir la película-->
         <div class="cuadrado">
             <form action="/PracticaFinalWeb/nuevaPeliServlet" class="nuevaPeli" id="formulario" method="POST">
 
@@ -247,7 +248,6 @@ and open the template in the editor.
                 <p id=demo></p>
                 <br />
                 <label>Apellido: </label><br>
-
                 <input id="apellidoA" type="text" name="apellidoA"  autofocus />
                 <p id=demo2></p>
                 <br/>

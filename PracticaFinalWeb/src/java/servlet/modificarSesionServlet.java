@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlet;
 
 import bbdd.Sesion;
 import bbdd.modeloDatos;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +27,7 @@ public class modificarSesionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        //Obtenemos los datos
         String idSesion = (String) request.getParameter("nombre");
         String idPelicula = (String) request.getParameter("pelicula");
         String idSala = (String) request.getParameter("sala");
@@ -41,6 +37,7 @@ public class modificarSesionServlet extends HttpServlet {
         String mes = (String) request.getParameter("mes");
         String select = request.getParameter("inputName");
 
+        //Creamos la sesion
         Sesion sesion = new Sesion();
         sesion.setIdSesion(idSesion);
         sesion.setPelicula(idPelicula);
@@ -54,7 +51,6 @@ public class modificarSesionServlet extends HttpServlet {
         bd.abrirConexion();
         //Ahora si es modificar. 
         if (select.equals("anadir")) {
-            System.out.println("Estoy aqui");
             bd.anadirSesion(sesion);
         } else {
             bd.modificarSesion(sesion);

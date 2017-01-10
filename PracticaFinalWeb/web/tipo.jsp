@@ -17,8 +17,8 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#formulario").submit(function () {
-                    if ($("#cuenta").val().length < 16) {
-                        alert("La cuenta bancaria es incorrecta. Cambiela en su perfil");
+                    if ($("#cuenta").val().length < 16 || $("#cuenta").val().length > 16) {
+                        alert("La cuenta bancaria es incorrecta.Tiene que tener una longitud de 16 digitos");
                         location='perfil.jsp';
                         return false;
                     }

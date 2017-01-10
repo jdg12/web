@@ -44,6 +44,8 @@ public class nuevaPeliServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession sesion = request.getSession();
+        
+        //Utilizaremos el patron builder para construir la pelicula
         try {
 
             ConstructorPelicula cons = new ConstructorPelicula();
@@ -54,7 +56,6 @@ public class nuevaPeliServlet extends HttpServlet {
             Pelicula peli;
             //elegimos el Builder adecuado
             int clasi = Integer.parseInt(request.getParameter("clasificacion"));
-
             switch (clasi) {
                 case 0:
                     cons.setPeliculaBuilder(b0);

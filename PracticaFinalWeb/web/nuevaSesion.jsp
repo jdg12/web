@@ -83,10 +83,7 @@ and open the template in the editor.
         </ul>
         <br><br/>
         <div>
-
             <div style="height: 200px; width: 100%;">
-
-
                 <a class="user" id="date"></a> 
                 <script>
                     var date = new Date();
@@ -107,10 +104,12 @@ and open the template in the editor.
         Aquí acaba la parte predefinida del header que se repite
         -->
         <%!
+            //ZONA DE DECLARACION DE FUNCIONES
             modeloDatos bd = new modeloDatos();
             ArrayList<Pelicula> peliculas = bd.getPeliculas();
             ArrayList<Sala> salas = bd.getSalas();
-
+            
+            //Funciones usadas para generar los selects
             private void ponerPeliculas(javax.servlet.jsp.JspWriter out) {
                 try {
                     for (int i = 0; i < peliculas.size(); i++) {
@@ -133,10 +132,12 @@ and open the template in the editor.
             }
         %> 
         <%Usuario usuario = (Usuario) session.getAttribute("usuarioActual");%>
+        <!--Formulario para crear la sesion-->
         <form action="/PracticaFinalWeb/modificarSesionServlet" name="formulario" id="formulario">
             <br /><label>Id sesion: </label><br><input id="nombre" type="text" name="nombre" autofocus required/>
             <br /><label>Id pelicula: </label><br> 
             <select id="pelicula" name="pelicula"> 
+                <!--Ejecutamos la funcion de arriba-->
                 <% ponerPeliculas(out);%> 
             </select> 
             <br /><label>Id sala </label> <br>

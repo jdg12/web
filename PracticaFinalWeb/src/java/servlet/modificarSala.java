@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlet;
 
 import bbdd.Sala;
 import bbdd.modeloDatos;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,15 +27,19 @@ public class modificarSala extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        //Obtenemos los datos
         String nombre = request.getParameter("nombre");
         int filas = Integer.valueOf(request.getParameter("filas"));
         int columnas = Integer.valueOf(request.getParameter("columnas"));
         String select = request.getParameter("inputName");
+        
+        //Creamos la sala
         Sala sala = new Sala();
         sala.setNombre(nombre);
         sala.setFilas(filas);
         sala.setColumnas(columnas);
 
+        //La modificamos o añadimos en la base de datos según lo seleccionado
         modeloDatos bd = new modeloDatos();
         bd.abrirConexion();
         if (select.equals("anadir")) {

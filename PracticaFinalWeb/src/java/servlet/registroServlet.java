@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlet;
 
 import bbdd.Usuario;
 import bbdd.modeloDatos;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +30,8 @@ public class registroServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession sesion = request.getSession();
+        
+        //Creamos el usuario
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(request.getParameter("idUsuario"));
         usuario.setNombre(request.getParameter("nombre"));
@@ -47,6 +44,7 @@ public class registroServlet extends HttpServlet {
         //Nos conectamos a la bbdd
         modeloDatos bd = new modeloDatos();
         bd.abrirConexion();
+        //Si el usuario no esta en la bbdd, creamos la cookie y redirigimos al perfil
         if (!bd.estaUsuario(usuario.getIdUsuario())) {
             bd.guardarUsuario(usuario);
             Cookie cookie = new Cookie("idUsuario", usuario.getIdUsuario());

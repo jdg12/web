@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlet;
 
 import bbdd.Usuario;
@@ -34,8 +30,9 @@ public class modificarPerfil extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
          HttpSession sesion = request.getSession();
         String id = request.getParameter("inputName");
-        Usuario usuarioActual = (Usuario) sesion.getAttribute("usuarioActual");
         Usuario usuario = new Usuario();
+        
+        //Creamos el usuario
         usuario.setIdUsuario(request.getParameter("idUsuario"));
         usuario.setNombre(request.getParameter("nombre"));
         usuario.setApellidos(request.getParameter("apellidos"));
@@ -48,8 +45,6 @@ public class modificarPerfil extends HttpServlet {
          modeloDatos bd = new modeloDatos();
         bd.abrirConexion();
         
-        //Directamente ejecutamos el comando eliminar Usuario  de la fachada
-        //Este primero eliminará todas las carcasas para a continuación eliminar el usuario
         bd.modificarUsuario(usuario);
         response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/perfil.jsp"));
     }

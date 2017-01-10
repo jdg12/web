@@ -1,11 +1,7 @@
 <%@page import="bbdd.Usuario"%>
 <%@page import="bbdd.modeloDatos"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <title>Nueva sala</title>
@@ -91,6 +87,8 @@ and open the template in the editor.
         Aquí acaba la parte predefinida del header que se repite
         -->
         <h1>Nueva sala</h1>
+        <!--Formulario para añadir la sala-->
+        <!--Con JQUERY comprobaremos que no nos excedemos de la longitud de la BBDD-->
         <form action="/PracticaFinalWeb/modificarSala" name="formulario" id="formulario">
             <br /><label>Nombre: </label><br><input id="nombre" type="text" name="nombre" autofocus required />
             <br /><label>Filas: </label><br><input id="filas" type="number" min="1" max="20" name="filas"  autofocus required/>

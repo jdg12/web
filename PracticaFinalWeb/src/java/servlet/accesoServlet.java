@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlet;
 
 import bbdd.modeloDatos;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -34,18 +28,24 @@ public class accesoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession sesion = request.getSession();
+        //Obtenemos el id de usuario y contraseña
         String idUsuario, contrasena;
         idUsuario = request.getParameter("idUsuario");
         contrasena = request.getParameter("contrasena");
         modeloDatos bd = new modeloDatos();
         bd.abrirConexion();
+        
+        //Comprobamos si los datos son correctos
         if (bd.estaUsuario(idUsuario) && bd.contrasenaCorrecta(idUsuario, contrasena)) {
+            //Si son correctos obtenemos el usuario actual y lo guardamos en la cookie
             sesion.setAttribute("usuarioActual", bd.getUsuario(idUsuario));
             Cookie cookie = new Cookie("idUsuario",idUsuario);
             cookie.setMaxAge(-1); 
             response.addCookie(cookie);
+            //Redirigimos al perfil
             response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/perfil.jsp"));
         } else {
+            //En caso de ser incorrectos volvemos a cargar la página de acceso
             response.sendRedirect(response.encodeRedirectURL("acceso.html"));
         }
     }

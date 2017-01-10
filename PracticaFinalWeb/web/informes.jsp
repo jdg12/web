@@ -91,55 +91,92 @@
         </div>
         <div class="linea">
         </div>
+        <!--Mostramos el contenido-->
         <h1>Informes</h1>
         <h2>Datos</h2>
+        <!--Segun lo seleccionado mostramos una tabla u otra-->
         <%
             String opcion = (String) session.getAttribute("opcion");
             System.out.println(opcion);
             if (opcion == null) {
                 opcion = "1";
             }
+            if (opcion.equals("1"))
+            {
+                out.println("<p style=\"color:white;\">Peliculas por nombre </p><br>");
+            }
+            if (opcion.equals("2"))
+            {
+                out.println("<p style=\"color:white;\">Peliculas por género </p><br>");
+            }
+            if (opcion.equals("3"))
+            {
+                out.println("<p style=\"color:white;\">Peliculas por año </p><br>");
+            }
+            if (opcion.equals("4"))
+            {
+               out.println("<p style=\"color:white;\">Peliculas por clasificación</p><br>");
+            }
+            if (opcion.equals("5"))
+            {
+                out.println("<p style=\"color:white;\">Usuarios</p><br>");
+            }if (opcion.equals("6"))
+            {
+                out.println("<p style=\"color:white;\">Entradas</p><br>");
+            }
+            if (opcion.equals("7"))
+            {
+                out.println("<p style=\"color:white;\">Sesiones por pelicula</p><br>");
+            }
+            if (opcion.equals("8"))
+            {
+                out.println("<p style=\"color:white;\">Reservas por usuario</p><br>");
+            }
+            
+        %>
+         
+        <%
             bd.abrirConexion();
-
             if (opcion.equals("1") || opcion.equals("2") || opcion.equals("3") || opcion.equals("4")) {
                 ArrayList<Pelicula> peliculas = bd.getPeliculas();
         %>
 
+        <!--PRIMERA TABLA DE INFORMACION (usada en las busquedas 1-4)-->
         <TABLE border= "1" WIDTH= "400">
-            <TD aling= "rigth">Nombre Pelicula</TD>
-            <TD aling= "rigth">Pagina Web</TD>
-            <TD aling= "rigth">Titulo Original</TD>
-            <TD aling= "rigth">genero</TD>
-            <TD aling= "rigth">nacionalidad</TD>
-            <TD aling= "rigth">Duracion</TD>
-            <TD aling= "rigth">Año</TD>
-            <TD aling= "rigth">Director</TD>
-            <TD aling= "rigth">Clasificación</TD>
-            <TD aling= "rigth">Más info</TD>
+            <TH aling= "rigth">Nombre Pelicula</TH>
+            <TH aling= "rigth">Pagina Web</TH>
+            <TH aling= "rigth">Titulo Original</TH>
+            <TH aling= "rigth">genero</TH>
+            <TH aling= "rigth">nacionalidad</TH>
+            <TH aling= "rigth">Duracion</TH>
+            <TH aling= "rigth">Año</TH>
+            <TH aling= "rigth">Director</TH>
+            <TH aling= "rigth">Clasificación</TH>
+            <TH aling= "rigth">Más info</TH>
+                <%
+                    //Utilizamos el patron Strategy para realizar la consulta en la BBDD
+                    EstrategiaNombre en = new EstrategiaNombre();
+                    EstrategiaGenero eg = new EstrategiaGenero();
+                    EstrategiaAno ea = new EstrategiaAno();
+                    EstrategiaClasificacion ec = new EstrategiaClasificacion();
+                    Contexto con = new Contexto(en, peliculas);
+                    if (opcion.equals("2")) {
+                        con.setEstrategia(eg);
+                    }
+                    if (opcion.equals("3")) {
+                        con.setEstrategia(ea);
+                    }
+                    if (opcion.equals("4")) {
+                        con.setEstrategia(ec);
+                    }
+                    con.ejecutaEstrategia();
+                    Iterator it = peliculas.iterator();
+                    Pelicula peli = new Pelicula();
 
-
-
-            <%  EstrategiaNombre en = new EstrategiaNombre();
-                EstrategiaGenero eg = new EstrategiaGenero();
-                EstrategiaAno ea = new EstrategiaAno();
-                EstrategiaClasificacion ec = new EstrategiaClasificacion();
-                Contexto con = new Contexto(en, peliculas);
-                if (opcion.equals("2")) {
-                    con.setEstrategia(eg);
-                }
-                if (opcion.equals("3")) {
-                    con.setEstrategia(ea);
-                }
-                if (opcion.equals("4")) {
-                    con.setEstrategia(ec);
-                }
-                con.ejecutaEstrategia();
-                Iterator it = peliculas.iterator();
-                Pelicula peli = new Pelicula();
-
-                while (it.hasNext()) {
-                    peli = (Pelicula) it.next();
-            %>
+                    while (it.hasNext()) {
+                        peli = (Pelicula) it.next();
+                %>
+            <!--Mostramos los datos de la tabla-->
             <TR>
                 <TD><%= peli.getNombre()%> </TD>
                 <TD><%= peli.getPagina()%> </TD>
@@ -155,18 +192,18 @@
                         <input class="boton" type="submit" value="Ver mas">
                     </form></TD>
             </TR>
-
             <%}
-
             %>
         </TABLE> 
 
         <%            }
+            //TABLA 5
             if (opcion.equals("5")) {
                 ArrayList<Usuario> usuarios = bd.getUsuarios();
                 Iterator it = usuarios.iterator();
 
         %>
+        <!--SEGUNDO TIPO DE TABLA-->
         <TABLE border= "1" WIDTH= "400">
             <TH aling= "rigth">Id Usuario</TH>
             <TH aling= "rigth">Nombre</TH>
@@ -174,9 +211,8 @@
             <TH aling= "rigth">Direccion</TH>
             <TH aling= "rigth">Correo</TH>
             <TH aling= "rigth">Cuenta</TH>
-
-            <%                
-                Usuario user = new Usuario();
+            <!--Por cada usuario mostramos sus datos-->
+            <%                Usuario user = new Usuario();
                 while (it.hasNext()) {
                     user = (Usuario) it.next();
             %>
@@ -187,20 +223,19 @@
                 <TD><%=user.getDireccion()%></TD>
                 <TD><%= user.getCorreo()%></TD>
                 <TD><%= user.getCuenta()%></TD>
-
             </TR>
-
-            <%}
-
-            %>
+            <%}%>
         </TABLE> 
-
-
         <%}%>
-        <%if (opcion.equals("6")) {
+
+
+        <%
+            //BUSQUEDA NUMERO 6
+            if (opcion.equals("6")) {
                 ArrayList<Pelicula> peliculas = bd.getPeliculas();
         %>
 
+        <!--TERCER TIPO DE TABLA-->
         <TABLE border= "1" WIDTH= "400">
             <TH aling= "rigth">Nombre Pelicula</TH>
             <TH aling= "rigth">Id Entrada</TH>
@@ -226,23 +261,23 @@
                     entradas = bd.getEntradasPelicula(peli.getNombre());
                     if (entradas == null || entradas.isEmpty()) {
             %>
+            <!--Si las entradas estan vacias entonces solo mostramos el titlo de la pelicula-->
             <TD><%= peli.getNombre()%> </TD>
-            <TD>- </TD>
             <TD>-</TD>
             <TD>-</TD>
             <TD>-</TD>
             <TD>-</TD>
             <TD>-</TD>
-
-
-            <%
-            } else {
-                it2 = entradas.iterator();
-                total = 0;
-                while (it2.hasNext()) {
-                    entrada = (Entrada) it2.next();
-                    total += entrada.getPrecio();
-            %>
+            <TD>-</TD>
+                <%
+                } else {
+                    it2 = entradas.iterator();
+                    total = 0;
+                    while (it2.hasNext()) {
+                        entrada = (Entrada) it2.next();
+                        total += entrada.getPrecio();
+                %>
+            <!--Mostramos los datos de la tabla-->
             <TR>
                 <TD><%= peli.getNombre()%> </TD>
                 <TD><%= entrada.getId()%> </TD>
@@ -251,11 +286,7 @@
                 <TD><%= entrada.getColumna()%></TD>
                 <TD><%= entrada.getPrecio()%></TD>
                 <TD><%= total%></TD>
-
-
-
             </TR>
-
             <%}
                     }
                 }
@@ -266,7 +297,7 @@
         <%if (opcion.equals("7")) {
                 ArrayList<Pelicula> peliculas = bd.getPeliculas();
         %>
-
+        <!--CUARTO TIPO DE TABLA-->
         <TABLE border= "1" WIDTH= "400">
             <TH aling= "rigth">Nombre Pelicula</TH>
             <TH aling= "rigth">Id Sesion</TH>
@@ -275,37 +306,36 @@
             <TH aling= "rigth">Dia semana</TH>
             <TH aling= "rigth">Dia mes</TH>
             <TH aling= "rigth">Mes</TH>
-            <%  EstrategiaNombre en = new EstrategiaNombre();
+                <%  EstrategiaNombre en = new EstrategiaNombre();
 
-                Contexto con = new Contexto(en, peliculas);
+                    Contexto con = new Contexto(en, peliculas);
 
-                con.ejecutaEstrategia();
-                Iterator it = peliculas.iterator();
-                Pelicula peli = new Pelicula();
-                ArrayList<Sesion> sesiones = new ArrayList<Sesion>();
-                Iterator it2;
-                Sesion sesion = new Sesion();
-                double total = 0;
-                while (it.hasNext()) {
-                    peli = (Pelicula) it.next();
-                    sesiones = bd.getSesionesPelicula(peli.getNombre());
-                    if (sesiones == null || sesiones.isEmpty()) {
-            %>
+                    con.ejecutaEstrategia();
+                    Iterator it = peliculas.iterator();
+                    Pelicula peli = new Pelicula();
+                    ArrayList<Sesion> sesiones = new ArrayList<Sesion>();
+                    Iterator it2;
+                    Sesion sesion = new Sesion();
+                    double total = 0;
+                    while (it.hasNext()) {
+                        peli = (Pelicula) it.next();
+                        sesiones = bd.getSesionesPelicula(peli.getNombre());
+                        if (sesiones == null || sesiones.isEmpty()) {
+                %>
             <TD><%= peli.getNombre()%> </TD>
-            <TD>- </TD>
             <TD>-</TD>
             <TD>-</TD>
             <TD>-</TD>
             <TD>-</TD>
             <TD>-</TD>
-            <%
-            } else {
-                it2 = sesiones.iterator();
-                total = 0;
-                while (it2.hasNext()) {
-                    sesion = (Sesion) it2.next();
-
-            %>
+            <TD>-</TD>
+                <%
+                } else {
+                    it2 = sesiones.iterator();
+                    total = 0;
+                    while (it2.hasNext()) {
+                        sesion = (Sesion) it2.next();
+                %>
             <TR>
                 <TD><%= peli.getNombre()%> </TD>
                 <TD><%= sesion.getIdSesion()%> </TD>
@@ -320,8 +350,9 @@
                 }
             %>
         </TABLE> 
-
         <% }%>
+
+
         <%
             if (opcion.equals("8")) {
                 ArrayList<Usuario> usuarios = bd.getUsuarios();
@@ -329,24 +360,22 @@
                 ArrayList<Reserva> reservas = new ArrayList<Reserva>();
                 Iterator it2;
                 Reserva reserva = new Reserva();
-
         %>
         <TABLE border= "1" WIDTH= "400">
             <TH aling= "rigth">Id Usuario</TH>
             <TH aling= "rigth">Id Reserva</TH>
             <TH aling= "rigth">Id Entrada</TH>
-
-            <%                Usuario user = new Usuario();
-
-                while (it.hasNext()) {
-                    user = (Usuario) it.next();
-                    reservas = bd.getReservas(user.getIdUsuario());
-                    if (reservas == null || reservas.isEmpty()) {
-            %>
+                <%
+                    Usuario user = new Usuario();
+                    while (it.hasNext()) {
+                        user = (Usuario) it.next();
+                        reservas = bd.getReservas(user.getIdUsuario());
+                        if (reservas == null || reservas.isEmpty()) {
+                %>
             <tr>
-            <TD><%= user.getIdUsuario()%> </TD>
-            <TD>-</TD>
-            <TD>-</TD>
+                <TD><%= user.getIdUsuario()%> </TD>
+                <TD>-</TD>
+                <TD>-</TD>
             </tr>
             <%
             } else {
@@ -368,8 +397,9 @@
                 }
             %>
         </TABLE> 
-
         <% }%>
+
+        <!--UNA VEZ TERMINAMOS DE MOSTRAR LA INFORMACION MOSTRAMOS LOS BOTONES-->
         <h2>Tipo informes</h2>
         <div class="opciones">
             <form action="/PracticaFinalWeb/informeServlet" class="verMas" id="formulario" method="POST">
@@ -424,6 +454,8 @@
             </form>
             <BR>
         </div>
+
+
         <!--
         Esta es la parte predefinida del footer que se repite
         -->

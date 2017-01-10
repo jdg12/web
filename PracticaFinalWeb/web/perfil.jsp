@@ -77,6 +77,7 @@
         -->
         <h1>Tu perfil</h1>
         <% if (!usuarioActual.getIdUsuario().equals("admin")) {%>
+        <!--Mostramos las reservas realizadas por nosotros-->
         <h2>Mis reservas</h2>
         <%
             ArrayList<Reserva> reservas = bd.getReservas(usuarioActual.getIdUsuario());
@@ -95,6 +96,7 @@
         </div>
         <%}
             }%>
+            <!--Nuestros datos para modificarlos-->
         <h2>Mis datos</h2>
         <form action="/PracticaFinalWeb/modificarPerfil" class="perfil" id="formulario" method="POST">
             <p>
@@ -110,12 +112,15 @@
             </p>
         </form>
         <%} else { %>
+        <!--EN EL CASO DE SER EL ADMINISTRADOR-->
+        <!--Mostramos los botones para la gestion de salas y sesiones-->
         <h2>Informes</h2>
         <input class="boton" type="button" value="Ir a informes" onClick=" window.location.href = 'informes.jsp'">
         <h2>Salas</h2>
         <input class="boton" type="button" value="Gestionar salas" onClick=" window.location.href = 'salas.jsp'">
         <h2>Sesiones</h2>
         <input class="boton" type="button" value="Gestionar sesiones" onClick=" window.location.href = 'sesiones.jsp'">
+        <!--Mostramos todas las entradas-->
         <h2>Entradas</h2>
         <%
             ArrayList<Entrada> entradas = bd.getEntradas();
@@ -136,6 +141,7 @@
             <input class="boton" type="submit" value="Eliminar entrada">
         </form>
         <%}%>
+        <!--Todas las reservas-->
         <h2>Reservas</h2>
         <%
             ArrayList<Reserva> reservas = bd.getReservas(usuarioActual.getIdUsuario());%>
