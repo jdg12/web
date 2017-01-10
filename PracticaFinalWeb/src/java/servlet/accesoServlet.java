@@ -46,7 +46,7 @@ public class accesoServlet extends HttpServlet {
             response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/perfil.jsp"));
         } else {
             //En caso de ser incorrectos volvemos a cargar la página de acceso
-            response.sendRedirect(response.encodeRedirectURL("acceso.html"));
+            response.sendRedirect(response.encodeRedirectURL("acceso.jsp"));
         }
     }
 
