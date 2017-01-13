@@ -2,7 +2,7 @@
 package servlet;
 
 import bbdd.Comentario;
-import bbdd.modeloDatos;
+import bbdd.Proxy;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +44,7 @@ public class dejarComentario extends HttpServlet {
         c.setIdComentario(idPelicula+"-"+idUsuario);
         
         //Creamos una sesión en la bbdd y lo guardamos
-        modeloDatos bd = new modeloDatos();
+        Proxy bd = new Proxy();
         bd.abrirConexion();
         bd.guardarComentario(c);
         

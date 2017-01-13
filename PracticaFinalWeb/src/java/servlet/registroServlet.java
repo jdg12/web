@@ -2,7 +2,7 @@
 package servlet;
 
 import bbdd.Usuario;
-import bbdd.modeloDatos;
+import bbdd.Proxy;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -42,7 +42,7 @@ public class registroServlet extends HttpServlet {
         usuario.setCuenta(request.getParameter("cuenta"));
 
         //Nos conectamos a la bbdd
-        modeloDatos bd = new modeloDatos();
+        Proxy bd = new Proxy();
         bd.abrirConexion();
         //Si el usuario no esta en la bbdd, creamos la cookie y redirigimos al perfil
         if (!bd.estaUsuario(usuario.getIdUsuario())) {

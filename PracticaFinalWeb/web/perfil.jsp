@@ -7,7 +7,7 @@
 <%@page import="bbdd.Entrada"%>
 <%@page import="bbdd.Reserva"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="bbdd.modeloDatos"%>
+<%@page import="bbdd.Proxy"%>
 <%@page import="bbdd.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
     </head>
     <body>
         <%
-            modeloDatos bd = new modeloDatos();
+            Proxy bd = new Proxy();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {

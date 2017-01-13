@@ -12,7 +12,7 @@ import bbdd.Pelicula0Builder;
 import bbdd.Pelicula13Builder;
 import bbdd.Pelicula18Builder;
 import bbdd.Pelicula7Builder;
-import bbdd.modeloDatos;
+import bbdd.Proxy;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -104,7 +104,7 @@ public class nuevaPeliServlet extends HttpServlet {
             cons.crearPelicula(nombre, sinopsis, pagina, titulo, genero, nacionalidad, duracion, ano, distribibuidora, director, arrayLActores, otros);
             peli = cons.getPelicula();
             //Guardamos la Pelicula en bbdd
-            modeloDatos bd = new modeloDatos();
+            Proxy bd = new Proxy();
             bd.abrirConexion();
             //Si ya existe esa pelicula, se le indica al usuario
             if (bd.estaPelicula(nombre)) {

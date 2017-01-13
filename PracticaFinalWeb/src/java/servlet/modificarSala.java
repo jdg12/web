@@ -2,7 +2,7 @@
 package servlet;
 
 import bbdd.Sala;
-import bbdd.modeloDatos;
+import bbdd.Proxy;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +40,7 @@ public class modificarSala extends HttpServlet {
         sala.setColumnas(columnas);
 
         //La modificamos o añadimos en la base de datos según lo seleccionado
-        modeloDatos bd = new modeloDatos();
+        Proxy bd = new Proxy();
         bd.abrirConexion();
         if (select.equals("anadir")) {
             if (!bd.estaSala(sala)) {

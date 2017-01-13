@@ -1,7 +1,7 @@
 
 package servlet;
 
-import bbdd.modeloDatos;
+import bbdd.Proxy;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +31,7 @@ public class borrarEntradaServlet extends HttpServlet {
         String id = request.getParameter("inputName");
         
         //Primero tenemos que borrar la reserva o no, correspondiente a esa entrada
-        modeloDatos bd = new modeloDatos();
+        Proxy bd = new Proxy();
         bd.abrirConexion();
         bd.eliminarReserva(id);
         //A continuación eliminamos la entrada propiamente dicha

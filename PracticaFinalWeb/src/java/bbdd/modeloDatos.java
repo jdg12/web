@@ -42,6 +42,7 @@ public class modeloDatos implements BBDD {
             rs = set.executeQuery("SELECT IDUSUARIO FROM USUARIO");
             while (rs.next()) {
                 if (rs.getString("IDUSUARIO").equals(idUsuario)) {
+                    rs.close();
                     return true;
                 }
             }
@@ -251,7 +252,7 @@ public class modeloDatos implements BBDD {
                     + "WHERE idusuario='" + usuario.getIdUsuario()
                     + "'"
                     + "");
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("Error al modificar el usuario " + usuario.getIdUsuario() + " ," + e.getMessage());
@@ -301,7 +302,7 @@ public class modeloDatos implements BBDD {
             set.executeUpdate("DELETE FROM ENTRADA"
                     + " WHERE IDENTRADA= '" + idEntrada
                     + "'");
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("No ha sido posible eliminar la entrada" + e.getMessage());
@@ -315,7 +316,7 @@ public class modeloDatos implements BBDD {
             set.executeUpdate("DELETE FROM RESERVA"
                     + " WHERE IDENTRADA= '" + idReserva
                     + "'");
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("No ha sido posible eliminar la entrada" + e.getMessage());
@@ -432,7 +433,7 @@ public class modeloDatos implements BBDD {
                     + "', " + comentario.getPuntuacion()
                     + ")");
             System.out.println("Estoy aqui: ");
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("No se ha guardado el comentario " + e.getMessage());
@@ -446,7 +447,7 @@ public class modeloDatos implements BBDD {
             set.executeUpdate("DELETE FROM PELICULA"
                     + " WHERE NOMBRE= '" + idPelicula
                     + "'");
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("No ha sido posible eliminar la pelicula: " + e.getMessage());
@@ -474,7 +475,7 @@ public class modeloDatos implements BBDD {
                     + "WHERE nombre='" + pelicula.getNombre()
                     + "'"
                     + "");
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("Error al modificar la pelicula " + pelicula.getNombre() + " ," + e.getMessage());
@@ -556,7 +557,7 @@ public class modeloDatos implements BBDD {
             set.executeUpdate("DELETE FROM COMENTARIO"
                     + " WHERE IDPELICULA = '" + idPelicula
                     + "'");
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("No ha sido posible eliminar los comentarios de la pelicula: " + e.getMessage());
@@ -570,7 +571,7 @@ public class modeloDatos implements BBDD {
             set.executeUpdate("DELETE FROM SESION"
                     + " WHERE IDPELICULA = '" + idPelicula
                     + "'");
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("No ha sido posible eliminar las sesiones de la pelicula: " + e.getMessage());
@@ -584,7 +585,7 @@ public class modeloDatos implements BBDD {
             set.executeUpdate("DELETE FROM RELACTORPEL"
                     + " WHERE NOMBREPELICULA = '" + idPelicula
                     + "'");
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("No ha sido posible eliminar los actores " + e.getMessage());
@@ -610,7 +611,7 @@ public class modeloDatos implements BBDD {
                     + ", '" + peli.getOtros()
                     + "')");
 
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("No se ha guardado la pelicula" + e.getMessage());
@@ -776,7 +777,7 @@ public class modeloDatos implements BBDD {
                     + ", " + entrada.isVendida()
                     + ")");
 
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("No se ha guardado la entrada " + e.getMessage());
@@ -792,7 +793,7 @@ public class modeloDatos implements BBDD {
                     + "', '" + reserva.getIdReserva()
                     + "')");
 
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("No se ha guardado la reserva " + e.getMessage());
@@ -974,7 +975,7 @@ public class modeloDatos implements BBDD {
             set.executeUpdate("DELETE FROM ENTRADA"
                     + " WHERE IDSESION= '" + idSesion
                     + "'");
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("No ha sido posible eliminar las entradas de esa sesion" + e.getMessage());
@@ -988,7 +989,7 @@ public class modeloDatos implements BBDD {
             set.executeUpdate("DELETE FROM RESERVA"
                     + " WHERE IDENTRADA IN (SELECT IDENTRADA FROM ENTRADA WHERE IDSESION = '" + idSesion
                     + "')");
-            rs.close();
+            
             set.close();
         } catch (Exception e) {
             System.out.println("No ha sido posible eliminar las reservas de esa sesion" + e.getMessage());

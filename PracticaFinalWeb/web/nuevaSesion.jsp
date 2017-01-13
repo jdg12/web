@@ -2,7 +2,7 @@
 <%@page import="bbdd.Sala"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="bbdd.Pelicula"%>
-<%@page import="bbdd.modeloDatos"%>
+<%@page import="bbdd.Proxy"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -39,7 +39,7 @@ and open the template in the editor.
     </head>
     <body>
         <%
-            modeloDatos bd = new modeloDatos();
+            Proxy bd = new Proxy();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {
@@ -105,7 +105,7 @@ and open the template in the editor.
         -->
         <%!
             //ZONA DE DECLARACION DE FUNCIONES
-            modeloDatos bd = new modeloDatos();
+            Proxy bd = new Proxy();
             ArrayList<Pelicula> peliculas = bd.getPeliculas();
             ArrayList<Sala> salas = bd.getSalas();
             

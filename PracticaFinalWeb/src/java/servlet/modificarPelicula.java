@@ -2,7 +2,7 @@
 package servlet;
 
 import bbdd.Pelicula;
-import bbdd.modeloDatos;
+import bbdd.Proxy;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -59,7 +59,7 @@ public class modificarPelicula extends HttpServlet {
         pelicula.setOtros(otros);
         
         //Ahora lo modificamos
-        modeloDatos bd = new modeloDatos();
+        Proxy bd = new Proxy();
         bd.abrirConexion();
         bd.modificarPelicula(pelicula);
         

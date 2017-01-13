@@ -15,7 +15,7 @@
 <%@page import="bbdd.Contexto"%>
 <%@page import="bbdd.EstrategiaNombre"%>
 <%@page import="bbdd.Usuario"%>
-<%@page import="bbdd.modeloDatos"%>
+<%@page import="bbdd.Proxy"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="bbdd.Pelicula"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -34,7 +34,7 @@
 
     <body>
         <%
-            modeloDatos bd = new modeloDatos();
+            Proxy bd = new Proxy();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {

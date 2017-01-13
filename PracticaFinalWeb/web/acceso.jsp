@@ -1,6 +1,6 @@
 <%@page import="bbdd.Usuario"%>
-<%@page import="bbdd.modeloDatos"%>
-<%@page import="bbdd.modeloDatos"%>
+<%@page import="bbdd.Proxy"%>
+<%@page import="bbdd.Proxy"%>
 <!DOCTYPE html>
 
 <html>
@@ -13,7 +13,7 @@
     <body>
         <%
             //Obtenemos el usuario almacenado en la cookie
-            modeloDatos bd = new modeloDatos();
+            Proxy bd = new Proxy();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {

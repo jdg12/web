@@ -1,5 +1,5 @@
 <%@page import="bbdd.Usuario"%>
-<%@page import="bbdd.modeloDatos"%>
+<%@page import="bbdd.Proxy"%>
 <!DOCTYPE html>
 
 <html>
@@ -24,7 +24,7 @@
     </head>
     <body>
         <%
-            modeloDatos bd = new modeloDatos();
+            Proxy bd = new Proxy();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {

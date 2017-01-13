@@ -1,6 +1,6 @@
 package servlet;
 
-import bbdd.modeloDatos;
+import bbdd.Proxy;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -32,7 +32,7 @@ public class accesoServlet extends HttpServlet {
         String idUsuario, contrasena;
         idUsuario = request.getParameter("idUsuario");
         contrasena = request.getParameter("contrasena");
-        modeloDatos bd = new modeloDatos();
+        Proxy bd = new Proxy();
         bd.abrirConexion();
         
         //Comprobamos si los datos son correctos

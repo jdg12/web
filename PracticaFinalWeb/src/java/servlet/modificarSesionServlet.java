@@ -2,7 +2,7 @@
 package servlet;
 
 import bbdd.Sesion;
-import bbdd.modeloDatos;
+import bbdd.Proxy;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +47,7 @@ public class modificarSesionServlet extends HttpServlet {
         sesion.setDiaMes(diaMes);
         sesion.setMes(mes);
 
-        modeloDatos bd = new modeloDatos();
+        Proxy bd = new Proxy();
         bd.abrirConexion();
         //Ahora si es modificar. 
         if (select.equals("anadir")) {

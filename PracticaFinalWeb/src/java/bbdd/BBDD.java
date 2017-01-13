@@ -13,6 +13,10 @@ import java.util.ArrayList;
  */
 interface BBDD {
     /**
+     * Inicia la conexión con el servidor de Base de datos
+     */
+    public void abrirConexion();
+    /**
      * Funcion para saber si existe el usuario en la bbdd
      * @param idUsuario usuario que buscams
      * @return true si esta, false si no

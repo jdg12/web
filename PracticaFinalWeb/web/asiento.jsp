@@ -4,7 +4,7 @@
     Author     : jesus
 --%>
 
-<%@page import="bbdd.modeloDatos"%>
+<%@page import="bbdd.Proxy"%>
 <%@page import="bbdd.Sala"%>
 <%@page import="bbdd.Sesion"%>
 <%@page import="java.util.ArrayList"%>
@@ -20,7 +20,7 @@
     <body>
         <%
             //Obtenemos el usuario con la cookie
-            modeloDatos bd = new modeloDatos();
+            Proxy bd = new Proxy();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {

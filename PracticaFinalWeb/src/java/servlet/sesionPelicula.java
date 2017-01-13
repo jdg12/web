@@ -3,7 +3,7 @@ package servlet;
 
 import bbdd.Sala;
 import bbdd.Sesion;
-import bbdd.modeloDatos;
+import bbdd.Proxy;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +34,7 @@ public class sesionPelicula extends HttpServlet {
          HttpSession sesion = request.getSession();
          sesion.setAttribute("idSesion", id);
          //Obtenemos tambien la sala
-         modeloDatos bd = new modeloDatos();
+         Proxy bd = new Proxy();
          bd.abrirConexion();
          Sesion sesion2 = bd.getSesion(id);
          Sala sala = bd.getSala(sesion2.getSala());

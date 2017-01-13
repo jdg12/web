@@ -1,4 +1,4 @@
-<%@page import="bbdd.modeloDatos"%>
+<%@page import="bbdd.Proxy"%>
 <%@page import="bbdd.Usuario"%>
 <!DOCTYPE html>
 <!--
@@ -142,7 +142,7 @@ and open the template in the editor.
 
     <body>
         <%
-            modeloDatos bd = new modeloDatos();
+            Proxy bd = new Proxy();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {

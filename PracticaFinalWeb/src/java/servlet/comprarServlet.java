@@ -7,7 +7,7 @@ import bbdd.EntradaReducida;
 import bbdd.Reserva;
 import bbdd.Sesion;
 import bbdd.Usuario;
-import bbdd.modeloDatos;
+import bbdd.Proxy;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -41,7 +41,7 @@ public class comprarServlet extends HttpServlet {
         String tipo = (String) sesion.getAttribute("tipo");
         String idSesion = (String) sesion.getAttribute("idSesion");
         Cookie[] cookies = request.getCookies();
-        modeloDatos bd = new modeloDatos();
+        Proxy bd = new Proxy();
         String idUsuario = "";
         if (cookies != null) {
             for (int i = 0; i < cookies.length; i++) {
@@ -55,7 +55,7 @@ public class comprarServlet extends HttpServlet {
         bd.abrirConexion();
         Usuario usuario = bd.getUsuario(idUsuario);
         Sesion sesion2 = bd.getSesion(idSesion);
-        String idEntrada = idSesion + "-" + String.valueOf((fila + 1) * columna);
+        String idEntrada = idSesion + "-" + String.valueOf((fila + 1)) + "-" + String.valueOf((columna + 1));
         Entrada entrada;
         //Creamos la entrada
         if (tipo.equals("reducida")) {
