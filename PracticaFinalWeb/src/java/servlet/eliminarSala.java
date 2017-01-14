@@ -27,8 +27,8 @@ public class eliminarSala extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("inputName");
-        Proxy bd = new Proxy();
-        bd.abrirConexion();
+        Proxy bd = Proxy.getInstancia();
+        
         
         bd.eliminarSala(id);
         

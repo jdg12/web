@@ -142,7 +142,7 @@ and open the template in the editor.
 
     <body>
         <%
-            Proxy bd = new Proxy();
+            Proxy bd = Proxy.getInstancia();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {
@@ -154,7 +154,7 @@ and open the template in the editor.
                     }
                 }
             }
-            bd.abrirConexion();
+            
             Usuario usuarioActual = bd.getUsuario(idUsuario);
 
             if (usuarioActual == null) {

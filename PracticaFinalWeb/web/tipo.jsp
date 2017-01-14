@@ -30,7 +30,7 @@
     </head>
     <body>
         <%
-            Proxy bd = new Proxy();
+            Proxy bd = Proxy.getInstancia();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {
@@ -42,7 +42,7 @@
                     }
                 }
             }
-            bd.abrirConexion();
+            
             Usuario usuario = bd.getUsuario(idUsuario);
             if (usuario.getIdUsuario() == null) {
                 usuario = new Usuario();

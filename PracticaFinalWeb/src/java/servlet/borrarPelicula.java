@@ -27,8 +27,8 @@ public class borrarPelicula extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("inputName");
-        Proxy bd = new Proxy();
-        bd.abrirConexion();
+        Proxy bd = Proxy.getInstancia();
+        
         
         //Borramos la pelicula, los comentarios etc.....
         bd.eliminarComentariosPelicula(id);

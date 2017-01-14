@@ -39,7 +39,7 @@ and open the template in the editor.
     </head>
     <body>
         <%
-            Proxy bd = new Proxy();
+            Proxy bd = Proxy.getInstancia();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {
@@ -105,7 +105,7 @@ and open the template in the editor.
         -->
         <%!
             //ZONA DE DECLARACION DE FUNCIONES
-            Proxy bd = new Proxy();
+            Proxy bd = Proxy.getInstancia();
             ArrayList<Pelicula> peliculas = bd.getPeliculas();
             ArrayList<Sala> salas = bd.getSalas();
             

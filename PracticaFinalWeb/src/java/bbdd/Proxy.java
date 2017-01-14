@@ -13,16 +13,29 @@ import java.util.ArrayList;
  */
 public class Proxy implements BBDD{
     
-    private modeloDatos md;
+    private static Proxy instancia;
+    private modeloDatos md = new modeloDatos();
     
-    public Proxy(modeloDatos md){
-        this.md =md;
+    
+    private Proxy(){
         
     }
-    public Proxy(){
-        md = new modeloDatos();
+    /**
+     * Devuelve la instancia de la clase.
+     * Acceso controlado a la única instancia. 
+     * Otras clases que quieran una referencia a la única instancia de la clase Singleton conseguirán esa instancia 
+     * llamando al método estático getInstancia de la clase. 
+     * @return Instancia de la clase.
+     */
+    public static Proxy getInstancia() {
+        if (instancia == null) {// Si la instancia es null, se crea.
+            System.out.println("Nueva instancia");
+            instancia = new Proxy();
+            instancia.abrirConexion();
+        }
+        return instancia;
     }
-
+    
     public modeloDatos getMd() {
         return md;
     }

@@ -59,8 +59,8 @@ public class modificarPelicula extends HttpServlet {
         pelicula.setOtros(otros);
         
         //Ahora lo modificamos
-        Proxy bd = new Proxy();
-        bd.abrirConexion();
+        Proxy bd = Proxy.getInstancia();
+        
         bd.modificarPelicula(pelicula);
         
         //Volvemos a la pelicula

@@ -104,8 +104,8 @@ public class nuevaPeliServlet extends HttpServlet {
             cons.crearPelicula(nombre, sinopsis, pagina, titulo, genero, nacionalidad, duracion, ano, distribibuidora, director, arrayLActores, otros);
             peli = cons.getPelicula();
             //Guardamos la Pelicula en bbdd
-            Proxy bd = new Proxy();
-            bd.abrirConexion();
+            Proxy bd = Proxy.getInstancia();
+            
             //Si ya existe esa pelicula, se le indica al usuario
             if (bd.estaPelicula(nombre)) {
                 try (PrintWriter out = response.getWriter()) {

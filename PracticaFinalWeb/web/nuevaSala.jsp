@@ -24,7 +24,7 @@
     </head>
     <body>
         <%
-            Proxy bd = new Proxy();
+            Proxy bd = Proxy.getInstancia();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {
@@ -36,7 +36,7 @@
                     }
                 }
             }
-            bd.abrirConexion();
+            
             Usuario usuarioActual = bd.getUsuario(idUsuario);
 
             if (usuarioActual == null) {

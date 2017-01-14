@@ -31,8 +31,8 @@ public class borrarEntradaServlet extends HttpServlet {
         String id = request.getParameter("inputName");
         
         //Primero tenemos que borrar la reserva o no, correspondiente a esa entrada
-        Proxy bd = new Proxy();
-        bd.abrirConexion();
+        Proxy bd = Proxy.getInstancia();
+        
         bd.eliminarReserva(id);
         //A continuación eliminamos la entrada propiamente dicha
         bd.eliminarEntrada(id);

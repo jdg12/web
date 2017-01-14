@@ -47,8 +47,8 @@ public class modificarSesionServlet extends HttpServlet {
         sesion.setDiaMes(diaMes);
         sesion.setMes(mes);
 
-        Proxy bd = new Proxy();
-        bd.abrirConexion();
+        Proxy bd = Proxy.getInstancia();
+        
         //Ahora si es modificar. 
         if (select.equals("anadir")) {
             bd.anadirSesion(sesion);

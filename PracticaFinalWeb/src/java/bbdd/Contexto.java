@@ -39,7 +39,7 @@ public class Contexto {
     public void ejecutaEstrategia() {
         estrategia.ordena(peliculas);
         for (Pelicula alumno : peliculas) {
-            System.out.println(alumno.toString());
+            //System.out.println(alumno.toString());
         }
     }
 }

@@ -44,8 +44,8 @@ public class dejarComentario extends HttpServlet {
         c.setIdComentario(idPelicula+"-"+idUsuario);
         
         //Creamos una sesión en la bbdd y lo guardamos
-        Proxy bd = new Proxy();
-        bd.abrirConexion();
+        Proxy bd = Proxy.getInstancia();
+        
         bd.guardarComentario(c);
         
         //Redirigimos de nuevo a la pelicula

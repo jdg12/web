@@ -42,8 +42,8 @@ public class modificarPerfil extends HttpServlet {
         usuario.setCuenta(request.getParameter("cuenta"));
         
         //Ahora guardamos el cambio
-         Proxy bd = new Proxy();
-        bd.abrirConexion();
+         Proxy bd = Proxy.getInstancia();
+        
         
         bd.modificarUsuario(usuario);
         response.sendRedirect(response.encodeRedirectURL("/PracticaFinalWeb/perfil.jsp"));

@@ -40,8 +40,8 @@ public class modificarSala extends HttpServlet {
         sala.setColumnas(columnas);
 
         //La modificamos o añadimos en la base de datos según lo seleccionado
-        Proxy bd = new Proxy();
-        bd.abrirConexion();
+        Proxy bd = Proxy.getInstancia();
+        
         if (select.equals("anadir")) {
             if (!bd.estaSala(sala)) {
                 bd.anadirSala(sala);

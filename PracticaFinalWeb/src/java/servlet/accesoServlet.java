@@ -32,8 +32,8 @@ public class accesoServlet extends HttpServlet {
         String idUsuario, contrasena;
         idUsuario = request.getParameter("idUsuario");
         contrasena = request.getParameter("contrasena");
-        Proxy bd = new Proxy();
-        bd.abrirConexion();
+        Proxy bd = Proxy.getInstancia();
+        
         
         //Comprobamos si los datos son correctos
         if (bd.estaUsuario(idUsuario) && bd.contrasenaCorrecta(idUsuario, contrasena)) {

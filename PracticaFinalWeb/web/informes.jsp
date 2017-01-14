@@ -34,7 +34,7 @@
 
     <body>
         <%
-            Proxy bd = new Proxy();
+            Proxy bd = Proxy.getInstancia();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {
@@ -46,7 +46,7 @@
                     }
                 }
             }
-            bd.abrirConexion();
+            
             Usuario usuarioActual = bd.getUsuario(idUsuario);
 
             if (usuarioActual == null) {
@@ -97,7 +97,7 @@
         <!--Segun lo seleccionado mostramos una tabla u otra-->
         <%
             String opcion = (String) session.getAttribute("opcion");
-            System.out.println(opcion);
+            
             if (opcion == null) {
                 opcion = "1";
             }
@@ -136,7 +136,7 @@
         %>
          
         <%
-            bd.abrirConexion();
+            
             if (opcion.equals("1") || opcion.equals("2") || opcion.equals("3") || opcion.equals("4")) {
                 ArrayList<Pelicula> peliculas = bd.getPeliculas();
         %>
@@ -370,7 +370,7 @@
                     while (it.hasNext()) {
                         user = (Usuario) it.next();
                         reservas = bd.getReservas(user.getIdUsuario());
-                        if (reservas == null || reservas.isEmpty()) {
+                        if (reservas == null || reservas.isEmpty()||user.getIdUsuario().equals("admin")) {
                 %>
             <tr>
                 <TD><%= user.getIdUsuario()%> </TD>

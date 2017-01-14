@@ -42,8 +42,8 @@ public class registroServlet extends HttpServlet {
         usuario.setCuenta(request.getParameter("cuenta"));
 
         //Nos conectamos a la bbdd
-        Proxy bd = new Proxy();
-        bd.abrirConexion();
+        Proxy bd = Proxy.getInstancia();
+        
         //Si el usuario no esta en la bbdd, creamos la cookie y redirigimos al perfil
         if (!bd.estaUsuario(usuario.getIdUsuario())) {
             bd.guardarUsuario(usuario);

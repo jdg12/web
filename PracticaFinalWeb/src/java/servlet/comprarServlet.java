@@ -4,6 +4,7 @@ package servlet;
 import bbdd.Entrada;
 import bbdd.EntradaNormal;
 import bbdd.EntradaReducida;
+import bbdd.FactoriaEntradas;
 import bbdd.Reserva;
 import bbdd.Sesion;
 import bbdd.Usuario;
@@ -41,7 +42,7 @@ public class comprarServlet extends HttpServlet {
         String tipo = (String) sesion.getAttribute("tipo");
         String idSesion = (String) sesion.getAttribute("idSesion");
         Cookie[] cookies = request.getCookies();
-        Proxy bd = new Proxy();
+        Proxy bd = Proxy.getInstancia();
         String idUsuario = "";
         if (cookies != null) {
             for (int i = 0; i < cookies.length; i++) {
@@ -52,24 +53,21 @@ public class comprarServlet extends HttpServlet {
                 }
             }
         }
-        bd.abrirConexion();
+        
         Usuario usuario = bd.getUsuario(idUsuario);
         Sesion sesion2 = bd.getSesion(idSesion);
         String idEntrada = idSesion + "-" + String.valueOf((fila + 1)) + "-" + String.valueOf((columna + 1));
         Entrada entrada;
+        FactoriaEntradas factor = new FactoriaEntradas();
         //Creamos la entrada
         if (tipo.equals("reducida")) {
-            entrada = new EntradaReducida();
-            entrada.setPrecio(4);
+            entrada = factor.nuevaEntrada(1, idEntrada, sesion2, fila, columna, true, 6);
         } else {
-            entrada = new EntradaNormal();
-            entrada.setPrecio(5.9);
+
+        //Entrada normal
+        entrada = factor.nuevaEntrada(0, idEntrada, sesion2, fila, columna, true, 6);
         }
-        entrada.setId(idEntrada);
-        entrada.setSesion(sesion2);
-        entrada.setFila(fila);
-        entrada.setColumna(columna);
-        entrada.setVendida(true);
+        
         
         //Ahora guardamos la reserva si la habia realizado el usuario
         if (!usuario.getIdUsuario().equals("admin")) {

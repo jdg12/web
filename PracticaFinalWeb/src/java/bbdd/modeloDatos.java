@@ -19,6 +19,7 @@ public class modeloDatos implements BBDD {
     private Statement set;
     private ResultSet rs;
 
+    @Override
     public void abrirConexion() {
         String sURL = "jdbc:odbc:mvc";
         String url = "jdbc:derby://localhost:1527/finalweb3";
@@ -74,7 +75,7 @@ public class modeloDatos implements BBDD {
         try {
             set = con.createStatement();
             rs = set.executeQuery("SELECT * FROM USUARIO WHERE IDUSUARIO ='" + idUsuario + "'");
-            rs.next();
+            while(rs.next()){
             usuario.setIdUsuario(rs.getString(1));
             usuario.setNombre(rs.getString(2));
             usuario.setApellidos(rs.getString(3));
@@ -82,6 +83,7 @@ public class modeloDatos implements BBDD {
             usuario.setCorreo(rs.getString(5));
             usuario.setContrasena(rs.getString(6));
             usuario.setCuenta(rs.getString(7));
+            }
             rs.close();
         } catch (Exception e) {
             System.out.println("Error en la consulta del usuario: " + idUsuario + " ," + e.getMessage());
@@ -233,7 +235,7 @@ public class modeloDatos implements BBDD {
             sesion.setMes(rs.getString(7));
             rs.close();
         } catch (Exception e) {
-            System.out.println("Error al recuperar la sesion");
+            System.out.println("Error al recuperar la sesion: "+e.getMessage());
         }
         return sesion;
     }
@@ -325,7 +327,7 @@ public class modeloDatos implements BBDD {
 
     @Override
     public ArrayList<Pelicula> getPeliculas() {
-        this.abrirConexion();
+        
         ArrayList<Pelicula> peliculas = new ArrayList<>();
         try {
             set = con.createStatement();
@@ -802,7 +804,7 @@ public class modeloDatos implements BBDD {
 
     @Override
     public ArrayList<Sala> getSalas() {
-        this.abrirConexion();
+        
         ArrayList<Sala> salas = new ArrayList<>();
         try {
             set = con.createStatement();

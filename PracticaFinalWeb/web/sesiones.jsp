@@ -39,7 +39,7 @@
     </head>
     <body>
         <%
-            Proxy bd = new Proxy();
+            Proxy bd = Proxy.getInstancia();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {
@@ -51,7 +51,7 @@
                     }
                 }
             }
-            bd.abrirConexion();
+            
             Usuario usuarioActual = bd.getUsuario(idUsuario);
 
             if (usuarioActual == null) {
@@ -109,7 +109,7 @@
         <input class="boton" type="button" value="Añadir una sesion" onClick=" window.location.href = 'nuevaSesion.jsp'">
         <h2>Consulta sesiones</h2>
         <%
-            bd.abrirConexion();
+            
             ArrayList<Sesion> sesiones = bd.getSesiones();
             for (int i = 0; i < sesiones.size(); i++) {
         %>

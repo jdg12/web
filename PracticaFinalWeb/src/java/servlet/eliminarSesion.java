@@ -27,8 +27,8 @@ public class eliminarSesion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String select = request.getParameter("inputName");
-        Proxy bd = new Proxy();
-        bd.abrirConexion();
+        Proxy bd = Proxy.getInstancia();
+        
         
         //cuando eliminamos la sesion logicamente tenemos que eliminar las reservas
         //y las entradas asociadas a esa sesion

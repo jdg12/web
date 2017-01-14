@@ -34,8 +34,8 @@ public class sesionPelicula extends HttpServlet {
          HttpSession sesion = request.getSession();
          sesion.setAttribute("idSesion", id);
          //Obtenemos tambien la sala
-         Proxy bd = new Proxy();
-         bd.abrirConexion();
+         Proxy bd = Proxy.getInstancia();
+         
          Sesion sesion2 = bd.getSesion(id);
          Sala sala = bd.getSala(sesion2.getSala());
          sesion.setAttribute("sala", sala);

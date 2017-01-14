@@ -19,7 +19,7 @@
     </head>
     <body>
         <%
-            Proxy bd = new Proxy();
+            Proxy bd = Proxy.getInstancia();
             Cookie[] cookies = request.getCookies();
             String idUsuario = "";
             if (cookies != null) {
@@ -32,7 +32,7 @@
                     }
                 }
             }
-            bd.abrirConexion();
+            
             Usuario usuarioActual = bd.getUsuario(idUsuario);
             if (usuarioActual.getIdUsuario() == null)
             {
@@ -45,7 +45,7 @@
                 out.println("location='acceso.jsp';");
                 out.println("</script>");
             }
-            bd.abrirConexion();%>
+            %>
 <!--
         Esta es la parte predefinida del header que se repite
         -->
