@@ -84,6 +84,10 @@
         <servlet-name>nuevaPeliServlet</servlet-name>
         <servlet-class>servlet.nuevaPeliServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SorteoServlet</servlet-name>
+        <servlet-class>servlet.SorteoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>pruebaServlet</servlet-name>
         <url-pattern>/pruebaServlet</url-pattern>
@@ -167,6 +171,10 @@
     <servlet-mapping>
         <servlet-name>nuevaPeliServlet</servlet-name>
         <url-pattern>/nuevaPeliServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SorteoServlet</servlet-name>
+        <url-pattern>/SorteoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

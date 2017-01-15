@@ -2,6 +2,26 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/src/java/bbdd/modeloDatos.java</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/web/perfil.jsp</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/web/informes.jsp</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/src/java/bbdd/pruebaEntradas.java</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/web/sorteo.jsp</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/src/java/bbdd/Originador.java</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/src/java/bbdd/Sorteo.java</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/src/java/servlet/SorteoServlet.java</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/src/java/bbdd/Participante.java</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/src/java/bbdd/Proxy.java</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/src/java/bbdd/Conserje.java</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/web/asiento.jsp</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/web/cartelera.jsp</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/src/java/servlet/informeServlet.java</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/src/java/bbdd/Reserva.java</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/src/java/bbdd/FichaSorteo.java</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/web/sesionesDisponibles.jsp</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/src/java/bbdd/BBDD.java</file>
+            <file>file:/D:/JD/Documents/GII/Web/Proyectos%20web/PracticaFinalWeb/web/pelicula.jsp</file>
+        </group>
     </open-files>
 </project-private>

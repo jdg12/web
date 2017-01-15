@@ -28,6 +28,14 @@ public class pruebaEntradas {
         e = factor.nuevaEntrada(1, "1", s, 5, 14, false, 6);
         System.out.println(e.toString());
 */
+        int participantes = 9;
+        double winner=-1;
+        for (int i = 0; i < 20; i++) {
+            winner = Math.floor(Math.random()*participantes);
+            System.out.println("winner: "+winner);
+            
+        }
+            
     }
     
 }

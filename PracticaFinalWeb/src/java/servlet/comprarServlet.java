@@ -2,8 +2,6 @@
 package servlet;
 
 import bbdd.Entrada;
-import bbdd.EntradaNormal;
-import bbdd.EntradaReducida;
 import bbdd.FactoriaEntradas;
 import bbdd.Reserva;
 import bbdd.Sesion;
@@ -77,7 +75,7 @@ public class comprarServlet extends HttpServlet {
             reserva.setEntrada(entrada);
             reserva.setIdUsuario(usuario.getIdUsuario());
             reserva.setIdReserva("r-" + entrada.getId());
-            bd.guardarReserva(reserva);
+            bd.guardarReserva(usuario,reserva);
         }else
         {
             bd.guardarEntrada(entrada);

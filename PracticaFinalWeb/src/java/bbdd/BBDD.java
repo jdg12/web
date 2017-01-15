@@ -205,7 +205,7 @@ interface BBDD {
      * Guarda la reserva pasada como parametor
      * @param reserva 
      */
-    public void guardarReserva(Reserva reserva);
+    public void guardarReserva(Usuario usuario,Reserva reserva);
     /**
      * Obtiene una lista con todas las salas
      * @return 

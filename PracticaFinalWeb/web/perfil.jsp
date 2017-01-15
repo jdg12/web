@@ -41,7 +41,7 @@
             if (usuarioActual.getIdUsuario().equals("Visitante"))
             {
                 out.println("<script type=\"text/javascript\">");
-                out.println("alert('Tiene que ser estar registrado');");
+                out.println("alert('Tiene que estar registrado');");
                 out.println("location='acceso.jsp';");
                 out.println("</script>");
             }
@@ -131,6 +131,8 @@
         <input class="boton" type="button" value="Gestionar salas" onClick=" window.location.href = 'salas.jsp'">
         <h2>Sesiones</h2>
         <input class="boton" type="button" value="Gestionar sesiones" onClick=" window.location.href = 'sesiones.jsp'">
+        <h2>Sorteo</h2>
+        <input class="boton" type="button" value="Ir a gestión de sorteo" onClick=" window.location.href = 'sorteo.jsp'">
         <!--Mostramos todas las entradas-->
         <h2>Entradas</h2>
         <%

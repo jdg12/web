@@ -15,7 +15,7 @@ public class Proxy implements BBDD{
     
     private static Proxy instancia;
     private modeloDatos md = new modeloDatos();
-    
+    private Sorteo sorteo = new Sorteo();
     
     private Proxy(){
         
@@ -329,12 +329,14 @@ public class Proxy implements BBDD{
         md.guardarEntrada(entrada);
     }
     /**
-     * Guarda la reserva pasada como parametor
+     * Guarda la reserva pasada como parametro
      * @param reserva 
+     * @param usuario
      */
     @Override
-    public void guardarReserva(Reserva reserva){
-        md.guardarReserva(reserva);
+    public void guardarReserva(Usuario usuario,Reserva reserva){
+        md.guardarReserva(usuario,reserva);
+        sorteo.nuevoParticipante(usuario, reserva);
     }
     /**
      * Obtiene una lista con todas las salas
@@ -452,5 +454,20 @@ public class Proxy implements BBDD{
     @Override
     public boolean estaRelacionActor(Pelicula pelicula, Actor actor){
         return md.estaRelacionActor(pelicula, actor);
+    }
+    public FichaSorteo getGanadorSorteo(){
+        return sorteo.getGanador();
+    }
+    
+    public int sortear(){
+        return sorteo.sortear();
+        
+    }
+    public ArrayList<FichaSorteo> getParticipantes(){
+        return sorteo.getParticipantes();
+    }
+    
+    public void resetearSorteo(){
+        sorteo = new Sorteo();
     }
 }
